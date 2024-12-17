@@ -19,6 +19,8 @@ Styles aren't cleaned up yet. It's just a copy of a part of [Pico CSS]. Refactor
 
 ## Example
 
+![Login Form](./docs/login.png)
+
 ```jsx live
 <>
   <header>
