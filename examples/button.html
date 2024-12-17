@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset=utf-8>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="icon" href="data:image/png;base64,iVBORw0KGgo=">
+  <title>PiWo Button Demo</title>
+</head>
+
+<body>
+  <h1>PiWo Button Demo</h1>
+
+  <button>First native button</button>
+  <button aria-label="This is a second native button.">Second native button</button>
+
+  <br><br>
+
+  <piwo-button>Primary piwo-button</piwo-button>
+  <piwo-button kind="secondary" aria-label="This is a secondary piwo-button.">Secondary piwo-button</piwo-button>
+  <piwo-button kind="contrast">Contrast piwo-button</piwo-button>
+  <piwo-button kind="outline">Outline piwo-button</piwo-button>
+
+  <script type="module">
+    import registerSelector from './event-logger.js'
+    registerSelector('button, piwo-button')
+  </script>
+
+  <script src="../dist/index.mjs" type="module"></script>
+</body>
+</html>

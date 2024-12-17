@@ -1,0 +1,5 @@
+reject:
+  # Support for directory indexes is included only in 2.0.0-beta.0 and not
+  # in the latest 2.0.2. So far, it's not a big deal, because the latest
+  # patch versions fumbled with index.d.ts only.
+  - rollup-plugin-serve
