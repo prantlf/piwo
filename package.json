@@ -44,11 +44,16 @@
     "rollup-plugin-swc-minify": "^1.2.0",
     "rollup-sourcemap-path-transform": "^1.1.0"
   },
-  "keywords": [],
+  "overrides": {
+    "rollup-plugin-serve": {
+      "mime": "^3.0.0"
+    }
+  },
   "trustedDependencies": [
     "@biomejs/biome"
   ],
   "patchedDependencies": {
     "rollup-plugin-serve@2.0.0-beta.0": "patches/rollup-plugin-serve@2.0.0-beta.0.patch"
-  }
+  },
+  "keywords": []
 }
