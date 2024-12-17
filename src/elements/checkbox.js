@@ -143,7 +143,9 @@ input {
 }
 `)
 
-const booleanAttributes = ['disabled', 'readonly', 'required', 'describeerror']
+const booleanAttributes = [
+  'disabled', 'readonly', 'required', 'describeerror', 'focuserror'
+]
 const allAttributes = booleanAttributes.concat('name')
 
 class PiWoCheckbox extends HTMLElement {
@@ -250,6 +252,19 @@ class PiWoCheckbox extends HTMLElement {
     this.toggleAttribute('describeerror', value)
   }
 
+  #focusError = false
+
+  get focusError() {
+    return this.#focusError
+  }
+
+  set focusError(value) {
+    value = Boolean(value)
+    if (value === this.focusError) return
+    this.#focusError = value
+    this.toggleAttribute('focuserror', value)
+  }
+
   get disabled() {
     return this.#getFlag('disabled')
   }
@@ -317,10 +332,16 @@ class PiWoCheckbox extends HTMLElement {
 
   attributeChangedCallback(name, _oldValue, newValue) {
     if (booleanAttributes.includes(name)) {
-      if (name === 'describeerror') {
-        this.describeError = newValue != null
-      } else {
-        this[name] = newValue != null
+      newValue = newValue != null
+      switch (name) {
+        case 'describeerror':
+          this.describeError = newValue
+          break
+        case 'focuserror':
+          this.focusError = newValue
+          break
+        default:
+          this[name] = newValue
       }
     } else {
       this[name] = newValue
@@ -332,11 +353,12 @@ class PiWoCheckbox extends HTMLElement {
     if (!this.hasAttribute('tabindex')) {
       this.tabIndex = 0
     }
+    const keepValid = this.getAttribute('aria-invalid') === 'false'
     this.checked = this.hasAttribute('checked')
     if (this.hasAttribute('indeterminate')) {
       this.indeterminate = true
     }
-    this.#updateValidity()
+    this.#updateValidity(keepValid)
   }
 
   formResetCallback() {
@@ -431,7 +453,9 @@ class PiWoCheckbox extends HTMLElement {
             }
           }
           messageElement.textContent = this.validationMessage
-          this.focus()
+          if (this.focusError) {
+            this.focus()
+          }
         }
       }
     }
@@ -503,7 +527,7 @@ class PiWoCheckbox extends HTMLElement {
   #messageElement
   #originalMessage = ''
 
-  #updateValidity() {
+  #updateValidity(keepValid) {
     if (this.checked) {
       this.#internals.setFormValue('on', 'checked')
     } else {
@@ -517,7 +541,7 @@ class PiWoCheckbox extends HTMLElement {
         }
     } else {
       this.#internals.setValidity({})
-      this.ariaInvalid = null
+      this.ariaInvalid = keepValid ? 'false': null
       if (this.#messageElement) {
         this.#messageElement.textContent = this.#originalMessage
         if (!this.#originalMessage) {

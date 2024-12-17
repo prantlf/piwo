@@ -140,7 +140,7 @@ input::selection {
 `)
 
 const booleanAttributes = [
-  'disabled', 'readonly', 'required', 'multiple', 'describeerror'
+  'disabled', 'readonly', 'required', 'multiple', 'describeerror', 'focuserror'
 ]
 const stringAttributes = [
   'name', 'type', 'placeholder', 'autocomplete', 'step', 'pattern',
@@ -346,6 +346,19 @@ class PiWoInput extends HTMLElement {
     this.toggleAttribute('describeerror', value)
   }
 
+  #focusError = false
+
+  get focusError() {
+    return this.#focusError
+  }
+
+  set focusError(value) {
+    value = Boolean(value)
+    if (value === this.focusError) return
+    this.#focusError = value
+    this.toggleAttribute('focuserror', value)
+  }
+
   #pattern = ''
 
   get pattern() {
@@ -441,10 +454,16 @@ class PiWoInput extends HTMLElement {
 
   attributeChangedCallback(name, _oldValue, newValue) {
     if (booleanAttributes.includes(name)) {
-      if (name === 'describeerror') {
-        this.describeError = newValue != null
-      } else {
-        this[name] = newValue != null
+      newValue = newValue != null
+      switch (name) {
+        case 'describeerror':
+          this.describeError = newValue
+          break
+        case 'focuserror':
+          this.focusError = newValue
+          break
+        default:
+          this[name] = newValue
       }
     } else {
       this[name] = newValue
@@ -456,8 +475,9 @@ class PiWoInput extends HTMLElement {
     if (!this.hasAttribute('tabindex')) {
       this.tabIndex = 0
     }
+    const keepValid = this.getAttribute('aria-invalid') === 'false'
     this.value = this.getAttribute('value')
-    this.#updateValidity()
+    this.#updateValidity(keepValid)
   }
 
   formResetCallback() {
@@ -520,7 +540,9 @@ class PiWoInput extends HTMLElement {
             }
           }
           messageElement.textContent = this.validationMessage
-          this.focus()
+          if (this.focusError) {
+            this.focus()
+          }
         }
       }
     }
@@ -566,12 +588,12 @@ class PiWoInput extends HTMLElement {
   #messageElement
   #originalMessage = ''
 
-  #updateValidity() {
+  #updateValidity(keepValid) {
     this.#internals.setFormValue(this.#value, this.#value);
     const { validity } = this.#innerInput
     if (validity.valid) {
       this.#internals.setValidity({})
-      this.ariaInvalid = null
+      this.ariaInvalid = keepValid ? 'false': null
       if (this.#messageElement) {
         this.#messageElement.textContent = this.#originalMessage
         if (!this.#originalMessage) {

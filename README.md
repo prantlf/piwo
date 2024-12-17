@@ -19,7 +19,11 @@ Styles aren't cleaned up yet. It's just a copy of a part of [Pico CSS]. Refactor
 
 ## Example
 
+Picture:
+
 ![Login Form](./docs/login.png)
+
+Markup:
 
 ```jsx live
 <>
@@ -32,7 +36,7 @@ Styles aren't cleaned up yet. It's just a copy of a part of [Pico CSS]. Refactor
     <form id="login">
       <piwo-label for="name">Name:</piwo-label>
       <piwo-input name="name" type="text" placeholder="Enter your login name"
-                  id="name" aria-describedby="name-msg" required describeerror></piwo-input>
+                  id="name" aria-describedby="name-msg" required describeerror focuserror></piwo-input>
       <piwo-msg id="name-msg">Ask the admin about your user name.</piwo-msg>
       <piwo-label>
         Password:
@@ -99,6 +103,12 @@ Checkbox form field.
 
     <piwo-checkbox id="checked" checked></piwo-checkbox>
     <piwo-label for="checked">Checked</piwo-label>
+
+    <piwo-checkbox id="invalid" required aria-invalid="true"></piwo-checkbox>
+    <piwo-label for="invalid">Invalid</piwo-label>
+
+    <piwo-checkbox id="valid" checked aria-invalid="false"></piwo-checkbox>
+    <piwo-label for="valid">Valid</piwo-label>
   </div>
 
   <piwo-label>
@@ -125,7 +135,11 @@ Input form field.
 * Allows either showing the browser popup, or a HTML message for invalid fields, if `describeerror` is set and the last ID in `aria-describedby` points to an element with content. If the element is hidden, it'll be temporarily shown.
 
 ```jsx live
-<piwo-input name="last-name" type="text" aria-label="Last name" placeholder="Enter your last name"></piwo-input>
+<>
+  <piwo-input name="last-name" type="text" aria-label="Last name" placeholder="Enter your last name"></piwo-input>
+  <piwo-input name="missing-last-name" type="text" aria-label="Last name" placeholder="Enter your last name" aria-invalid="true" required></piwo-input>
+  <piwo-input name="entered-last-name" type="text" aria-label="Last name" placeholder="Enter your last name" aria-invalid="false" required value="Doe"></piwo-input>
+</>
 ```
 
 ### Message
