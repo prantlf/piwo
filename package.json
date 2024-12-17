@@ -45,9 +45,7 @@
     "rollup-sourcemap-path-transform": "^1.1.0"
   },
   "overrides": {
-    "rollup-plugin-serve": {
-      "mime": "^3.0.0"
-    }
+    "mime": "^3.0.0"
   },
   "trustedDependencies": [
     "@biomejs/biome"
