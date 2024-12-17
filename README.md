@@ -17,6 +17,33 @@ Styles aren't cleaned up yet. It's just a copy of a part of [Pico CSS]. Refactor
 * Check feasibility of such implementation with the current state of the web component support.
 * Avoid unnecessary complexity of wrapping native elements with the same role in the shadow DOM and then synchronising their states, when it's possible to implement the form-associated interface on the host element.
 
+## Usage
+
+You can install the package locally to get access to the distributed files:
+
+    npm i -D piwecko
+
+And load the web components on a testing page:
+
+```html
+<script src="node_modules/piwecko/dist/index.mjs" type="module"></script>
+```
+
+At this time, this package is more for experimenting with and debugging. You can download it, build it and debug the included pages:
+
+    git clone https://github.com/prantlf/piwo.git
+    cd piwo
+    bun i --frozen-lockfile
+    bun run start
+    open http://localhost:8080/examples/checkbox.html
+
+And the GitHub pages web site:
+
+    cd web
+    bun i --frozen-lockfile
+    bun run start
+    open http://localhost:3000/piwo/
+
 ## Example
 
 Picture:
