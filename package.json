@@ -32,7 +32,7 @@
   },
   "scripts": {
     "prepare": "rollup -c",
-    "test": "biome lint *.js src",
+    "test": "biome lint *.js src examples",
     "start": "rollup -cw --environment ROLLUP_SERVE:true"
   },
   "devDependencies": {
