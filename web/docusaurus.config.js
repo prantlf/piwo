@@ -8,6 +8,7 @@ const config = {
 
   url: 'https://prantlf.github.io',
   baseUrl: '/piwo/',
+  trailingSlash: true,
 
   organizationName: 'prantlf',
   projectName: 'piwo',
@@ -25,14 +26,15 @@ const config = {
       'classic',
       {
         docs: {
-          routeBasePath: '/',
-          editUrl: 'https://github.com/prantlf/piwo/edit/master/README.md'
+          routeBasePath: '/'
         }
       },
     ],
   ],
 
-  themes: ['@docusaurus/theme-live-codeblock'],
+  themes: [
+    '@docusaurus/theme-live-codeblock'
+  ],
 
   themeConfig:
     {
