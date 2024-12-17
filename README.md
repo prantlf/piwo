@@ -21,7 +21,9 @@ Styles aren't cleaned up yet. It's just a copy of a part of [Pico CSS]. Refactor
 
 You can install the package locally to get access to the distributed files:
 
-    npm i -D piwecko
+```
+npm i -D piwecko
+```
 
 And load the web components on a testing page:
 
@@ -31,18 +33,22 @@ And load the web components on a testing page:
 
 At this time, this package is more for experimenting with and debugging. You can download it, build it and debug the included pages:
 
-    git clone https://github.com/prantlf/piwo.git
-    cd piwo
-    bun i --frozen-lockfile
-    bun run start
-    open http://localhost:8080/examples/checkbox.html
+```
+git clone https://github.com/prantlf/piwo.git
+cd piwo
+bun i --frozen-lockfile
+bun run start
+open http://localhost:8080/examples/checkbox.html
+```
 
 And the GitHub pages web site:
 
-    cd web
-    bun i --frozen-lockfile
-    bun run start
-    open http://localhost:3000/piwo/
+```
+cd web
+bun i --frozen-lockfile
+bun run start
+open http://localhost:3000/piwo/
+```
 
 ## Example
 
