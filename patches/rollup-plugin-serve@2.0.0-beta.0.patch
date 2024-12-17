@@ -1,0 +1,26 @@
+diff --git a/dist/index.cjs.js b/dist/index.cjs.js
+index bd215de5de2d23869859982b015e95ddaca26a94..436f06a30587053404db1912923bbd6ae41b2c4c 100644
+--- a/dist/index.cjs.js
++++ b/dist/index.cjs.js
+@@ -35,7 +35,7 @@ function serve (options) {
+   options.openPage = options.openPage || '';
+   options.compress = !!options.compress;
+   options.serveIndex = options.serveIndex || (options.serveIndex === undefined);
+-  mime.default_type = 'text/plain';
++  // mime.default_type = 'text/plain';
+ 
+   function setupProxy () {
+     /**
+diff --git a/dist/index.es.js b/dist/index.es.js
+index e22e71bf4b4bcb8e723ecc11a04bfad9ad604661..deaff4767ce8087b9018302679f05e62879a5aed 100644
+--- a/dist/index.es.js
++++ b/dist/index.es.js
+@@ -31,7 +31,7 @@ function serve (options) {
+   options.openPage = options.openPage || '';
+   options.compress = !!options.compress;
+   options.serveIndex = options.serveIndex || (options.serveIndex === undefined);
+-  mime.default_type = 'text/plain';
++  // mime.default_type = 'text/plain';
+ 
+   function setupProxy () {
+     /**
