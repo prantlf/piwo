@@ -18,7 +18,6 @@
   "bugs": {
     "url": "http://github.com/prantlf/piwo/issues"
   },
-  "type": "module",
   "module": "dist/index.mjs",
   "main": "dist/index.cjs",
   "exports": {

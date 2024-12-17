@@ -1,8 +1,8 @@
-import { minify } from 'rollup-plugin-swc-minify'
-import { createPathTransform } from 'rollup-sourcemap-path-transform'
-import copy from 'rollup-plugin-copy'
-import serve from 'rollup-plugin-serve'
-import liveReload from 'rollup-plugin-livereload'
+const { minify } = require('rollup-plugin-swc-minify')
+const { createPathTransform } = require('rollup-sourcemap-path-transform')
+const copy = require('rollup-plugin-copy')
+const serve = require('rollup-plugin-serve')
+const liveReload = require('rollup-plugin-livereload')
 
 let build
 
@@ -51,4 +51,4 @@ if (process.env.ROLLUP_SERVE) {
   }
 }
 
-export default build
+module.exports = build
