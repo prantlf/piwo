@@ -64,16 +64,16 @@ const config = {
             title: 'Technology',
             items: [
               {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus'
+                label: 'WHATWG',
+                href: 'https://html.spec.whatwg.org/dev/custom-elements.html'
               },
               {
-                label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus'
+                label: 'More capable form controls',
+                href: 'https://web.dev/articles/more-capable-form-controls'
               },
               {
-                label: 'X',
-                href: 'https://x.com/docusaurus'
+                label: 'ElementInternals and Form-Associated Custom Elements',
+                href: 'https://webkit.org/blog/13711/elementinternals-and-form-associated-custom-elements/'
               },
             ],
           },
@@ -82,12 +82,16 @@ const config = {
             items: [
               {
                 label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus'
+                href: 'https://github.com/prantlf/piwo'
               },
+              {
+                label: 'NPMJS',
+                href: 'https://www.npmjs.com/package/piwecko'
+              }
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`
+        copyright: `Copyright © 2024 Ferdinand Prantl`
       },
       prism: {
         theme: prismThemes.github,
