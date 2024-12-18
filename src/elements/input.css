@@ -1,0 +1,136 @@
+:host {
+  display: inline-block;
+  width: 100%;
+}
+
+input {
+  --pico-outline-width: 0.0625rem;
+  --pico-background-color: var(--pico-form-element-background-color);
+  --pico-border-color: var(--pico-form-element-border-color);
+  --pico-readonly-border-color: var(--pico-form-element-readonly-border-color);
+  --pico-color: var(--pico-form-element-color);
+  --pico-box-shadow: none;
+  box-sizing: border-box;
+  background-repeat: no-repeat;
+  margin: 0;
+  font-size: 1rem;
+  line-height: var(--pico-line-height);
+  font-family: var(--pico-font-family);
+  letter-spacing: inherit;
+  overflow: visible;
+  height: calc(1rem * var(--pico-line-height) + var(--pico-form-element-spacing-vertical) * 2 + var(--pico-border-width) * 2);
+  width: 100%;
+  appearance: none;
+  padding: var(--pico-form-element-spacing-vertical) var(--pico-form-element-spacing-horizontal);
+  border: var(--pico-border-width) solid var(--pico-border-color);
+  border-radius: var(--pico-border-radius);
+  outline: none;
+  background-color: var(--pico-background-color);
+  box-shadow: var(--pico-box-shadow);
+  color: var(--pico-color);
+  font-weight: var(--pico-font-weight);
+  transition: background-color var(--pico-transition), border-color var(--pico-transition), color var(--pico-transition), box-shadow var(--pico-transition);
+  margin-bottom: var(--pico-spacing);
+}
+
+:host(:is(:active, :focus)) > input {
+  --pico-background-color: var(--pico-form-element-active-background-color);
+  --pico-border-color: var(--pico-form-element-active-border-color);
+}
+
+:host(:focus) > input {
+  --pico-box-shadow: 0 0 0 var(--pico-outline-width) var(--pico-form-element-focus-color);
+}
+
+:host([aria-invalid=false]:focus) {
+  --pico-box-shadow: 0 0 0 var(--pico-outline-width) var(--pico-ins-color);
+}
+
+:host([aria-invalid=true]:focus) {
+  --pico-box-shadow: 0 0 0 var(--pico-outline-width) var(--pico-del-color);
+}
+
+:host(:focus) > input,
+:host(:focus-visible) > input {
+  outline: none;
+}
+
+:host(:disabled) > input {
+  opacity: var(--pico-form-element-disabled-opacity);
+  pointer-events: none;
+}
+
+:host(:state(readonly)) > input {
+  border-color: var(--pico-readonly-border-color);
+}
+
+:host([aria-invalid]) > input {
+  padding-right: calc(var(--pico-form-element-spacing-horizontal) + 1.5rem) !important;
+  padding-left: var(--pico-form-element-spacing-horizontal);
+  padding-inline-start: var(--pico-form-element-spacing-horizontal) !important;
+  padding-inline-end: calc(var(--pico-form-element-spacing-horizontal) + 1.5rem) !important;
+  background-position: center right 0.75rem;
+  background-size: 1rem auto;
+  background-repeat: no-repeat;
+}
+
+:host([aria-invalid=false]) > input {
+  --pico-border-color: var(--pico-form-element-valid-border-color);
+  background-image: var(--pico-icon-valid);
+}
+
+:host([aria-invalid=true]) > input {
+  --pico-border-color: var(--pico-form-element-invalid-border-color);
+  background-image: var(--pico-icon-invalid);
+}
+
+:host([aria-invalid=false]:is(:active, :focus)) > input {
+  --pico-border-color: var(--pico-form-element-valid-active-border-color) !important;
+  --pico-box-shadow: 0 0 0 var(--pico-outline-width) var(--pico-form-element-valid-focus-color) !important;
+}
+
+:host([aria-invalid=true]:is(:active, :focus)) > input {
+  --pico-border-color: var(--pico-form-element-invalid-active-border-color) !important;
+  --pico-box-shadow: 0 0 0 var(--pico-outline-width) var(--pico-form-element-invalid-focus-color) !important;
+}
+
+:host(:dir(rtl):is([aria-invalid], [aria-invalid=true], [aria-invalid=false])) > input {
+  background-position: center left 0.75rem;
+}
+
+input::placeholder {
+  color: var(--pico-form-element-placeholder-color);
+  opacity: 1;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+  scrollbar-width: none;
+  word-wrap: normal;
+  white-space: pre;
+  border: 0;
+  padding: inherit;
+  margin: 0;
+  text-decoration: inherit;
+  display: inline-block;
+  ime-mode: inherit;
+}
+
+input::selection {
+  background-color: var(--pico-text-selection-color);
+}
+
+:host([hidden]) {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :host(:not([aria-busy=true])), :host(:not([aria-busy=true]))::after, :host(:not([aria-busy=true]))::before {
+    background-attachment: initial !important;
+    animation-duration: 1ms !important;
+    animation-delay: -1ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-delay: 0s !important;
+    transition-duration: 0s !important;
+  }
+}

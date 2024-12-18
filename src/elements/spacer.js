@@ -1,23 +1,7 @@
 import { createStylesheet, upgradeProperty } from '../shared/helpers.js'
+import styles from './spacer.css'
 
-const stylesheet = createStylesheet(`
-:host {
-  --pico-spacing-factor: 1;
-  display: block;
-  height: calc(var(--pico-spacing) * var(--pico-spacing-factor));
-  font-size: var(--pico-font-size);
-  line-height: var(--pico-line-height);
-  font-family: var(--pico-font-family);
-}
-
-:host([typography]) {
-  margin-bottom: var(--pico-typography-spacing-vertical);
-}
-
-:host([hidden]) {
-  display: none;
-}
-`)
+const stylesheet = createStylesheet(styles)
 
 class PiWoSpacer extends HTMLElement {
   constructor() {

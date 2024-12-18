@@ -1,0 +1,16 @@
+:host {
+  --pico-spacing-factor: 1;
+  display: block;
+  height: calc(var(--pico-spacing) * var(--pico-spacing-factor));
+  font-size: var(--pico-font-size);
+  line-height: var(--pico-line-height);
+  font-family: var(--pico-font-family);
+}
+
+:host([typography]) {
+  margin-bottom: var(--pico-typography-spacing-vertical);
+}
+
+:host([hidden]) {
+  display: none;
+}

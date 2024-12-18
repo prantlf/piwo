@@ -5,13 +5,23 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "build",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/node_modules/.bin/rollup",
+      "args": ["-c"],
+      "skipFiles": [
+        "<node_internals>/**"
+      ]
+    },
+    {
       "name": "test",
-      "type": "pwa-node",
+      "type": "node",
       "request": "launch",
       "program": "${workspaceFolder}/test/index.js",
       "skipFiles": [
         "<node_internals>/**"
       ]
     }
- ]
+  ]
 }
