@@ -331,7 +331,8 @@ piwo-checkbox ~ piwo-label:not(:last-of-type) {
   margin-inline-end: 1em;
 }
 fieldset[disabled] piwo-checkbox,
-fieldset[disabled] piwo-input {
+fieldset[disabled] piwo-input,
+fieldset[disabled] piwo-textarea {
   opacity: var(--pico-form-element-disabled-opacity);
   pointer-events: none;
 }
@@ -363,20 +364,21 @@ piwo-button ~ piwo-button {
   margin-inline-start: 1rem;
 }
 
-piwo-label > :where(piwo-input) {
+piwo-label > :where(piwo-input),
+piwo-label > :where(piwo-textarea) {
   margin-top: calc(var(--pico-spacing) * 0.25);
 }
 
-:where(piwo-input, piwo-checkbox, fieldset) + piwo-msg {
+:where(piwo-input, piwo-checkbox, piwo-textarea, fieldset) + piwo-msg {
   display: block;
   width: 100%;
   margin-top: calc(var(--pico-spacing) * -0.75);
   margin-bottom: var(--pico-spacing);
   color: var(--pico-muted-color);
 }
-:where(piwo-input, piwo-checkbox, fieldset)[aria-invalid=false] + piwo-msg {
+:where(piwo-input, piwo-checkbox, piwo-textarea, fieldset)[aria-invalid=false] + piwo-msg {
   color: var(--pico-ins-color);
 }
-:where(piwo-input, piwo-checkbox, fieldset)[aria-invalid=true] + piwo-msg {
+:where(piwo-input, piwo-checkbox, piwo-textarea, fieldset)[aria-invalid=true] + piwo-msg {
   color: var(--pico-del-color);
 }

@@ -1,0 +1,106 @@
+:host {
+  --pico-outline-width: 0.0625rem;
+  --pico-background-color: var(--pico-form-element-background-color);
+  --pico-border-color: var(--pico-form-element-border-color);
+  --pico-color: var(--pico-form-element-color);
+  --pico-box-shadow: none;
+  box-sizing: border-box;
+  background-repeat: no-repeat;
+  margin: 0;
+  font-size: 1rem;
+  line-height: var(--pico-line-height);
+  font-family: var(--pico-font-family);
+  letter-spacing: inherit;
+  overflow: auto;
+  width: 100%;
+  appearance: none;
+  padding: var(--pico-form-element-spacing-vertical) var(--pico-form-element-spacing-horizontal);
+  border: var(--pico-border-width) solid var(--pico-border-color);
+  border-radius: var(--pico-border-radius);
+  outline: none;
+  background-color: var(--pico-background-color);
+  box-shadow: var(--pico-box-shadow);
+  color: var(--pico-color);
+  font-weight: var(--pico-font-weight);
+  transition: background-color var(--pico-transition), border-color var(--pico-transition), color var(--pico-transition), box-shadow var(--pico-transition);
+  margin-bottom: var(--pico-spacing);
+  display: block;
+  resize: vertical;
+}
+
+:host(:not([readonly]):is(:active, :focus)) {
+  --pico-background-color: var(--pico-form-element-active-background-color);
+  --pico-border-color: var(--pico-form-element-active-border-color);
+}
+
+:host(:not([readonly])::focus) {
+  --pico-box-shadow: 0 0 0 var(--pico-outline-width) var(--pico-form-element-focus-color);
+}
+
+:host(:disabled) {
+  opacity: var(--pico-form-element-disabled-opacity);
+  pointer-events: none;
+}
+
+:host([aria-invalid]) {
+  padding-right: calc(var(--pico-form-element-spacing-horizontal) + 1.5rem) !important;
+  padding-left: var(--pico-form-element-spacing-horizontal);
+  padding-inline-start: var(--pico-form-element-spacing-horizontal) !important;
+  padding-inline-end: calc(var(--pico-form-element-spacing-horizontal) + 1.5rem) !important;
+  background-position: center right 0.75rem;
+  background-size: 1rem auto;
+  background-repeat: no-repeat;
+  /* --pico-icon-height: calc(1rem * var(--pico-line-height) + var(--pico-form-element-spacing-vertical) * 2 + var(--pico-border-width) * 2);
+  background-position: top right 0.75rem !important;
+  background-size: 1rem var(--pico-icon-height) !important; */
+}
+
+:host([aria-invalid=false]) {
+  --pico-border-color: var(--pico-form-element-valid-border-color);
+  background-image: var(--pico-icon-valid);
+}
+
+:host([aria-invalid=false]) {
+  --pico-border-color: var(--pico-form-element-valid-border-color);
+  background-image: var(--pico-icon-valid);
+}
+
+:host([aria-invalid=false]:is(:active, :focus)) {
+  --pico-border-color: var(--pico-form-element-valid-active-border-color) !important;
+  --pico-box-shadow: 0 0 0 var(--pico-outline-width) var(--pico-form-element-valid-focus-color) !important;
+}
+
+:host([aria-invalid=true]) {
+  --pico-border-color: var(--pico-form-element-invalid-border-color);
+  background-image: var(--pico-icon-invalid);
+}
+
+:host([aria-invalid=true]:is(:active, :focus)) {
+  --pico-border-color: var(--pico-form-element-invalid-active-border-color) !important;
+  --pico-box-shadow: 0 0 0 var(--pico-outline-width) var(--pico-form-element-invalid-focus-color) !important;
+}
+
+:host(:dir(rtl):is([aria-invalid], [aria-invalid=true], [aria-invalid=false])) {
+  background-position: center left 0.75rem;
+}
+
+:host::placeholder {
+  color: var(--pico-form-element-placeholder-color);
+  opacity: 1;
+}
+
+:host([hidden]) {
+  display: none;
+}
+
+input {
+  display: none;
+}
+
+:host(:invalid) input {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  padding: 0;
+  border: none;
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset=utf-8>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="icon" href="data:image/png;base64,iVBORw0KGgo=">
+  <title>PiWo TextArea Demo</title>
+  <style>
+    #required {
+      width: 300px;
+      height: 100px;
+      border: 2px black solid;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>PiWo TextArea Demo</h1>
+
+  <form id="form">
+    <label>
+      Disabled native textarea:<br>
+      <textarea name="disabled" disabled></textarea>
+    </label><br>
+
+    <label for="optional">Optional native textarea:</label><br>
+    <textarea name="optional" id="optional"></textarea><br>
+
+    <label for="required">Required native textarea:</label>
+    <div name="required" id="required" role="textbox"
+         tabindex="0" contenteditable required></div>
+
+    <br><br>
+
+    <piwo-label for="piwo-required">Required piwo-textarea:</piwo-label>
+    <piwo-textarea name="piwo-required" id="piwo-required" aria-describedby="piwo-required-msg"
+                   required describeerror focuserror></piwo-textarea>
+    <piwo-msg id="piwo-required-msg"></piwo-msg>
+
+    <br><br>
+
+    <piwo-button name="validate">Validate</piwo-button>
+  </form>
+
+  <script type="module">
+    import registerSelector from './event-logger.js'
+    registerSelector('div, textarea, piwo-textarea')
+
+    const form = document.getElementById('form')
+    form.addEventListener('submit', event => {
+      event.preventDefault()
+      console.log(new FormData(form))
+    })
+  </script>
+
+  <script src="../dist/index.mjs" type="module"></script>
+</body>
+</html>

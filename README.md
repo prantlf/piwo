@@ -85,7 +85,13 @@ Markup:
         I agree with collecting my name and password
       </piwo-label>
 
-      <piwo-spacer factor="1.5"></piwo-spacer>
+      <piwo-spacer></piwo-spacer>
+
+      <piwo-label>Comment:
+        <piwo-textarea name="comment" id="comment"></piwo-textarea>
+      </piwo-label>
+
+      <piwo-spacer></piwo-spacer>
 
       <piwo-button>Submit</piwo-button>
       <piwo-button type="reset" kind="outline">Reset</piwo-button>
