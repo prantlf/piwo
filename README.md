@@ -88,7 +88,7 @@ Markup:
       <piwo-spacer></piwo-spacer>
 
       <piwo-label>Comment:
-        <piwo-textarea name="comment" id="comment"></piwo-textarea>
+        <piwo-textarea name="comment"></piwo-textarea>
       </piwo-label>
 
       <piwo-spacer></piwo-spacer>
@@ -178,6 +178,30 @@ Input form field.
   <piwo-input name="last-name" type="text" aria-label="Last name" placeholder="Enter your last name"></piwo-input>
   <piwo-input name="missing-last-name" type="text" aria-label="Last name" placeholder="Enter your last name" aria-invalid="true" required></piwo-input>
   <piwo-input name="entered-last-name" type="text" aria-label="Last name" placeholder="Enter your last name" aria-invalid="false" required value="Doe"></piwo-input>
+</>
+```
+
+### TextArea
+
+TextArea form field.
+
+* Lightweight - only a slot for the edited text. The host element itself has the role `textbox`.
+* Form-associated element. Can be used like `textarea`.
+* Implements many attributes of the native element.
+* Supports events `beforeinput`, `input` and `change` including `preventDefault`.
+* Fills the value to `FormData`.
+* Remembers the current value for back and forth navigation in the browser.
+* Can reset the value on form `reset`.
+* Exposes states `disabled`, `readonly` and `required` in CSS.
+* Validates input including custom errors.
+* Emphasises valid or invalid state if `aria-invalid` is set explicitly.
+* Allows either showing the browser popup, or a HTML message for invalid fields, if `describeerror` is set and the last ID in `aria-describedby` points to an element with content. If the element is hidden, it'll be temporarily shown.
+
+```jsx live
+<>
+  <piwo-textarea name="review" aria-label="Review" placeholder="Write a review"></piwo-textarea>
+  <piwo-textarea name="missing-review" aria-label="Review" placeholder="Write a review" aria-invalid="true" required></piwo-textarea>
+  <piwo-textarea name="entered-review" aria-label="Review" placeholder="Write a review" aria-invalid="false" required>I like it.</piwo-textarea>
 </>
 ```
 

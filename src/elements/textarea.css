@@ -33,7 +33,7 @@
   --pico-border-color: var(--pico-form-element-active-border-color);
 }
 
-:host(:not([readonly])::focus) {
+:host(:not([readonly]):focus) {
   --pico-box-shadow: 0 0 0 var(--pico-outline-width) var(--pico-form-element-focus-color);
 }
 
