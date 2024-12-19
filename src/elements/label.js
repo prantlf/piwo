@@ -1,5 +1,4 @@
 import { upgradeProperty } from '../shared/helpers.js'
-
 import stylesheet from './label.css'
 
 let counter = 0

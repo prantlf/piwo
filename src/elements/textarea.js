@@ -91,7 +91,7 @@ class PiWoTextArea extends HTMLElement {
   set placeholder(value) {
     if (value == null) value = ''
     if (value === this.placeholder) return
-    this.#placeholder = value
+    this.#placeholder = this.#internals.placeholder = this.#internals.ariaPlaceholder = value
     this.setAttribute('placeholder', this.#placeholder)
   }
 
@@ -124,7 +124,7 @@ class PiWoTextArea extends HTMLElement {
       }
     }
     if (value === this.maxLength) return
-    this.#maxLength = value
+    this.#maxLength = this.#internals.maxLength = value
     this.setAttribute('maxlength', value)
   }
 
@@ -144,7 +144,7 @@ class PiWoTextArea extends HTMLElement {
       }
     }
     if (value === this.minLength) return
-    this.#minLength = value
+    this.#minLength = this.#internals.minLength = value
     this.setAttribute('minlength', value)
   }
 
