@@ -45,7 +45,7 @@
   --pico-color: var(--pico-h5-color);
 }
 
-:host([level=6]) {
+:host([level="6"]) {
   --pico-font-size: 1rem;
   --pico-line-height: 1.25;
   --pico-typography-spacing-top: 1.5rem;

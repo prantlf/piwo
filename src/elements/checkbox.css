@@ -101,16 +101,16 @@
   background-repeat: no-repeat;
 }
 
-:host(:state(checked)[aria-invalid=false]),
-:host(:state(checked)[aria-invalid=false]:active),
-:host(:state(checked)[aria-invalid=false]:focus) {
+:host([aria-invalid=false]:state(checked)),
+:host([aria-invalid=false]:state(checked):active),
+:host([aria-invalid=false]:state(checked):focus) {
   --pico-background-color: var(--pico-form-element-valid-border-color);
   --pico-border-color: var(--pico-form-element-valid-border-color);
 }
 
-:host(:state(checked)[aria-invalid=true]),
-:host(:state(checked)[aria-invalid=true]:active),
-:host(:state(checked)[aria-invalid=true]:focus) {
+:host([aria-invalid=true]:state(checked)),
+:host([aria-invalid=true]:state(checked):active),
+:host([aria-invalid=true]:state(checked):focus) {
   --pico-background-color: var(--pico-form-element-invalid-border-color);
   --pico-border-color: var(--pico-form-element-invalid-border-color);
 }
