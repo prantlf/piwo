@@ -1,7 +1,5 @@
-import { createStylesheet, upgradeProperty } from '../shared/helpers.js'
-import styles from './spacer.css'
-
-const stylesheet = createStylesheet(styles)
+import { upgradeProperty } from '../shared/helpers.js'
+import stylesheet from './spacer.css'
 
 class PiWoSpacer extends HTMLElement {
   constructor() {

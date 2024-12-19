@@ -1,7 +1,5 @@
-import { createStylesheet, upgradeProperty } from '../shared/helpers.js'
-import styles from './h.css'
-
-const stylesheet = createStylesheet(styles)
+import { upgradeProperty } from '../shared/helpers.js'
+import stylesheet from './h.css'
 
 class PiWoHeading extends HTMLElement {
   #internals

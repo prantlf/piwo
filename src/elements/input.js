@@ -1,15 +1,20 @@
-import { createStylesheet, findLabels, upgradeProperty } from '../shared/helpers.js'
-import styles from './input.css'
+import { findLabels, upgradeProperty } from '../shared/helpers.js'
+import stylesheet from './input.css'
 
-const stylesheet = createStylesheet(styles)
 const booleanAttributes = [
   'disabled', 'readonly', 'required', 'multiple', 'describeerror', 'focuserror'
 ]
 const stringAttributes = [
   'name', 'type', 'placeholder', 'autocomplete', 'step', 'pattern',
-  'max', 'min', 'maxLength', 'minLength'
+  'max', 'min', 'maxlength', 'minlength'
 ]
 const allAttributes = booleanAttributes.concat(stringAttributes)
+const propertyNames = {
+  describeerror: 'describeError',
+  focuserror: 'focusError',
+  maxlength: 'maxLength',
+  minlength: 'minLength'
+}
 
 class PiWoInput extends HTMLElement {
   #internals
@@ -35,8 +40,9 @@ class PiWoInput extends HTMLElement {
     this.#innerInput.addEventListener('change', event => this.#handleChange(event))
     this.addEventListener('invalid', event => this.#handleInvalid(event))
 
-    for (const name in PiWoInput.observedAttributes) {
-      upgradeProperty(this, name)
+    for (const attributeName in allAttributes) {
+      const propertyName = propertyNames[attributeName] ?? attributeName
+      upgradeProperty(this, propertyName)
     }
   }
 
@@ -316,31 +322,25 @@ class PiWoInput extends HTMLElement {
   }
 
   attributeChangedCallback(name, _oldValue, newValue) {
+    const propertyName = propertyNames[name] ?? name
     if (booleanAttributes.includes(name)) {
-      newValue = newValue != null
-      switch (name) {
-        case 'describeerror':
-          this.describeError = newValue
-          break
-        case 'focuserror':
-          this.focusError = newValue
-          break
-        default:
-          this[name] = newValue
-      }
+      this[propertyName] = newValue != null
     } else {
-      this[name] = newValue
+      this[propertyName] = newValue
     }
   }
 
   connectedCallback() {
     // not yet in internals - https://github.com/WICG/webcomponents/issues/762
     if (!this.hasAttribute('tabindex')) {
-      this.tabIndex = 0
+      this.tabIndex = this.disabled ? -1 : 0
     }
     const keepValid = this.getAttribute('aria-invalid') === 'false'
     this.value = this.getAttribute('value')
     this.#updateValidity(keepValid)
+    if (this.validity.valid) {
+      this.#ensureMessageElement()
+    }
   }
 
   formResetCallback() {
@@ -389,23 +389,42 @@ class PiWoInput extends HTMLElement {
   }
 
   #markInvalid() {
+    if (this.#ensureMessageElement()) {
+      this.#messageElement.style.display = ''
+      this.#messageElement.textContent = this.validationMessage
+      const { form } = this
+      if (this.focusError && !form?.errorFocused) {
+        if (form) {
+          form.errorFocused = true
+        }
+        this.focus()
+        if (form) {
+          setTimeout(() => {
+            form.errorFocused = false
+          });
+        }
+      }
+    }
+  }
+
+  #messageElement
+  #originalMessage = ''
+
+  #ensureMessageElement() {
     const messageIds = this.getAttribute('aria-describedby')
     if (messageIds) {
       const messageId = messageIds.trim().split(/ +/).slice(-1)[0]
       if (messageId) {
         const messageElement = document.getElementById(messageId.trim())
         if (messageElement) {
-          if (!this.#messageElement) {
+          if (messageElement !== this.#messageElement) {
             this.#messageElement = messageElement
             this.#originalMessage = messageElement.textContent
             if (!this.#originalMessage) {
-              this.#messageElement.style.display = ''
+              this.#messageElement.style.display = 'none'
             }
           }
-          messageElement.textContent = this.validationMessage
-          if (this.focusError) {
-            this.focus()
-          }
+          return true
         }
       }
     }
@@ -437,7 +456,7 @@ class PiWoInput extends HTMLElement {
 
   reportValidity() {
     this.ariaInvalid = String(!this.validity.valid)
-    return this.#internals.reportValidity() && this.#internals.checkValidity()
+    return this.#internals.reportValidity() && this.#innerInput.checkValidity()
   }
 
   setCustomValidity(message) {
@@ -448,29 +467,30 @@ class PiWoInput extends HTMLElement {
     }
   }
 
-  #messageElement
-  #originalMessage = ''
-
   #updateValidity(keepValid) {
     this.#internals.setFormValue(this.#value, this.#value);
     const { validity } = this.#innerInput
     if (validity.valid) {
       this.#internals.setValidity({})
       this.ariaInvalid = keepValid ? 'false': null
-      if (this.#messageElement) {
-        this.#messageElement.textContent = this.#originalMessage
-        if (!this.#originalMessage) {
-          this.#messageElement.style.display = 'none'
-        }
-        this.#messageElement = null
-        this.#originalMessage = ''
-      }
+      this.#markValid()
     } else {
       this.#internals.setValidity(validity,
         this.#innerInput.validationMessage, this.#innerInput)
       if (this.getAttribute('aria-invalid') === 'true') {
         this.#markInvalid()
       }
+    }
+  }
+
+  #markValid() {
+    if (this.#messageElement) {
+      this.#messageElement.textContent = this.#originalMessage
+      if (!this.#originalMessage) {
+        this.#messageElement.style.display = 'none'
+      }
+      this.#messageElement = null
+      this.#originalMessage = ''
     }
   }
 }

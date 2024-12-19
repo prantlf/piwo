@@ -1,7 +1,5 @@
-import { createStylesheet, findClosestAncestorByTagName, upgradeProperty } from '../shared/helpers.js'
-import styles from './button.css'
-
-const stylesheet = createStylesheet(styles)
+import { findClosestAncestorByTagName, upgradeProperty } from '../shared/helpers.js'
+import stylesheet from './button.css'
 
 class PiWoButton extends HTMLElement {
   #internals
@@ -92,7 +90,7 @@ class PiWoButton extends HTMLElement {
   connectedCallback() {
     // not yet in internals - https://github.com/WICG/webcomponents/issues/762
     if (!this.hasAttribute('tabindex')) {
-      this.tabIndex = 0
+      this.tabIndex = this.disabled ? -1 : 0
     }
   }
 

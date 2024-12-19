@@ -1,9 +1,3 @@
-export function createStylesheet(styles) {
-  const stylesheet = new CSSStyleSheet()
-  stylesheet.replace(styles)
-  return stylesheet
-}
-
 export function upgradeProperty(element, name) {
   if (Object.hasOwn(element, name)) {
     const value = element[name]
@@ -30,7 +24,7 @@ export function findLabels(element) {
     const root = element.getRootNode()
     return labelIds
       .trim()
-      .split[/ +/]
+      .split(/ +/)
       .reduce((labels, id) => {
         const label = root.getElementById(id.trim())
         if (label) {
@@ -39,4 +33,9 @@ export function findLabels(element) {
         return labels
       }, [])
   }
+}
+
+export function formatPlural(count, word) {
+  const suffix = count === 1 ? '' : 's'
+  return `${count} ${word}${suffix}`
 }

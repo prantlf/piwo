@@ -6,7 +6,7 @@ export default function registerSelector(selector) {
 }
 
 function logEvents(checkbox) {
-  for (const eventName of ['change', 'click', 'focus', 'blur']) {
+  for (const eventName of ['beforeinput', 'input', 'change', 'click', 'focus', 'focusin', 'focusout', 'blur']) {
     logEvent(checkbox, eventName)
   }
 }

@@ -1,11 +1,17 @@
-import { createStylesheet, findLabels, upgradeProperty } from '../shared/helpers.js'
-import styles from './checkbox.css'
+import { findLabels, upgradeProperty } from '../shared/helpers.js'
+import stylesheet from './checkbox.css'
 
-const stylesheet = createStylesheet(styles)
 const booleanAttributes = [
   'disabled', 'readonly', 'required', 'describeerror', 'focuserror'
 ]
-const allAttributes = booleanAttributes.concat('name')
+const stringAttributes = [
+  'name'
+]
+const allAttributes = booleanAttributes.concat(stringAttributes)
+const propertyNames = {
+  describeerror: 'describeError',
+  focuserror: 'focusError'
+}
 
 class PiWoCheckbox extends HTMLElement {
   #internals
@@ -24,15 +30,18 @@ class PiWoCheckbox extends HTMLElement {
     this.attachShadow({ mode: 'open' })
     this.shadowRoot.adoptedStyleSheets = [stylesheet]
     this.#errorAnchor = document.createElement('input')
+    this.#errorAnchor.tabIndex = -1
     this.#errorAnchor.ariaHidden = 'true'
     this.shadowRoot.appendChild(this.#errorAnchor)
 
+    // this.#errorAnchor.addEventListener('focus', () => this.focus())
     this.addEventListener('click', event => this.#handleClick(event))
     this.addEventListener('keyup', event => this.#handleKeyUp(event))
     this.addEventListener('invalid', event => this.#handleInvalid(event))
 
-    for (const name in PiWoCheckbox.observedAttributes) {
-      upgradeProperty(this, name)
+    for (const attributeName in allAttributes) {
+      const propertyName = propertyNames[attributeName] ?? attributeName
+      upgradeProperty(this, propertyName)
     }
   }
 
@@ -190,27 +199,18 @@ class PiWoCheckbox extends HTMLElement {
   }
 
   attributeChangedCallback(name, _oldValue, newValue) {
+    const propertyName = propertyNames[name] ?? name
     if (booleanAttributes.includes(name)) {
-      newValue = newValue != null
-      switch (name) {
-        case 'describeerror':
-          this.describeError = newValue
-          break
-        case 'focuserror':
-          this.focusError = newValue
-          break
-        default:
-          this[name] = newValue
-      }
+      this[propertyName] = newValue != null
     } else {
-      this[name] = newValue
+      this[propertyName] = newValue
     }
   }
 
   connectedCallback() {
     // not yet in internals - https://github.com/WICG/webcomponents/issues/762
     if (!this.hasAttribute('tabindex')) {
-      this.tabIndex = 0
+      this.tabIndex = this.disabled ? -1 : 0
     }
     const keepValid = this.getAttribute('aria-invalid') === 'false'
     this.checked = this.hasAttribute('checked')
@@ -218,6 +218,9 @@ class PiWoCheckbox extends HTMLElement {
       this.indeterminate = true
     }
     this.#updateValidity(keepValid)
+    if (this.validity.valid) {
+      this.#ensureMessageElement()
+    }
   }
 
   formResetCallback() {
@@ -298,23 +301,42 @@ class PiWoCheckbox extends HTMLElement {
   }
 
   #markInvalid() {
+    if (this.#ensureMessageElement()) {
+      this.#messageElement.style.display = ''
+      this.#messageElement.textContent = this.validationMessage
+      const { form } = this
+      if (this.focusError && !form?.errorFocused) {
+        if (form) {
+          form.errorFocused = true
+        }
+        this.focus()
+        if (form) {
+          setTimeout(() => {
+            form.errorFocused = false
+          });
+        }
+      }
+    }
+  }
+
+  #messageElement
+  #originalMessage = ''
+
+  #ensureMessageElement() {
     const messageIds = this.getAttribute('aria-describedby')
     if (messageIds) {
       const messageId = messageIds.trim().split(/ +/).slice(-1)[0]
       if (messageId) {
         const messageElement = document.getElementById(messageId.trim())
         if (messageElement) {
-          if (!this.#messageElement) {
+          if (messageElement !== this.#messageElement) {
             this.#messageElement = messageElement
             this.#originalMessage = messageElement.textContent
             if (!this.#originalMessage) {
-              this.#messageElement.style.display = ''
+              this.#messageElement.style.display = 'none'
             }
           }
-          messageElement.textContent = this.validationMessage
-          if (this.focusError) {
-            this.focus()
-          }
+          return true
         }
       }
     }
@@ -355,7 +377,7 @@ class PiWoCheckbox extends HTMLElement {
     // }
     // // this.ariaInvalid = 'false'
     // this.#internals.setValidity({})
-    // // this.setAttribute('aria-errormessage', '')
+    // // this.toggleAttribute('aria-errormessage', true)
     // return true
   }
 
@@ -383,9 +405,6 @@ class PiWoCheckbox extends HTMLElement {
     }
   }
 
-  #messageElement
-  #originalMessage = ''
-
   #updateValidity(keepValid) {
     if (this.checked) {
       this.#internals.setFormValue('on', 'checked')
@@ -395,20 +414,24 @@ class PiWoCheckbox extends HTMLElement {
     if (this.required && !this.checked) {
       this.#internals.setValidity({ valueMissing: true },
         'Please check this box if you want to proceed.', this.#errorAnchor)
-        if (this.getAttribute('aria-invalid') === 'true') {
-          this.#markInvalid()
-        }
+      if (this.getAttribute('aria-invalid') === 'true') {
+        this.#markInvalid()
+      }
     } else {
       this.#internals.setValidity({})
       this.ariaInvalid = keepValid ? 'false': null
-      if (this.#messageElement) {
-        this.#messageElement.textContent = this.#originalMessage
-        if (!this.#originalMessage) {
-          this.#messageElement.style.display = 'none'
-        }
-        this.#messageElement = null
-        this.#originalMessage = ''
+      this.#markValid()
+    }
+  }
+
+  #markValid() {
+    if (this.#messageElement) {
+      this.#messageElement.textContent = this.#originalMessage
+      if (!this.#originalMessage) {
+        this.#messageElement.style.display = 'none'
       }
+      this.#messageElement = null
+      this.#originalMessage = ''
     }
   }
 }

@@ -1,8 +1,4 @@
-import { createStylesheet } from '../shared/helpers.js'
-
-import styles from './msg.css'
-
-const stylesheet = createStylesheet(styles)
+import stylesheet from './msg.css'
 
 class PiWoMessage extends HTMLElement {
   #slot

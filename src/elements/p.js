@@ -1,7 +1,4 @@
-import { createStylesheet } from '../shared/helpers.js'
-import styles from './p.css'
-
-const stylesheet = createStylesheet(styles)
+import stylesheet from './p.css'
 
 class PiWoParagraph extends HTMLElement {
   #internals

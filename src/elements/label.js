@@ -1,8 +1,7 @@
-import { createStylesheet, upgradeProperty } from '../shared/helpers.js'
+import { upgradeProperty } from '../shared/helpers.js'
 
-import styles from './label.css'
+import stylesheet from './label.css'
 
-const stylesheet = createStylesheet(styles)
 let counter = 0
 
 class PiWoLabel extends HTMLElement {
