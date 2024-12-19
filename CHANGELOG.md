@@ -1,5 +1,12 @@
 # Changes
 
+## [0.2.1](https://github.com/prantlf/piwo/compare/v0.2.0...v0.2.1) (2024-12-19)
+
+### Bug Fixes
+
+* Fix a textarea selector ([447b8b0](https://github.com/prantlf/piwo/commit/447b8b07d1b9fda92335219d3e615f9b12330265))
+* Unsuccessful try top show a placeholder on a textarea ([fcaa9bd](https://github.com/prantlf/piwo/commit/fcaa9bd14bc7b19fd0ea337437fe14d5183ab9df))
+
 ## [0.2.0](https://github.com/prantlf/piwo/compare/v0.1.0...v0.2.0) (2024-12-19)
 
 ### Features
