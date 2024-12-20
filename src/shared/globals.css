@@ -124,17 +124,6 @@
   --pico-form-element-valid-border-color: #4c9b8a;
   --pico-form-element-valid-active-border-color: #279977;
   --pico-form-element-valid-focus-color: var(--pico-form-element-valid-active-border-color);
-  --pico-switch-background-color: #bfc7d9;
-  --pico-switch-checked-background-color: var(--pico-primary-background);
-  --pico-switch-color: #fff;
-  --pico-switch-thumb-box-shadow: 0 0 0 rgba(0, 0, 0, 0);
-  --pico-range-border-color: #dfe3eb;
-  --pico-range-active-border-color: #bfc7d9;
-  --pico-range-thumb-border-color: var(--pico-background-color);
-  --pico-range-thumb-color: var(--pico-secondary-background);
-  --pico-range-thumb-active-color: var(--pico-primary-background);
-  --pico-progress-background-color: #dfe3eb;
-  --pico-progress-color: var(--pico-primary-background);
   --pico-icon-valid: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='rgb(76, 155, 138)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
   --pico-icon-invalid: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='rgb(200, 79, 72)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'%3E%3C/circle%3E%3Cline x1='12' y1='8' x2='12' y2='12'%3E%3C/line%3E%3Cline x1='12' y1='16' x2='12.01' y2='16'%3E%3C/line%3E%3C/svg%3E");
   color-scheme: light;
@@ -184,8 +173,6 @@
     --pico-h4-color: #b3b9c5;
     --pico-h5-color: #a4acba;
     --pico-h6-color: #8891a4;
-    --pico-mark-background-color: #014063;
-    --pico-mark-color: #fff;
     --pico-ins-color: #62af9a;
     --pico-del-color: #ce7e7b;
     --pico-button-box-shadow: 0 0 0 rgba(0, 0, 0, 0);
@@ -205,17 +192,6 @@
     --pico-form-element-valid-border-color: #2a7b6f;
     --pico-form-element-valid-active-border-color: #16896a;
     --pico-form-element-valid-focus-color: var(--pico-form-element-valid-active-border-color);
-    --pico-switch-background-color: #333c4e;
-    --pico-switch-checked-background-color: var(--pico-primary-background);
-    --pico-switch-color: #fff;
-    --pico-switch-thumb-box-shadow: 0 0 0 rgba(0, 0, 0, 0);
-    --pico-range-border-color: #202632;
-    --pico-range-active-border-color: #2a3140;
-    --pico-range-thumb-border-color: var(--pico-background-color);
-    --pico-range-thumb-color: var(--pico-secondary-background);
-    --pico-range-thumb-active-color: var(--pico-primary-background);
-    --pico-progress-background-color: #202632;
-    --pico-progress-color: var(--pico-primary-background);
     --pico-icon-valid: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='rgb(42, 123, 111)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
     --pico-icon-invalid: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='rgb(150, 74, 80)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'%3E%3C/circle%3E%3Cline x1='12' y1='8' x2='12' y2='12'%3E%3C/line%3E%3Cline x1='12' y1='16' x2='12.01' y2='16'%3E%3C/line%3E%3C/svg%3E");
     color-scheme: dark;
@@ -265,8 +241,6 @@
   --pico-h4-color: #b3b9c5;
   --pico-h5-color: #a4acba;
   --pico-h6-color: #8891a4;
-  --pico-mark-background-color: #014063;
-  --pico-mark-color: #fff;
   --pico-ins-color: #62af9a;
   --pico-del-color: #ce7e7b;
   --pico-button-box-shadow: 0 0 0 rgba(0, 0, 0, 0);
@@ -286,17 +260,6 @@
   --pico-form-element-valid-border-color: #2a7b6f;
   --pico-form-element-valid-active-border-color: #16896a;
   --pico-form-element-valid-focus-color: var(--pico-form-element-valid-active-border-color);
-  --pico-switch-background-color: #333c4e;
-  --pico-switch-checked-background-color: var(--pico-primary-background);
-  --pico-switch-color: #fff;
-  --pico-switch-thumb-box-shadow: 0 0 0 rgba(0, 0, 0, 0);
-  --pico-range-border-color: #202632;
-  --pico-range-active-border-color: #2a3140;
-  --pico-range-thumb-border-color: var(--pico-background-color);
-  --pico-range-thumb-color: var(--pico-secondary-background);
-  --pico-range-thumb-active-color: var(--pico-primary-background);
-  --pico-progress-background-color: #202632;
-  --pico-progress-color: var(--pico-primary-background);
   --pico-icon-valid: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='rgb(42, 123, 111)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
   --pico-icon-invalid: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='rgb(150, 74, 80)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'%3E%3C/circle%3E%3Cline x1='12' y1='8' x2='12' y2='12'%3E%3C/line%3E%3Cline x1='12' y1='16' x2='12.01' y2='16'%3E%3C/line%3E%3C/svg%3E");
   color-scheme: dark;
@@ -376,4 +339,18 @@ piwo-label > :where(piwo-textarea) {
 }
 :where(piwo-input, piwo-checkbox, piwo-textarea, fieldset)[aria-invalid=true] + piwo-msg {
   color: var(--pico-del-color);
+}
+
+piwo-nav piwo-li piwo-link {
+  display: inline-block;
+  margin: calc(var(--pico-nav-link-spacing-vertical) * -1) calc(var(--pico-nav-link-spacing-horizontal) * -1);
+  padding: var(--pico-nav-link-spacing-vertical) var(--pico-nav-link-spacing-horizontal);
+  border-radius: var(--pico-border-radius);
+}
+piwo-nav piwo-li piwo-link:not(:hover) {
+  text-decoration: none;
+}
+piwo-nav[aria-label=breadcrumb] piwo-ul piwo-li piwo-link {
+  margin: calc(var(--pico-nav-link-spacing-vertical) * -1) 0;
+  margin-inline-start: calc(var(--pico-nav-link-spacing-horizontal) * -1);
 }

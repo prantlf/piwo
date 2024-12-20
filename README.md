@@ -109,7 +109,7 @@ Button for general usage and for submitting forms.
 * Lightweight - only a slot for inner content. The host element itself has the role `button`.
 * Form-associated element. Can be used like `input[type=submit]` for submitting forms.
 * Implements many attributes of the native element.
-* Supports tge events `click` fired also by keys `Enter`and `Space`.
+* Supports the events `click` fired also by keys `Enter`and `Space`.
 * Resets the form if it is `type=reset`.
 * Exposes the state `disabled` in CSS.
 
@@ -264,6 +264,20 @@ Paragraph element.
 
 ```jsx live
 <piwo-p>Provide your credentials to authenticate to the web application.</piwo-p>
+```
+
+### Link
+
+A hyperlink.
+
+* Lightweight - only a slot for inner content. The host element itself has the role `link`.
+
+```jsx live
+<>
+  <piwo-link href="/">Primary</piwo-link><br />
+  <piwo-link href="/" kind="secondary">Secondary</piwo-link><br />
+  <piwo-link href="/" kind="contrast">Contrast</piwo-link>
+</>
 ```
 
 ### Spacer
