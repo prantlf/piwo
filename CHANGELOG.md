@@ -1,5 +1,11 @@
 # Changes
 
+## [0.4.0](https://github.com/prantlf/piwo/compare/v0.3.0...v0.4.0) (2024-12-20)
+
+### Features
+
+* Add hyperlink ([61ffddf](https://github.com/prantlf/piwo/commit/61ffddf2be73bdafe0ce37f9e75adae54b0fe499))
+
 ## [0.3.0](https://github.com/prantlf/piwo/compare/v0.2.1...v0.3.0) (2024-12-20)
 
 ### Features
