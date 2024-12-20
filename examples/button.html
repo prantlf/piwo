@@ -19,11 +19,14 @@
   <piwo-button>Primary piwo-button</piwo-button>
   <piwo-button kind="secondary" aria-label="This is a secondary piwo-button.">Secondary piwo-button</piwo-button>
   <piwo-button kind="contrast">Contrast piwo-button</piwo-button>
-  <piwo-button kind="outline">Outline piwo-button</piwo-button>
+  <br>
+  <piwo-button outline>Primary outline piwo-button</piwo-button>
+  <piwo-button kind="secondary" outline aria-label="This is a secondary piwo-button.">Secondary outline piwo-button</piwo-button>
+  <piwo-button kind="contrast" outline>Contrast outline piwo-button</piwo-button>
 
   <script type="module">
-    import registerSelector from './event-logger.js'
-    registerSelector('button, piwo-button')
+    import { registerField } from './event-logger.js'
+    registerField('button, piwo-button')
   </script>
 
   <script src="../dist/index.mjs" type="module"></script>

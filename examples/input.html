@@ -17,6 +17,11 @@
       <input name="disabled" type="text" disabled>
     </label><br>
 
+    <label>
+      Read-only native input:
+      <input name="readonly" type="text" value="read-only" readonly>
+    </label><br>
+
     <label for="optional">Optional native input:</label>
     <input name="optional" id="optional" type="text">
 
@@ -28,6 +33,11 @@
     <piwo-label>
       Disabled piwo-input:
       <piwo-input type="text" name="piwo-disabled" disabled></piwo-input>
+    </piwo-label>
+
+    <piwo-label>
+      Read-only piwo-input:
+      <piwo-input name="piwo-readonly" value="read-only" readonly></piwo-input>
     </piwo-label>
 
     <piwo-label for="piwo-optional">Optional piwo-input:</piwo-label>
@@ -42,14 +52,9 @@
   </form>
 
   <script type="module">
-    import registerSelector from './event-logger.js'
-    registerSelector('input, piwo-input')
-
-    const form = document.getElementById('form')
-    form.addEventListener('submit', event => {
-      event.preventDefault()
-      console.log(new FormData(form))
-    })
+    import { registerField, registerForm } from './event-logger.js'
+    registerField('input, piwo-input')
+    registerForm('form')
   </script>
 
   <script src="../dist/index.mjs" type="module"></script>

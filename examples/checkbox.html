@@ -17,6 +17,11 @@
       Disabled native checkbox
     </label><br>
 
+    <label>
+      <input name="readonly" type="checkbox" checked readonly>
+      Read-only native checkbox
+    </label><br>
+
     <input name="optional" id="optional" type="checkbox">
     <label for="optional">Optional native checkbox</label>
 
@@ -28,6 +33,11 @@
     <piwo-label>
       <piwo-checkbox name="piwo-disabled" disabled></piwo-checkbox>
       Disabled piwo-checkbox
+    </piwo-label>
+
+    <piwo-label>
+      <piwo-checkbox name="piwo-readonly" checked readonly></piwo-checkbox>
+      Read-only piwo-checkbox
     </piwo-label>
 
     <piwo-checkbox name="piwo-optional" id="piwo-optional"></piwo-checkbox>
@@ -42,14 +52,9 @@
   </form>
 
   <script type="module">
-    import registerSelector from './event-logger.js'
-    registerSelector('input, piwo-checkbox')
-
-    const form = document.getElementById('form')
-    form.addEventListener('submit', event => {
-      event.preventDefault()
-      console.log(new FormData(form))
-    })
+    import { registerField, registerForm } from './event-logger.js'
+    registerField('input, piwo-checkbox')
+    registerForm('form')
   </script>
 
   <script src="../dist/index.mjs" type="module"></script>

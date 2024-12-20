@@ -7,10 +7,11 @@
   <link rel="icon" href="data:image/png;base64,iVBORw0KGgo=">
   <title>PiWo TextArea Demo</title>
   <style>
-    #required {
+    #custom {
       width: 300px;
       height: 100px;
-      border: 2px black solid;
+      border: 1px #000 solid;
+      resize: both;
     }
   </style>
 </head>
@@ -24,14 +25,35 @@
       <textarea name="disabled" disabled></textarea>
     </label><br>
 
+    <label>
+      Read-only native textarea:
+      <textarea name="readonly" readonly>read-only</textarea>
+    </label><br>
+
     <label for="optional">Optional native textarea:</label><br>
     <textarea name="optional" id="optional"></textarea><br>
 
-    <label for="required">Required native textarea:</label>
-    <div name="required" id="required" role="textbox"
+    <label for="required">Required native textarea:</label><br>
+    <textarea name="required" id="required" required></textarea><br>
+
+    <label for="custom">Custom native textarea:</label>
+    <div name="custom" id="custom" role="textbox"
          tabindex="0" contenteditable required></div>
 
     <br><br>
+
+    <piwo-label>
+      Disabled piwo-textarea:
+      <piwo-textarea name="piwo-disabled" disabled></piwo-textarea>
+    </piwo-label>
+
+    <piwo-label>
+      Read-only piwo-textarea:
+      <piwo-textarea name="piwo-readonly" readonly>read-only</piwo-textarea>
+    </piwo-label>
+
+    <piwo-label for="piwo-optional">Optional piwo-textarea:</piwo-label>
+    <piwo-textarea name="piwo-optional" id="piwo-optional" placeholder="Write some text"></piwo-textarea>
 
     <piwo-label for="piwo-required">Required piwo-textarea:</piwo-label>
     <piwo-textarea name="piwo-required" id="piwo-required" aria-describedby="piwo-required-msg"
@@ -44,14 +66,9 @@
   </form>
 
   <script type="module">
-    import registerSelector from './event-logger.js'
-    registerSelector('div, textarea, piwo-textarea')
-
-    const form = document.getElementById('form')
-    form.addEventListener('submit', event => {
-      event.preventDefault()
-      console.log(new FormData(form))
-    })
+    import { registerField, registerForm } from './event-logger.js'
+    registerField('div, textarea, piwo-textarea')
+    registerForm('form')
   </script>
 
   <script src="../dist/index.mjs" type="module"></script>

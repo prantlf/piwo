@@ -94,13 +94,36 @@ Markup:
       <piwo-spacer></piwo-spacer>
 
       <piwo-button>Submit</piwo-button>
-      <piwo-button type="reset" kind="outline">Reset</piwo-button>
+      <piwo-button type="reset" outline>Reset</piwo-button>
     </form>
   </main>
 </>
 ```
 
 ## Components
+
+### Button
+
+Button for general usage and for submitting forms.
+
+* Lightweight - only a slot for inner content. The host element itself has the role `button`.
+* Form-associated element. Can be used like `input[type=submit]` for submitting forms.
+* Implements many attributes of the native element.
+* Supports tge events `click` fired also by keys `Enter`and `Space`.
+* Resets the form if it is `type=reset`.
+* Exposes the state `disabled` in CSS.
+
+```jsx live
+<>
+  <piwo-button>Primary</piwo-button>
+  <piwo-button kind="secondary">Secondary</piwo-button>
+  <piwo-button kind="contrast">Contrast</piwo-button>
+  <br />
+  <piwo-button outline>Primary outline</piwo-button>
+  <piwo-button kind="secondary" outline>Secondary outline</piwo-button>
+  <piwo-button kind="contrast" outline>Contrast outline</piwo-button>
+</>
+```
 
 ### Label
 
@@ -259,7 +282,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## License
 
-Copyright (C) 2022-2024 Ferdinand Prantl
+Copyright (C) 2024 Ferdinand Prantl
 
 Licensed under the [MIT License].
 

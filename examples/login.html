@@ -44,16 +44,14 @@
       <piwo-spacer></piwo-spacer>
 
       <piwo-button>Submit</piwo-button>
-      <piwo-button type="reset" kind="outline">Reset</piwo-button>
+      <piwo-button type="reset" outline>Reset</piwo-button>
     </form>
   </main>
 
   <script type="module">
-    const form = document.getElementById('form')
-    form.addEventListener('submit', event => {
-      event.preventDefault()
-      console.log(new FormData(form))
-    })
+    import { registerField, registerForm } from './event-logger.js'
+    registerField('piwo-input, piwo-checkbox, piwo-textarea')
+    registerForm('form')
   </script>
 
   <script src="../dist/index.mjs" type="module"></script>

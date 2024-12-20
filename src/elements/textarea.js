@@ -25,11 +25,11 @@ class PiWoTextArea extends HTMLElement {
 
   constructor() {
     super()
-    try {
-      this.contentEditable = 'plaintext-only'
-    } catch {
-      this.contentEditable = true
-    }
+    // try {
+    //   this.contentEditable = 'plaintext-only'
+    // } catch {
+    this.contentEditable = true
+    // }
 
     this.#internals = this.attachInternals()
     this.#internals.role = 'textbox'
