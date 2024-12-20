@@ -1,5 +1,11 @@
 # Changes
 
+## [0.3.0](https://github.com/prantlf/piwo/compare/v0.2.1...v0.3.0) (2024-12-20)
+
+### Features
+
+* Enable animated loading icon on button[aria-busy=true] ([660775b](https://github.com/prantlf/piwo/commit/660775b56483c70a9192ec6f711f7a987488c54b))
+
 ## [0.2.1](https://github.com/prantlf/piwo/compare/v0.2.0...v0.2.1) (2024-12-19)
 
 ### Bug Fixes
