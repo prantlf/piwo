@@ -3,6 +3,7 @@
 
 # Production
 /build
+/static/assets/js/index*
 
 # Generated files
 .docusaurus

@@ -58,7 +58,7 @@ if (process.env.ROLLUP_SERVE) {
         importStylesheet({ minify: true }),
         copy({
           targets: [
-            { src: 'dist/index.min.mjs*', dest: 'web/static/js' }
+            { src: 'dist/index.min.mjs*', dest: 'web/static/assets/js' }
           ]
         })
       ]
