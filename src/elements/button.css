@@ -74,16 +74,37 @@
   --pico-box-shadow: var(--pico-button-hover-box-shadow, 0 0 0 rgba(0, 0, 0, 0)), 0 0 0 var(--pico-outline-width) var(--pico-contrast-focus);
 }
 
-:host([kind=outline]) {
+:host([outline]) {
   --pico-background-color: transparent;
   --pico-color: var(--pico-primary);
   --pico-border-color: var(--pico-primary);
 }
 
-:host([kind=outline]:is(:hover, :active, :focus)) {
+:host([outline][kind=secondary]) {
+  --pico-color: var(--pico-secondary);
+  --pico-border-color: var(--pico-secondary);
+}
+
+:host([outline][kind=contrast]) {
+  --pico-color: var(--pico-contrast);
+  --pico-border-color: var(--pico-contrast);
+}
+
+:host([outline]:is(:hover, :active, :focus)) {
   --pico-background-color: transparent;
   --pico-color: var(--pico-primary-hover);
   --pico-border-color: var(--pico-primary-hover);
+}
+
+:host([outline][kind=secondary]:is(:hover, :active, :focus)) {
+  --pico-background-color: transparent;
+  --pico-color: var(--pico-secondary-hover);
+  --pico-border-color: var(--pico-secondary-hover);
+}
+
+:host([outline][kind=contrast]:is(:hover, :active, :focus)) {
+  --pico-color: var(--pico-contrast-hover);
+  --pico-border-color: var(--pico-contrast-hover);
 }
 
 :host(:disabled) {
@@ -100,7 +121,7 @@
   --pico-group-box-shadow-focus-with-button: 0 0 0 var(--pico-outline-width) var(--pico-contrast-focus);
 }
 
-:host([aria-busy=true]:not([kind=outline]))::before {
+:host([aria-busy=true]:not([outline]))::before {
   filter: brightness(0) invert(1);
 }
 
@@ -113,7 +134,27 @@
 }
 
 :host([aria-busy=true]) {
+  white-space: nowrap;
   pointer-events: none;
+}
+
+:host([aria-busy=true])::before {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  background-image: var(--pico-icon-loading);
+  background-size: 1em auto;
+  background-repeat: no-repeat;
+  content: "";
+  vertical-align: -0.125em;
+}
+
+:host([aria-busy=true]:not(:empty))::before {
+  margin-inline-end: calc(var(--pico-spacing) * 0.5);
+}
+
+:host([aria-busy=true]:empty) {
+  text-align: center;
 }
 
 @media (prefers-reduced-motion: reduce) {

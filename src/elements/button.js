@@ -1,6 +1,14 @@
 import { findClosestAncestorByTagName, upgradeProperty } from '../shared/helpers.js'
 import stylesheet from './button.css'
 
+const booleanAttributes = [
+  'disabled'
+]
+const stringAttributes = [
+  'name', 'type'
+]
+const allAttributes = booleanAttributes.concat(stringAttributes)
+
 class PiWoButton extends HTMLElement {
   #internals
 
@@ -21,7 +29,7 @@ class PiWoButton extends HTMLElement {
     this.addEventListener('click', event => this.#handleClick(event))
     this.addEventListener('keyup', event => this.#handleKeyUp(event))
 
-    for (const name in PiWoButton.observedAttributes) {
+    for (const name in allAttributes) {
       upgradeProperty(this, name)
     }
   }
@@ -43,6 +51,19 @@ class PiWoButton extends HTMLElement {
     if (value === this.name) return
     this.#name = value
     this.setAttribute('name', value)
+  }
+
+  #type = ''
+
+  get type() {
+    return this.#type
+  }
+
+  set type(value) {
+    if (value == null) value = ''
+    if (value === this.type) return
+    this.#type = value
+    this.setAttribute('type', value)
   }
 
   get disabled() {
@@ -73,17 +94,14 @@ class PiWoButton extends HTMLElement {
   // ----- life-cycle callbacks
 
   static get observedAttributes() {
-    return ['disabled', 'name']
+    return allAttributes
   }
 
   attributeChangedCallback(name, _oldValue, newValue) {
-    switch(name) {
-      case 'disabled':
-        this.disabled = newValue != null
-        break
-      case 'name':
-        this.name = newValue
-        break
+    if (booleanAttributes.includes(name)) {
+      this[name] = newValue != null
+    } else {
+      this[name] = newValue
     }
   }
 
@@ -106,11 +124,12 @@ class PiWoButton extends HTMLElement {
         // submit and reset buttons cannot be marked yet - https://github.com/WICG/webcomponents/issues/814
         const form = this.#getForm()
         if (form) {
-          const type = this.getAttribute('type')
-          if (!type || type === 'submit') {
-            this.#submitForm(form)
-          } else if (type === 'reset') {
-            form.reset()
+          switch (this.#type) {
+            case 'reset':
+              form.reset()
+              break
+            default: // '' and 'submit'
+              this.#submitForm(form)
           }
         }
       })
@@ -137,6 +156,7 @@ class PiWoButton extends HTMLElement {
       this.#internals.setFormValue(this.textContent.trim())
     }
     const submitter = document.createElement('input')
+    submitter.button = this
     submitter.type = 'submit'
     this.insertAdjacentElement('afterend', submitter)
     form.submitter = submitter
