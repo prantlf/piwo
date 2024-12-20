@@ -5,7 +5,9 @@ export function registerForm(id) {
     const { button } = form.submitter
     button.ariaBusy = 'true'
     console.log(id, new FormData(form))
-    setTimeout(() => button.ariaBusy = null, 1000)
+    setTimeout(() => {
+      button.ariaBusy = null
+    }, 1000)
   })
 }
 
