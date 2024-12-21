@@ -354,3 +354,12 @@ piwo-nav[aria-label=breadcrumb] piwo-ul piwo-li piwo-link {
   margin: calc(var(--pico-nav-link-spacing-vertical) * -1) 0;
   margin-inline-start: calc(var(--pico-nav-link-spacing-horizontal) * -1);
 }
+
+body > piwo-container > header,
+body > piwo-container > main,
+body > piwo-container > footer,
+body > header > piwo-container,
+body > main > piwo-container,
+body > footer > piwo-container {
+  padding-block: var(--pico-block-spacing-vertical);
+}

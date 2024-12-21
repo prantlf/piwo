@@ -58,7 +58,7 @@ Picture:
 
 Markup:
 
-```jsx live
+```html
 <>
   <header>
     <piwo-h level="1">Login</piwo-h>
@@ -113,7 +113,7 @@ Button for general usage and for submitting forms.
 * Resets the form if it is `type=reset`.
 * Exposes the state `disabled` in CSS.
 
-```jsx live
+```html
 <>
   <piwo-button>Primary</piwo-button>
   <piwo-button kind="secondary">Secondary</piwo-button>
@@ -134,7 +134,7 @@ Label for form fields.
 * Attributes and element content can be modified any time later.
 * Clicks are forwarded to the target field.
 
-```jsx live
+```html
 <>
   <piwo-label for="first-name">First Name:</piwo-label>
   <piwo-input name="first-name" id="first-name" type="text"></piwo-input>
@@ -157,7 +157,7 @@ Checkbox form field.
 * Emphasises valid or invalid state if `aria-invalid` is set explicitly.
 * Allows either showing the browser popup, or a HTML message for invalid fields, if `describeerror` is set and the last ID in `aria-describedby` points to an element with content. If the element is hidden, it'll be temporarily shown.
 
-```jsx live
+```html
 <>
   <div>
     <piwo-checkbox id="unchecked"></piwo-checkbox>
@@ -196,7 +196,7 @@ Input form field.
 * Emphasises valid or invalid state if `aria-invalid` is set explicitly.
 * Allows either showing the browser popup, or a HTML message for invalid fields, if `describeerror` is set and the last ID in `aria-describedby` points to an element with content. If the element is hidden, it'll be temporarily shown.
 
-```jsx live
+```html
 <>
   <piwo-input name="last-name" type="text" aria-label="Last name" placeholder="Enter your last name"></piwo-input>
   <piwo-input name="missing-last-name" type="text" aria-label="Last name" placeholder="Enter your last name" aria-invalid="true" required></piwo-input>
@@ -220,7 +220,7 @@ TextArea form field.
 * Emphasises valid or invalid state if `aria-invalid` is set explicitly.
 * Allows either showing the browser popup, or a HTML message for invalid fields, if `describeerror` is set and the last ID in `aria-describedby` points to an element with content. If the element is hidden, it'll be temporarily shown.
 
-```jsx live
+```html
 <>
   <piwo-textarea name="review" aria-label="Review" placeholder="Write a review"></piwo-textarea>
   <piwo-textarea name="missing-review" aria-label="Review" placeholder="Write a review" aria-invalid="true" required></piwo-textarea>
@@ -236,7 +236,7 @@ Information or error message for form fields.
 * Multi-purpose. Information message can be temporarily replaced by the error message.
 * Can be used just like the native elements - by having the field point to it by the `aria-describedby` attribute.
 
-```jsx live
+```html
 <>
   <piwo-input name="user-name" type="text" placeholder="Enter your user name" aria-label="User name" aria-describedby="user-name-msg"></piwo-input>
   <piwo-small id="user-name-msg">Ask the admin about your user name.</piwo-small>
@@ -252,7 +252,7 @@ Heading element of the level 1 - 6 aligned with `h1` - `h6`.
 
 * Lightweight - only a slot for inner content. The host element has the `heading` role with the corresponding level.
 
-```jsx live
+```html
 <piwo-h level="1">Login</piwo-h>
 ```
 
@@ -262,8 +262,22 @@ Paragraph element.
 
 * Lightweight - only a slot for inner content. The host element has the `paragraph` role.
 
-```jsx live
+```html
 <piwo-p>Provide your credentials to authenticate to the web application.</piwo-p>
+```
+
+### Container
+
+Presentation element ensuring fixed responsive width.
+
+* Lightweight - only a slot for inner content. The host element has no role.
+
+```html
+<piwo-container>
+  <main>
+    ...
+  </main>
+</piwo-container>
 ```
 
 ### Link
@@ -272,7 +286,7 @@ A hyperlink.
 
 * Lightweight - only a slot for inner content. The host element itself has the role `link`.
 
-```jsx live
+```html
 <>
   <piwo-link href="/">Primary</piwo-link><br />
   <piwo-link href="/" kind="secondary">Secondary</piwo-link><br />
@@ -286,7 +300,7 @@ Inserts empty vertical space.
 
 * Lightweight - no content. The host element has no role.
 
-```jsx live
+```html
 <piwo-spacer factor="1.5"></piwo-spacer>
 ```
 
