@@ -266,6 +266,20 @@ Paragraph element.
 <piwo-p>Provide your credentials to authenticate to the web application.</piwo-p>
 ```
 
+### Link
+
+A hyperlink.
+
+* Lightweight - only a slot for inner content. The host element itself has the role `link`.
+
+```html
+<>
+  <piwo-link href="/">Primary</piwo-link><br />
+  <piwo-link href="/" kind="secondary">Secondary</piwo-link><br />
+  <piwo-link href="/" kind="contrast">Contrast</piwo-link>
+</>
+```
+
 ### Container
 
 Presentation element ensuring fixed responsive width.
@@ -280,18 +294,14 @@ Presentation element ensuring fixed responsive width.
 </piwo-container>
 ```
 
-### Link
+### Horizontal Rule
 
-A hyperlink.
+Vertical line separator.
 
-* Lightweight - only a slot for inner content. The host element itself has the role `link`.
+* Lightweight - no content. The host element has the `separator` role.
 
 ```html
-<>
-  <piwo-link href="/">Primary</piwo-link><br />
-  <piwo-link href="/" kind="secondary">Secondary</piwo-link><br />
-  <piwo-link href="/" kind="contrast">Contrast</piwo-link>
-</>
+<piwo-hr>
 ```
 
 ### Spacer
