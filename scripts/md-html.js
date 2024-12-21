@@ -944,7 +944,7 @@ import { registerField, registerForm } from './event-logger.js'
 registerField('piwo-input, piwo-checkbox, piwo-textarea')
 registerForm('form')
 </script>
-<script src="dist/index.mjs" type="module"></script>
+<script src="index.min.mjs" type="module"></script>
 </body>
 </html>
 `
