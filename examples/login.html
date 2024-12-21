@@ -5,48 +5,54 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="icon" href="data:image/png;base64,iVBORw0KGgo=">
-  <title>Login</title>
+  <title>PiWo Login</title>
 </head>
 
 <body>
-  <header>
-    <piwo-h level="1">Login</piwo-h>
-    <piwo-p>Provide your credentials to authenticate to the web application.</piwo-p>
-  </header>
+  <piwo-container>
+    <header>
+      <piwo-h level="1">PiWo Login</piwo-h>
+      <piwo-p>Demo of Pico Web Components. Provide your credentials to authenticate to the web application.</piwo-p>
+    </header>
 
-  <main>
-    <form id="form">
-      <piwo-label for="name">Name:</piwo-label>
-      <piwo-input name="name" type="text" placeholder="Enter your login name"
-                  id="name" aria-describedby="name-msg"
-                  required describeerror focuserror></piwo-input>
-      <piwo-msg id="name-msg">Ask the admin about your user name.</piwo-msg>
-      <piwo-label>
-        Password:
-        <piwo-input name="password" type="password" placeholder="Enter your password"></piwo-input>
-      </piwo-label>
+    <main>
+      <form id="form">
+        <piwo-label for="name">Name:</piwo-label>
+        <piwo-input name="name" type="text" placeholder="Enter your login name"
+                    id="name" aria-describedby="name-msg"
+                    required describeerror focuserror></piwo-input>
+        <piwo-small id="name-msg">Ask the admin about your user name.</piwo-small>
+        <piwo-label>
+          Password:
+          <piwo-input name="password" type="password" placeholder="Enter your password"></piwo-input>
+        </piwo-label>
 
-      <piwo-label>
-        <piwo-checkbox name="remember-me"></piwo-checkbox>
-        Rememeber me
-      </piwo-label>
-      <piwo-label>
-        <piwo-checkbox name="i-agree" required></piwo-checkbox>
-        I agree with collecting my name and password
-      </piwo-label>
+        <piwo-label>
+          <piwo-checkbox name="remember-me"></piwo-checkbox>
+          Rememeber me
+        </piwo-label>
+        <piwo-label>
+          <piwo-checkbox name="i-agree" required></piwo-checkbox>
+          I agree with collecting my name and password
+        </piwo-label>
 
-      <piwo-spacer></piwo-spacer>
+        <piwo-spacer></piwo-spacer>
 
-      <piwo-label>Comment:
-        <piwo-textarea name="comment"></piwo-textarea>
-      </piwo-label>
+        <piwo-label>Comment:
+          <piwo-textarea name="comment"></piwo-textarea>
+        </piwo-label>
 
-      <piwo-spacer></piwo-spacer>
+        <piwo-spacer></piwo-spacer>
 
-      <piwo-button>Submit</piwo-button>
-      <piwo-button type="reset" outline>Reset</piwo-button>
-    </form>
-  </main>
+        <piwo-button>Submit</piwo-button>
+        <piwo-button type="reset" outline>Reset</piwo-button>
+      </form>
+    </main>
+    <footer>
+      <piwo-hr></piwo-hr>
+      <piwo-small>PiWo {version} © 2024 Ferdinand Prantl, see the <piwo-link href="https://github.com/prantlf/piwo" target="_blank">project on GitHub</piwo-link></piwo-small>
+    </footer>
+  </piwo-container>
 
   <script type="module">
     import { registerField, registerForm } from './event-logger.js'

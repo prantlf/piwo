@@ -2,7 +2,6 @@ const { importStylesheet } = require('rollup-plugin-import-stylesheet')
 const sourcemaps = require('rollup-plugin-sourcemaps2')
 const { minify } = require('rollup-plugin-swc-minify')
 const { createPathTransform } = require('rollup-sourcemap-path-transform')
-const copy = require('rollup-plugin-copy')
 const serve = require('rollup-plugin-serve')
 const liveReload = require('rollup-plugin-livereload')
 
@@ -55,12 +54,7 @@ if (process.env.ROLLUP_SERVE) {
       ],
       plugins: [
         sourcemaps(),
-        importStylesheet({ minify: true }),
-        copy({
-          targets: [
-            { src: 'dist/index.min.mjs*', dest: 'web/static/assets/js' }
-          ]
-        })
+        importStylesheet({ minify: true })
       ]
     }
   ]

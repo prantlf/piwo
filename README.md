@@ -59,45 +59,43 @@ Picture:
 Markup:
 
 ```html
-<>
-  <header>
-    <piwo-h level="1">Login</piwo-h>
-    <piwo-p>Provide your credentials to authenticate to the web application.</piwo-p>
-  </header>
+<header>
+  <piwo-h level="1">Login</piwo-h>
+  <piwo-p>Provide your credentials to authenticate to the web application.</piwo-p>
+</header>
 
-  <main>
-    <form id="login">
-      <piwo-label for="name">Name:</piwo-label>
-      <piwo-input name="name" type="text" placeholder="Enter your login name"
-                  id="name" aria-describedby="name-msg" required describeerror focuserror></piwo-input>
-      <piwo-small id="name-msg">Ask the admin about your user name.</piwo-small>
-      <piwo-label>
-        Password:
-        <piwo-input name="password" type="password" placeholder="Enter your password"></piwo-input>
-      </piwo-label>
+<main>
+  <form id="login">
+    <piwo-label for="name">Name:</piwo-label>
+    <piwo-input name="name" type="text" placeholder="Enter your login name"
+                id="name" aria-describedby="name-msg" required describeerror focuserror></piwo-input>
+    <piwo-small id="name-msg">Ask the admin about your user name.</piwo-small>
+    <piwo-label>
+      Password:
+      <piwo-input name="password" type="password" placeholder="Enter your password"></piwo-input>
+    </piwo-label>
 
-      <piwo-label>
-        <piwo-checkbox name="remember-me"></piwo-checkbox>
-        Rememeber me
-      </piwo-label>
-      <piwo-label>
-        <piwo-checkbox name="i-agree" required></piwo-checkbox>
-        I agree with collecting my name and password
-      </piwo-label>
+    <piwo-label>
+      <piwo-checkbox name="remember-me"></piwo-checkbox>
+      Rememeber me
+    </piwo-label>
+    <piwo-label>
+      <piwo-checkbox name="i-agree" required></piwo-checkbox>
+      I agree with collecting my name and password
+    </piwo-label>
 
-      <piwo-spacer></piwo-spacer>
+    <piwo-spacer></piwo-spacer>
 
-      <piwo-label>Comment:
-        <piwo-textarea name="comment"></piwo-textarea>
-      </piwo-label>
+    <piwo-label>Comment:
+      <piwo-textarea name="comment"></piwo-textarea>
+    </piwo-label>
 
-      <piwo-spacer></piwo-spacer>
+    <piwo-spacer></piwo-spacer>
 
-      <piwo-button>Submit</piwo-button>
-      <piwo-button type="reset" outline>Reset</piwo-button>
-    </form>
-  </main>
-</>
+    <piwo-button>Submit</piwo-button>
+    <piwo-button type="reset" outline>Reset</piwo-button>
+  </form>
+</main>
 ```
 
 ## Components
@@ -114,15 +112,13 @@ Button for general usage and for submitting forms.
 * Exposes the state `disabled` in CSS.
 
 ```html
-<>
-  <piwo-button>Primary</piwo-button>
-  <piwo-button kind="secondary">Secondary</piwo-button>
-  <piwo-button kind="contrast">Contrast</piwo-button>
-  <br />
-  <piwo-button outline>Primary outline</piwo-button>
-  <piwo-button kind="secondary" outline>Secondary outline</piwo-button>
-  <piwo-button kind="contrast" outline>Contrast outline</piwo-button>
-</>
+<piwo-button>Primary</piwo-button>
+<piwo-button kind="secondary">Secondary</piwo-button>
+<piwo-button kind="contrast">Contrast</piwo-button>
+<br>
+<piwo-button outline>Primary outline</piwo-button>
+<piwo-button kind="secondary" outline>Secondary outline</piwo-button>
+<piwo-button kind="contrast" outline>Contrast outline</piwo-button>
 ```
 
 ### Label
@@ -135,10 +131,8 @@ Label for form fields.
 * Clicks are forwarded to the target field.
 
 ```html
-<>
-  <piwo-label for="first-name">First Name:</piwo-label>
-  <piwo-input name="first-name" id="first-name" type="text"></piwo-input>
-</>
+<piwo-label for="first-name">First Name:</piwo-label>
+<piwo-input name="first-name" id="first-name" type="text"></piwo-input>
 ```
 
 ### Checkbox
@@ -158,26 +152,24 @@ Checkbox form field.
 * Allows either showing the browser popup, or a HTML message for invalid fields, if `describeerror` is set and the last ID in `aria-describedby` points to an element with content. If the element is hidden, it'll be temporarily shown.
 
 ```html
-<>
-  <div>
-    <piwo-checkbox id="unchecked"></piwo-checkbox>
-    <piwo-label for="unchecked">Unchecked</piwo-label>
+<div>
+  <piwo-checkbox id="unchecked"></piwo-checkbox>
+  <piwo-label for="unchecked">Unchecked</piwo-label>
 
-    <piwo-checkbox id="checked" checked></piwo-checkbox>
-    <piwo-label for="checked">Checked</piwo-label>
+  <piwo-checkbox id="checked" checked></piwo-checkbox>
+  <piwo-label for="checked">Checked</piwo-label>
 
-    <piwo-checkbox id="invalid" required aria-invalid="true"></piwo-checkbox>
-    <piwo-label for="invalid">Invalid</piwo-label>
+  <piwo-checkbox id="invalid" required aria-invalid="true"></piwo-checkbox>
+  <piwo-label for="invalid">Invalid</piwo-label>
 
-    <piwo-checkbox id="valid" checked aria-invalid="false"></piwo-checkbox>
-    <piwo-label for="valid">Valid</piwo-label>
-  </div>
+  <piwo-checkbox id="valid" checked aria-invalid="false"></piwo-checkbox>
+  <piwo-label for="valid">Valid</piwo-label>
+</div>
 
-  <piwo-label>
-    <piwo-checkbox indeterminate></piwo-checkbox>
-    Indeterminate
-  </piwo-label>
-</>
+<piwo-label>
+  <piwo-checkbox indeterminate></piwo-checkbox>
+  Indeterminate
+</piwo-label>
 ```
 
 ### Input
@@ -197,11 +189,9 @@ Input form field.
 * Allows either showing the browser popup, or a HTML message for invalid fields, if `describeerror` is set and the last ID in `aria-describedby` points to an element with content. If the element is hidden, it'll be temporarily shown.
 
 ```html
-<>
-  <piwo-input name="last-name" type="text" aria-label="Last name" placeholder="Enter your last name"></piwo-input>
-  <piwo-input name="missing-last-name" type="text" aria-label="Last name" placeholder="Enter your last name" aria-invalid="true" required></piwo-input>
-  <piwo-input name="entered-last-name" type="text" aria-label="Last name" placeholder="Enter your last name" aria-invalid="false" required value="Doe"></piwo-input>
-</>
+<piwo-input name="last-name" type="text" aria-label="Last name" placeholder="Enter your last name"></piwo-input>
+<piwo-input name="missing-last-name" type="text" aria-label="Last name" placeholder="Enter your last name" aria-invalid="true" required></piwo-input>
+<piwo-input name="entered-last-name" type="text" aria-label="Last name" placeholder="Enter your last name" aria-invalid="false" required value="Doe"></piwo-input>
 ```
 
 ### TextArea
@@ -221,11 +211,9 @@ TextArea form field.
 * Allows either showing the browser popup, or a HTML message for invalid fields, if `describeerror` is set and the last ID in `aria-describedby` points to an element with content. If the element is hidden, it'll be temporarily shown.
 
 ```html
-<>
-  <piwo-textarea name="review" aria-label="Review" placeholder="Write a review"></piwo-textarea>
-  <piwo-textarea name="missing-review" aria-label="Review" placeholder="Write a review" aria-invalid="true" required></piwo-textarea>
-  <piwo-textarea name="entered-review" aria-label="Review" placeholder="Write a review" aria-invalid="false" required>I like it.</piwo-textarea>
-</>
+<piwo-textarea name="review" aria-label="Review" placeholder="Write a review"></piwo-textarea>
+<piwo-textarea name="missing-review" aria-label="Review" placeholder="Write a review" aria-invalid="true" required></piwo-textarea>
+<piwo-textarea name="entered-review" aria-label="Review" placeholder="Write a review" aria-invalid="false" required>I like it.</piwo-textarea>
 ```
 
 ### Message
@@ -237,13 +225,11 @@ Information or error message for form fields.
 * Can be used just like the native elements - by having the field point to it by the `aria-describedby` attribute.
 
 ```html
-<>
-  <piwo-input name="user-name" type="text" placeholder="Enter your user name" aria-label="User name" aria-describedby="user-name-msg"></piwo-input>
-  <piwo-small id="user-name-msg">Ask the admin about your user name.</piwo-small>
+<piwo-input name="user-name" type="text" placeholder="Enter your user name" aria-label="User name" aria-describedby="user-name-msg"></piwo-input>
+<piwo-small id="user-name-msg">Ask the admin about your user name.</piwo-small>
 
-  <piwo-input name="login-name" type="text" placeholder="Enter your login name" aria-label="Login name" aria-describedby="login-name-msg" aria-invalid="true" required describeerror></piwo-input>
-  <piwo-small id="login-name-msg">Ask the admin about your login name.</piwo-small>
-</>
+<piwo-input name="login-name" type="text" placeholder="Enter your login name" aria-label="Login name" aria-describedby="login-name-msg" aria-invalid="true" required describeerror></piwo-input>
+<piwo-small id="login-name-msg">Ask the admin about your login name.</piwo-small>
 ```
 
 ### Heading
@@ -273,11 +259,9 @@ A hyperlink.
 * Lightweight - only a slot for inner content. The host element itself has the role `link`.
 
 ```html
-<>
-  <piwo-link href="/">Primary</piwo-link><br />
-  <piwo-link href="/" kind="secondary">Secondary</piwo-link><br />
-  <piwo-link href="/" kind="contrast">Contrast</piwo-link>
-</>
+<piwo-link href="/">Primary</piwo-link>
+<piwo-link href="/" kind="secondary">Secondary</piwo-link>
+<piwo-link href="/" kind="contrast">Contrast</piwo-link>
 ```
 
 ### Container
