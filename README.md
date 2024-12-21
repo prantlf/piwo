@@ -70,7 +70,7 @@ Markup:
       <piwo-label for="name">Name:</piwo-label>
       <piwo-input name="name" type="text" placeholder="Enter your login name"
                   id="name" aria-describedby="name-msg" required describeerror focuserror></piwo-input>
-      <piwo-msg id="name-msg">Ask the admin about your user name.</piwo-msg>
+      <piwo-small id="name-msg">Ask the admin about your user name.</piwo-small>
       <piwo-label>
         Password:
         <piwo-input name="password" type="password" placeholder="Enter your password"></piwo-input>
@@ -239,10 +239,10 @@ Information or error message for form fields.
 ```jsx live
 <>
   <piwo-input name="user-name" type="text" placeholder="Enter your user name" aria-label="User name" aria-describedby="user-name-msg"></piwo-input>
-  <piwo-msg id="user-name-msg">Ask the admin about your user name.</piwo-msg>
+  <piwo-small id="user-name-msg">Ask the admin about your user name.</piwo-small>
 
   <piwo-input name="login-name" type="text" placeholder="Enter your login name" aria-label="Login name" aria-describedby="login-name-msg" aria-invalid="true" required describeerror></piwo-input>
-  <piwo-msg id="login-name-msg">Ask the admin about your login name.</piwo-msg>
+  <piwo-small id="login-name-msg">Ask the admin about your login name.</piwo-small>
 </>
 ```
 

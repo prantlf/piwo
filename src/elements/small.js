@@ -1,6 +1,6 @@
-import stylesheet from './msg.css'
+import stylesheet from './small.css'
 
-class PiWoMessage extends HTMLElement {
+class PiWoSmall extends HTMLElement {
   #slot
 
   constructor() {
@@ -12,4 +12,4 @@ class PiWoMessage extends HTMLElement {
   }
 }
 
-customElements.define('piwo-msg', PiWoMessage)
+customElements.define('piwo-small', PiWoSmall)
