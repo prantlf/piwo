@@ -298,6 +298,42 @@ Inserts empty vertical space.
 <piwo-spacer factor="1.5"></piwo-spacer>
 ```
 
+## Findings
+
+Almost all of the problems found when implementing the custom elements were solved by adding custom code. Only Submitter and Validity Anchor have ugly workarounds.
+
+### Tab Index
+
+Focusability of an element [cannot be declared yet](https://github.com/WICG/webcomponents/issues/762). The attribute `tabindex` has to be set to zero as a workaround. It makes the attribute visible on the element in DOM. Otherwise no problem.
+
+### Label
+
+The role of a [label cannot be delegated yet](https://github.com/WICG/webcomponents/issues/917), but the click-functionality and the property `labels` can be implemented by custom code. No problem.
+
+### Change Event
+
+When using a `contenteditable` custom element as the host, the `change` event should be dispatched on `blur`. Unlike with teh native elements, the event will be dispatched after the blur event, because there's no `beforeblur` event to hook in. Not a big deal.
+
+### Preventing Default Behaviour
+
+To be able to support `event.defaultPrevented`, `input` and `change` events on mouse and keyboard interactions are triggered asynchronously by `setTimeout`. (The mouse and keyboard handlers registered by the custom element are triggered at first.) Native elements process the interaction (probably) synchronously. Probably not a big deal.
+
+### Submitter
+
+When calling `requestSubmit(submitter)` on a form, `submitter` has to be an `input` element. It cannot be just a form-associated custom element. A possible workaround is to create a temporary `input` element and optionally assign it a `name `attribute, when the submit is triggered by custom button. It's a problem, because `event.explicitOriginalTarget` won't be set to the actual button, but to the temporary element. A custom interface can be provided, like setting `form.submitter` to the `input` element and `form.submitter.button` to the actual button, but it's different from the native interface.
+
+On the other hand, the submitter doesn't have to be read dynamically using the event or the form. Forms usually have well-known submit buttons. And forms with more submit buttons assign a unique value to the `name` attribute to be able to recognise the button in `FormData` on the client or on the server side.
+
+### Validity Anchor
+
+When calling `setValidity` from`ElementInternals` with an anchor, this anchor has to be an input element. It cannot be just a form-associated custom element. A clumsy workaround is to create a hidden `input` element and make it visible when the custom element becomes invalid. If it's zero-sized, it won't be visible, but it'll be focusable, when hitting the `Tab` key in the invalid element. It's a problem, waiting for a better workaround.
+
+On the other hand, real-world forms use error placeholders referred to by `aria-describedby` anyway. I added automatic showing and hiding of the error placeholder (`describeerror`) and focusing of the first invalid field in the form (`focuserror`) beyond the native element functionality for convenience and also to provide a good workaround for the not working anchor.
+
+### Checkbox
+
+Better than the native element, the custom element can support the `readonly` attribute and the `indeterminate` attribute in the markup. Great!
+
 ## Contributing
 
 In lieu of a formal styleguide, take care to maintain the existing coding style. Lint and test your code.
