@@ -2,6 +2,9 @@ import { upgradeProperty } from '../shared/helpers.js'
 import stylesheet from './link.css'
 
 const allAttributes = ['href', 'target', 'referrerpolicy']
+const propertyNames = {
+  referrerpolicy: 'referrerPolicy'
+}
 
 class PiWoLink extends HTMLElement {
   #internals
@@ -23,8 +26,9 @@ class PiWoLink extends HTMLElement {
     this.addEventListener('click', event => this.#handleClick(event))
     this.addEventListener('keyup', event => this.#handleKeyUp(event))
 
-    for (const name in allAttributes) {
-      upgradeProperty(this, name)
+    for (const attributeName in allAttributes) {
+      const propertyName = propertyNames[attributeName] ?? attributeName
+      upgradeProperty(this, propertyName)
     }
   }
 
@@ -56,16 +60,16 @@ class PiWoLink extends HTMLElement {
     this.setAttribute('target', value)
   }
 
-  #referrerpolicy = ''
+  #referrerPolicy = ''
 
-  get nareferrerpolicyme() {
-    return this.#referrerpolicy
+  get referrerPolicy() {
+    return this.#referrerPolicy
   }
 
-  set referrerpolicy(value) {
+  set referrerPolicy(value) {
     if (value == null) value = ''
-    if (value === this.referrerpolicy) return
-    this.#referrerpolicy = value
+    if (value === this.#referrerPolicy) return
+    this.#referrerPolicy = value
     this.setAttribute('referrerpolicy', value)
   }
 
@@ -76,7 +80,8 @@ class PiWoLink extends HTMLElement {
   }
 
   attributeChangedCallback(name, _oldValue, newValue) {
-    this[name] = newValue
+    const propertyName = propertyNames[name] ?? name
+    this[propertyName] = newValue
   }
 
   connectedCallback() {
@@ -95,7 +100,7 @@ class PiWoLink extends HTMLElement {
     setTimeout(() => {
       if (event.defaultPrevented) return
       if (this.#target) {
-        const features = this.referrerpolicy === 'no-referrer' ? 'noopener,noreferrer' : ''
+        const features = this.#referrerPolicy.includes('no-referrer') ? 'noopener,noreferrer' : ''
         window.open(this.#href, this.#target, features)
       } else {
         location.href = this.#href
