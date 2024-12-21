@@ -131,6 +131,10 @@ input {
   display: none;
 }
 
+input:is(:focus, :focus-visible) {
+  outline: none;
+}
+
 :host(:invalid) input {
   display: inline-block;
   width: 0;
