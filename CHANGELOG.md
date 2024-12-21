@@ -1,5 +1,17 @@
 # Changes
 
+## [0.5.0](https://github.com/prantlf/piwo/compare/v0.4.0...v0.5.0) (2024-12-21)
+
+### Features
+
+* Rename piwo-msg to piwo-small ([ce04376](https://github.com/prantlf/piwo/commit/ce04376fe7fad0a5985c767b4c42d54aaad36e2b))
+* Add piwo-container ([eb8b721](https://github.com/prantlf/piwo/commit/eb8b721de68d4daa5f6942e0a866c0348a1969f5))
+* Add piwo-hr ([8a57db2](https://github.com/prantlf/piwo/commit/8a57db26678e7ae0b30b75615399fe44c2f99d6e))
+
+### Bug Fixes
+
+* Use camel-case for link.referrerPolicy ([3821baf](https://github.com/prantlf/piwo/commit/3821baf0bbcd09c500d6248957da9bc0459196b3))
+
 ## [0.4.0](https://github.com/prantlf/piwo/compare/v0.3.0...v0.4.0) (2024-12-20)
 
 ### Features
