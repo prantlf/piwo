@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset=utf-8>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="icon" href="data:image/png;base64,iVBORw0KGgo=">
+  <title>PiWo Login</title>
+</head>
+
+<body>
+  <piwo-container>
+    <header>
+      <piwo-h level="1">PiWo Login</piwo-h>
+      <piwo-p>Demo of Pico Web Components. Provide your credentials to authenticate to the web application.</piwo-p>
+    </header>
+
+    <main>
+      <form id="form">
+        <piwo-label for="name">Name:</piwo-label>
+        <piwo-input name="name" type="text" placeholder="Enter your login name"
+                    id="name" aria-describedby="name-msg"
+                    required describeerror focuserror></piwo-input>
+        <piwo-small id="name-msg">Ask the admin about your user name.</piwo-small>
+        <piwo-label>
+          Password:
+          <piwo-input name="password" type="password" placeholder="Enter your password"></piwo-input>
+        </piwo-label>
+
+        <piwo-label>
+          <piwo-checkbox name="remember-me"></piwo-checkbox>
+          Rememeber me
+        </piwo-label>
+        <piwo-label>
+          <piwo-checkbox name="i-agree" required></piwo-checkbox>
+          I agree with collecting my name and password
+        </piwo-label>
+
+        <piwo-spacer></piwo-spacer>
+
+        <piwo-label>Comment:
+          <piwo-textarea name="comment"></piwo-textarea>
+        </piwo-label>
+
+        <piwo-spacer></piwo-spacer>
+
+        <piwo-button>Submit</piwo-button>
+        <piwo-button type="reset" outline>Reset</piwo-button>
+      </form>
+    </main>
+    <footer>
+      <piwo-hr></piwo-hr>
+      <piwo-small>PiWo 0.5.0 © 2024 Ferdinand Prantl, see the <piwo-link href="https://github.com/prantlf/piwo" target="_blank">project on GitHub</piwo-link></piwo-small>
+    </footer>
+  </piwo-container>
+
+  <script type="module">
+    import { registerField, registerForm } from './event-logger.js'
+    registerField('piwo-input, piwo-checkbox, piwo-textarea')
+    registerForm('form')
+  </script>
+
+  <script src="index.min.mjs" type="module"></script>
+</body>
+</html>
