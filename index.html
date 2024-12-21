@@ -1,65 +1,1359 @@
-<!DOCTYPE html>
 <html lang=en>
 <head>
-  <meta charset=utf-8>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="icon" href="data:image/png;base64,iVBORw0KGgo=">
-  <title>PiWo Login</title>
+<meta charset=utf-8>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link rel="icon" href="data:image/png;base64,iVBORw0KGgo=">
+<title>PiWo - Pico Web Components</title>
+<style>
+#wrapper {
+  color: #24292e;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  margin: 0 auto;
+  text-size-adjust: 100%;
+  max-width: 980px !important;
+  padding: 40px 48px 48px !important;
+}
+#wrapper aside,
+#wrapper article,
+#wrapper details,
+#wrapper figcaption,
+#wrapper figure,
+#wrapper footer,
+#wrapper header,
+#wrapper hgroup,
+#wrapper main,
+#wrapper menu,
+#wrapper nav,
+#wrapper section,
+#wrapper summary {
+  display: block;
+}
+#wrapper audio,
+#wrapper canvas,
+#wrapper progress,
+#wrapper video {
+  display: inline-block;
+  vertical-align: baseline;
+}
+#wrapper audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+#wrapper [hidden],
+#wrapper template {
+  display: none;
+}
+#wrapper a {
+  background-color: transparent;
+}
+#wrapper a:active, #wrapper a:hover {
+  outline: 0;
+}
+#wrapper abbr[title] {
+  border-bottom: 1px dotted;
+}
+#wrapper b,
+#wrapper strong {
+  font-weight: bold;
+}
+#wrapper dfn {
+  font-style: italic;
+}
+#wrapper mark {
+  background: #ff0;
+  color: #000;
+}
+#wrapper small {
+  font-size: 80%;
+}
+#wrapper sub,
+#wrapper sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+#wrapper sup {
+  top: -.5em;
+}
+#wrapper sub {
+  bottom: -.25em;
+}
+#wrapper img {
+  border: 0;
+}
+#wrapper svg:not(:root) {
+  overflow: hidden;
+}
+#wrapper figure {
+  margin: 1em 40px;
+}
+#wrapper hr {
+  box-sizing: content-box;
+  height: 0;
+}
+#wrapper pre {
+  overflow: auto;
+}
+#wrapper code,
+#wrapper kbd,
+#wrapper pre,
+#wrapper samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+#wrapper button,
+#wrapper input,
+#wrapper optgroup,
+#wrapper select,
+#wrapper textarea {
+  color: inherit;
+  font: inherit;
+  margin: 0;
+}
+#wrapper button {
+  overflow: visible;
+}
+#wrapper button,
+#wrapper select {
+  text-transform: none;
+}
+#wrapper button,
+#wrapper input[type='button'],
+#wrapper input[type='reset'],
+#wrapper input[type='submit'] {
+  -webkit-appearance: button;
+  cursor: pointer;
+}
+#wrapper button[disabled] {
+  cursor: default;
+}
+#wrapper button::-moz-focus-inner,
+#wrapper input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+#wrapper input {
+  line-height: normal;
+}
+#wrapper input[type='checkbox'], #wrapper input[type='radio'] {
+  box-sizing: border-box;
+  padding: 0;
+}
+#wrapper input[type='number']::-webkit-inner-spin-button,
+#wrapper input[type='number']::-webkit-outer-spin-button {
+  height: auto;
+}
+#wrapper input[type='search'] {
+  -webkit-appearance: textfield;
+  box-sizing: content-box;
+}
+#wrapper input[type='search']::-webkit-search-cancel-button,
+#wrapper input[type='search']::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+#wrapper fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
+}
+#wrapper legend {
+  border: 0;
+  padding: 0;
+}
+#wrapper textarea {
+  overflow: auto;
+}
+#wrapper optgroup {
+  font-weight: bold;
+}
+#wrapper table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+#wrapper * {
+  box-sizing: border-box;
+}
+#wrapper input,
+#wrapper select,
+#wrapper textarea,
+#wrapper button {
+  font: 14px/21px -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+}
+#wrapper body {
+  font: 14px/21px -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  color: #333;
+  background-color: #fff;
+}
+#wrapper a {
+  color: #4078c0;
+  text-decoration: none;
+}
+#wrapper a:hover,
+#wrapper a:active {
+  text-decoration: underline;
+}
+#wrapper hr,
+#wrapper .rule {
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #ddd;
+  height: 0;
+  margin: 15px 0;
+  overflow: hidden;
+}
+#wrapper hr:before,
+#wrapper .rule:before {
+  content: '';
+  display: table;
+}
+#wrapper hr:after,
+#wrapper .rule:after {
+  clear: both;
+  content: '';
+  display: table;
+}
+#wrapper h1,
+#wrapper h2,
+#wrapper h3,
+#wrapper h4,
+#wrapper h5,
+#wrapper h6 {
+  font-weight: 600;
+  line-height: 1.1;
+  margin: 24px 0 16px;
+  padding: 0;
+}
+
+#wrapper h1 code,
+#wrapper h2 code,
+#wrapper h3 code,
+#wrapper h4 code,
+#wrapper h5 code,
+#wrapper h6 code {
+  font-size: inherit;
+}
+#wrapper h1,
+#wrapper h2 {
+  border-bottom: 1px solid #eaecef;
+}
+#wrapper h1 {
+  font-size: 32px;
+  line-height: 40px;
+  margin: 0 0 16px;
+  padding: 0 0 9.600000381469727px;
+}
+#wrapper h2 {
+  font-size: 24px;
+  line-height: 30px;
+  padding: 0 0 7.199999809265137px;
+}
+#wrapper h3 {
+  font-size: 20px;
+  line-height: 25px;
+}
+#wrapper h4 {
+  font-size: 16px;
+  line-height: 20px;
+  margin: 24px 0 16px;
+  padding: 0;
+}
+#wrapper h5 {
+  font-size: 14px;
+  line-height: 17px;
+}
+#wrapper h6 {
+  font-size: 13.600000381469727px;
+  line-height: 17px;
+}
+#wrapper small {
+  font-size: 90%;
+}
+#wrapper blockquote {
+  margin: 0;
+}
+#wrapper ol ol,
+#wrapper ul ol {
+  list-style-type: lower-roman;
+}
+#wrapper ul ul ol,
+#wrapper ul ol ol,
+#wrapper ol ul ol,
+#wrapper ol ol ol {
+  list-style-type: lower-alpha;
+}
+#wrapper dd {
+  margin-left: 0;
+}
+#wrapper tt,
+#wrapper code {
+  font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+  font-size: 85%;
+}
+#wrapper pre {
+  font: 100% SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+  margin-bottom: 0;
+  margin-top: 16px;
+  line-height: 1.45;
+  padding: 10px;
+  border-radius: 3px;
+}
+
+#wrapper {
+  -webkit-font-smoothing: antialiased;
+  background: #fff;
+  border: solid 1px #dddddd !important;
+  border-radius: 3px;
+  color: #333;
+  font: 14px -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  line-height: 1.6;
+  padding: 3px;
+}
+
+p {
+  margin: 1em 0;
+}
+
+a {
+  color: #4183c4;
+  text-decoration: none;
+}
+
+#wrapper {
+  background-color: #fff;
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 15px;
+  padding: 30px;
+}
+#wrapper > *:first-child {
+  margin-top: 0 !important;
+}
+#wrapper > *:last-child {
+  margin-bottom: 0 !important;
+}
+
+@media screen {
+  #wrapper {
+    border: solid 1px #ddd;
+  }
+}
+p, blockquote, ul, ol, dl, table, pre {
+  margin-bottom: 16px;
+}
+
+hr {
+  height: 4px;
+  padding: 0;
+  margin: 16px 0;
+  background-color: #e7e7e7;
+  border: 0 none;
+}
+
+ul, ol {
+  padding-left: 2em;
+}
+
+ul.no-list, ol.no-list {
+  padding: 0;
+  list-style-type: none;
+}
+
+ul ul, ul ol {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+ol ol, ol ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+li > p {
+  margin-bottom: 0;
+}
+li p + p {
+  margin-top: 16px;
+}
+
+dl {
+  padding: 0;
+}
+dl dt {
+  padding: 0;
+  margin-top: 16px;
+  font-size: 1em;
+  font-style: italic;
+  font-weight: 700;
+}
+dl dd {
+  padding: 0 16px;
+  margin-bottom: 16px;
+}
+
+blockquote {
+  padding: 0 15px;
+  margin-left: 0;
+  color: #777;
+  border-left: 4px solid #ddd;
+}
+blockquote > :first-child {
+  margin-top: 0;
+}
+blockquote > :last-child {
+  margin-bottom: 0;
+}
+
+table {
+  display: block;
+  width: 100%;
+  overflow: auto;
+}
+table th {
+  font-weight: 700;
+  padding: 6px 13px;
+  border: 1px solid #ddd;
+}
+table td {
+  padding: 6px 13px;
+  border: 1px solid #ddd;
+}
+table tr {
+  background-color: #fff;
+  border-top: 1px solid #ccc;
+}
+table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+img {
+  max-width: 100%;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+span.frame {
+  display: block;
+  overflow: hidden;
+}
+span.frame > span {
+  display: block;
+  float: left;
+  width: auto;
+  padding: 7px;
+  margin: 13px 0 0;
+  overflow: hidden;
+  border: 1px solid #ddd;
+}
+span.frame span img {
+  display: block;
+  float: left;
+}
+span.frame span span {
+  display: block;
+  padding: 5px 0 0;
+  clear: both;
+  color: #333;
+}
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both;
+}
+span.align-center > span {
+  display: block;
+  margin: 13px auto 0;
+  overflow: hidden;
+  text-align: center;
+}
+span.align-center span img {
+  margin: 0 auto;
+  text-align: center;
+}
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both;
+}
+span.align-right > span {
+  display: block;
+  margin: 13px 0 0;
+  overflow: hidden;
+  text-align: right;
+}
+span.align-right span img {
+  margin: 0;
+  text-align: right;
+}
+span.float-left {
+  display: block;
+  float: left;
+  margin-right: 13px;
+  overflow: hidden;
+}
+span.float-left span {
+  margin: 13px 0 0;
+}
+span.float-right {
+  display: block;
+  float: right;
+  margin-left: 13px;
+  overflow: hidden;
+}
+span.float-right > span {
+  display: block;
+  margin: 13px auto 0;
+  overflow: hidden;
+  text-align: right;
+}
+
+code, tt {
+  background-color: rgba(0, 0, 0, 0.04);
+  border-radius: 3px;
+  font-size: 85%;
+  margin: 0;
+  padding: .2em .4em;
+}
+
+code::before, code::after {
+  content: '\00a0';
+  letter-spacing: -.2em;
+}
+
+tt:before, tt:after {
+  content: '\00a0';
+  letter-spacing: -.2em;
+}
+
+code br, tt br {
+  display: none;
+}
+
+del code {
+  text-decoration: inherit;
+  vertical-align: text-top;
+}
+
+pre > code {
+  padding: 0;
+  margin: 0;
+  font-size: 100%;
+  white-space: pre;
+  background: transparent;
+  border: 0;
+}
+
+.highlight {
+  margin-bottom: 16px;
+}
+.highlight pre {
+  padding: 16px;
+  margin-bottom: 0;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: #f6f8fa;
+  border-radius: 3px;
+}
+
+pre {
+  padding: 16px;
+  margin-bottom: 16px;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: #f7f7f7;
+  border-radius: 3px;
+  word-wrap: normal;
+}
+pre code, pre tt {
+  display: inline;
+  max-width: initial;
+  padding: 0;
+  margin: 0;
+  overflow: initial;
+  line-height: inherit;
+  word-wrap: normal;
+  background-color: transparent;
+  border: 0;
+}
+pre code:before, pre code:after {
+  content: normal;
+}
+pre tt:before, pre tt:after {
+  content: normal;
+}
+
+.poetry pre {
+  font-family: Georgia, Garamond, serif !important;
+  font-style: italic;
+  font-size: 110% !important;
+  line-height: 1.6em;
+  display: block;
+  margin-left: 1em;
+}
+.poetry pre code {
+  font-family: Georgia, Garamond, serif !important;
+  word-break: break-all;
+  word-break: break-word;
+  /* Non standard for webkit */
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto;
+  white-space: pre-wrap;
+}
+
+sup, sub, a.footnote {
+  font-size: 1.4ex;
+  height: 0;
+  line-height: 1;
+  vertical-align: super;
+  position: relative;
+}
+
+sub {
+  vertical-align: sub;
+  top: -1px;
+}
+
+@media print {
+  body {
+    background: #fff;
+  }
+
+  img, table, figure {
+    page-break-inside: avoid;
+  }
+
+  #wrapper {
+    background: #fff;
+    border: none !important;
+    font-size: 12px;
+  }
+
+  pre code {
+    overflow: visible;
+  }
+}
+@media screen {
+  body.inverted {
+    border-color: #555;
+    box-shadow: none;
+    color: #eee !important;
+  }
+
+  .inverted #wrapper,
+  .inverted hr,
+  .inverted p,
+  .inverted td,
+  .inverted li,
+  .inverted h1,
+  .inverted h2,
+  .inverted h3,
+  .inverted h4,
+  .inverted h5,
+  .inverted h6,
+  .inverted th,
+  .inverted .math,
+  .inverted caption,
+  .inverted dd,
+  .inverted dt,
+  .inverted blockquote {
+    border-color: #555;
+    box-shadow: none;
+    color: #eee !important;
+  }
+  .inverted td, .inverted th {
+    background: #333;
+  }
+  .inverted pre, .inverted code, .inverted tt {
+    background: #eeeeee !important;
+    color: #111;
+  }
+  .inverted h2 {
+    border-color: #555555;
+  }
+  .inverted hr {
+    border-color: #777;
+    border-width: 1px !important;
+  }
+
+  ::selection {
+    background: rgba(157, 193, 200, 0.5);
+  }
+
+  h1::selection {
+    background-color: rgba(45, 156, 208, 0.3);
+  }
+
+  h2::selection {
+    background-color: rgba(90, 182, 224, 0.3);
+  }
+
+  h3::selection,
+  h4::selection,
+  h5::selection,
+  h6::selection,
+  li::selection,
+  ol::selection {
+    background-color: rgba(133, 201, 232, 0.3);
+  }
+
+  code::selection {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #eeeeee;
+  }
+  code span::selection {
+    background-color: rgba(0, 0, 0, 0.7) !important;
+    color: #eeeeee !important;
+  }
+
+  a::selection {
+    background-color: rgba(255, 230, 102, 0.2);
+  }
+
+  .inverted a::selection {
+    background-color: rgba(255, 230, 102, 0.6);
+  }
+
+  td::selection, th::selection, caption::selection {
+    background-color: rgba(180, 237, 95, 0.5);
+  }
+
+  .inverted {
+    background: #0b2531;
+    background: #252a2a;
+  }
+  .inverted #wrapper {
+    background: #252a2a;
+  }
+  .inverted a {
+    color: #acd1d5;
+  }
+}
+.highlight {
+  background: #fff;
+}
+.highlight .c {
+  color: #998;
+  font-style: italic;
+}
+.highlight .err {
+  color: #a61717;
+  background-color: #e3d2d2;
+}
+.highlight .k, .highlight .o {
+  font-weight: 700;
+}
+.highlight .cm {
+  color: #998;
+  font-style: italic;
+}
+.highlight .cp {
+  color: #999;
+  font-weight: 700;
+}
+.highlight .c1 {
+  color: #998;
+  font-style: italic;
+}
+.highlight .cs {
+  color: #999;
+  font-weight: 700;
+  font-style: italic;
+}
+.highlight .gd {
+  color: #000;
+  background-color: #fdd;
+}
+.highlight .gd .x {
+  color: #000;
+  background-color: #faa;
+}
+.highlight .ge {
+  font-style: italic;
+}
+.highlight .gr {
+  color: #a00;
+}
+.highlight .gh {
+  color: #999;
+}
+.highlight .gi {
+  color: #000;
+  background-color: #dfd;
+}
+.highlight .gi .x {
+  color: #000;
+  background-color: #afa;
+}
+.highlight .go {
+  color: #888;
+}
+.highlight .gp {
+  color: #555;
+}
+.highlight .gs {
+  font-weight: 700;
+}
+.highlight .gu {
+  color: purple;
+  font-weight: 700;
+}
+.highlight .gt {
+  color: #a00;
+}
+.highlight .kc, .highlight .kd, .highlight .kn, .highlight .kp, .highlight .kr {
+  font-weight: 700;
+}
+.highlight .kt {
+  color: #458;
+  font-weight: 700;
+}
+.highlight .m {
+  color: #099;
+}
+.highlight .s {
+  color: #d14;
+}
+.highlight .n {
+  color: #333;
+}
+.highlight .na {
+  color: teal;
+}
+.highlight .nb {
+  color: #0086b3;
+}
+.highlight .nc {
+  color: #458;
+  font-weight: 700;
+}
+.highlight .no {
+  color: teal;
+}
+.highlight .ni {
+  color: purple;
+}
+.highlight .ne, .highlight .nf {
+  color: #900;
+  font-weight: 700;
+}
+.highlight .nn {
+  color: #555;
+}
+.highlight .nt {
+  color: navy;
+}
+.highlight .nv {
+  color: teal;
+}
+.highlight .ow {
+  font-weight: 700;
+}
+.highlight .w {
+  color: #bbb;
+}
+.highlight .mf, .highlight .mh, .highlight .mi, .highlight .mo {
+  color: #099;
+}
+.highlight .sb, .highlight .sc, .highlight .sd, .highlight .s2, .highlight .se, .highlight .sh, .highlight .si, .highlight .sx {
+  color: #d14;
+}
+.highlight .sr {
+  color: #009926;
+}
+.highlight .s1 {
+  color: #d14;
+}
+.highlight .ss {
+  color: #990073;
+}
+.highlight .bp {
+  color: #999;
+}
+.highlight .vc, .highlight .vg, .highlight .vi {
+  color: teal;
+}
+.highlight .il {
+  color: #099;
+}
+.highlight .gc {
+  color: #999;
+  background-color: #EAF2F5;
+}
+
+.type-csharp .highlight .k, .type-csharp .highlight .kt {
+  color: blue;
+}
+.type-csharp .highlight .nf {
+  color: #000;
+  font-weight: 400;
+}
+.type-csharp .highlight .nc {
+  color: #2b91af;
+}
+.type-csharp .highlight .nn {
+  color: #000;
+}
+.type-csharp .highlight .s, .type-csharp .highlight .sc {
+  color: #a31515;
+}
+
+.type-csharp .highlight .k, .type-csharp .highlight .kt {
+  color: #00F;
+}
+.type-csharp .highlight .nf {
+  color: #000;
+  font-weight: normal;
+}
+.type-csharp .highlight .nc {
+  color: #2B91AF;
+}
+.type-csharp .highlight .nn {
+  color: #000;
+}
+.type-csharp .highlight .s, .type-csharp .highlight .sc {
+  color: #A31515;
+}
+
+body.dark #wrapper {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.live-code {
+  border-top: 1px #888 solid;
+  border-bottom: 1px #888 solid;
+  padding-top: 1rem;
+}
+</style>
 </head>
+<body id="wrapper">
+<h1>Pico Web Components</h1>
+<p>Experimental web components. A demonstration of the technology rather than a library for building applications. But that may change :-)</p>
+<ul>
+<li>Low-level. Granularity of native elements for fully flexible layouts and combinations with the native elements.</li>
+<li>Tiny. Avoid dependencies on heavy frameworks when writing small web components.</li>
+<li>Integrated. Usable interchangeably with the native HTML elements by providing the same interface.</li>
+<li>Accessible. Support assistive technologies like screen readers by the form-associated interface.</li>
+<li>Styled. When used alone, they don&#39;t need additional styles to compose a good layout.</li>
+<li>Protected. Shadow DOM makes the inner styles resistant against external stylesheets.</li>
+</ul>
+<p>Styles aren&#39;t cleaned up yet. It&#39;s just a copy of a part of <a href="https://picocss.com/">Pico CSS</a>. Refactoring to improve and share code among the components will be done after more concepts are evaluated.</p>
+<h2>Motivation</h2>
+<ul>
+<li>Prototype lightweight low-level web components, which can be used interchangeably with the native HTML elements.</li>
+<li>Check feasibility of such implementation with the current state of the web component support.</li>
+<li>Avoid unnecessary complexity of wrapping native elements with the same role in the shadow DOM and then synchronising their states, when it&#39;s possible to implement the form-associated interface on the host element.</li>
+</ul>
+<h2>Usage</h2>
+<p>You can install the package locally to get access to the distributed files:</p>
+<pre><code>npm i -D piwecko
+</code></pre>
+<p>And load the web components on a testing page:</p>
+<pre><code class="language-html">&lt;script src=&quot;node_modules/piwecko/dist/index.mjs&quot; type=&quot;module&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p>At this time, this package is more for experimenting with and debugging. You can download it, build it and debug the included pages:</p>
+<pre><code>git clone https://github.com/prantlf/piwo.git
+cd piwo
+bun i --frozen-lockfile
+bun run start
+open http://localhost:8080/examples/checkbox.html
+</code></pre>
+<p>And the GitHub pages web site:</p>
+<pre><code>cd web
+bun i --frozen-lockfile
+bun run start
+open http://localhost:3000/piwo/
+</code></pre>
+<h2>Example</h2>
+<p>Picture:</p>
+<p><img src="./docs/login.png" alt="Login Form"></p>
+<p>Markup:</p>
+<pre><code class="language-html">
+&lt;header&gt;
+  &lt;piwo-h level="1"&gt;Login&lt;/piwo-h&gt;
+  &lt;piwo-p&gt;Provide your credentials to authenticate to the web application.&lt;/piwo-p&gt;
+&lt;/header&gt;
 
-<body>
-  <piwo-container>
-    <header>
-      <piwo-h level="1">PiWo Login</piwo-h>
-      <piwo-p>Demo of Pico Web Components. Provide your credentials to authenticate to the web application.</piwo-p>
-    </header>
+&lt;main&gt;
+  &lt;form id="login"&gt;
+    &lt;piwo-label for="name"&gt;Name:&lt;/piwo-label&gt;
+    &lt;piwo-input name="name" type="text" placeholder="Enter your login name"
+                id="name" aria-describedby="name-msg"
+                required describeerror focuserror&gt;&lt;/piwo-input&gt;
+    &lt;piwo-small id="name-msg"&gt;Ask the admin about your user name.&lt;/piwo-small&gt;
+    &lt;piwo-label&gt;
+      Password:
+      &lt;piwo-input name="password" type="password"
+                  placeholder="Enter your password"&gt;&lt;/piwo-input&gt;
+    &lt;/piwo-label&gt;
 
-    <main>
-      <form id="form">
-        <piwo-label for="name">Name:</piwo-label>
-        <piwo-input name="name" type="text" placeholder="Enter your login name"
-                    id="name" aria-describedby="name-msg"
-                    required describeerror focuserror></piwo-input>
-        <piwo-small id="name-msg">Ask the admin about your user name.</piwo-small>
-        <piwo-label>
-          Password:
-          <piwo-input name="password" type="password" placeholder="Enter your password"></piwo-input>
-        </piwo-label>
+    &lt;piwo-label&gt;
+      &lt;piwo-checkbox name="remember-me"&gt;&lt;/piwo-checkbox&gt;
+      Rememeber me
+    &lt;/piwo-label&gt;
+    &lt;piwo-label&gt;
+      &lt;piwo-checkbox name="i-agree" required&gt;&lt;/piwo-checkbox&gt;
+      I agree with collecting my name and password
+    &lt;/piwo-label&gt;
 
-        <piwo-label>
-          <piwo-checkbox name="remember-me"></piwo-checkbox>
-          Rememeber me
-        </piwo-label>
-        <piwo-label>
-          <piwo-checkbox name="i-agree" required></piwo-checkbox>
-          I agree with collecting my name and password
-        </piwo-label>
+    &lt;piwo-spacer&gt;&lt;/piwo-spacer&gt;
 
-        <piwo-spacer></piwo-spacer>
+    &lt;piwo-label&gt;Comment:
+      &lt;piwo-textarea name="comment"&gt;&lt;/piwo-textarea&gt;
+    &lt;/piwo-label&gt;
 
-        <piwo-label>Comment:
-          <piwo-textarea name="comment"></piwo-textarea>
-        </piwo-label>
+    &lt;piwo-spacer&gt;&lt;/piwo-spacer&gt;
 
-        <piwo-spacer></piwo-spacer>
+    &lt;piwo-button&gt;Submit&lt;/piwo-button&gt;
+    &lt;piwo-button type="reset" outline&gt;Reset&lt;/piwo-button&gt;
+  &lt;/form&gt;
+&lt;/main&gt;
+</code></pre>
+<div class="live-code">
+<header>
+  <piwo-h level="1">Login</piwo-h>
+  <piwo-p>Provide your credentials to authenticate to the web application.</piwo-p>
+</header>
 
-        <piwo-button>Submit</piwo-button>
-        <piwo-button type="reset" outline>Reset</piwo-button>
-      </form>
-    </main>
-    <footer>
-      <piwo-hr></piwo-hr>
-      <piwo-small>PiWo 0.5.0 © 2024 Ferdinand Prantl, see the <piwo-link href="https://github.com/prantlf/piwo" target="_blank">project on GitHub</piwo-link></piwo-small>
-    </footer>
-  </piwo-container>
+<main>
+  <form id="login">
+    <piwo-label for="name">Name:</piwo-label>
+    <piwo-input name="name" type="text" placeholder="Enter your login name"
+                id="name" aria-describedby="name-msg"
+                required describeerror focuserror></piwo-input>
+    <piwo-small id="name-msg">Ask the admin about your user name.</piwo-small>
+    <piwo-label>
+      Password:
+      <piwo-input name="password" type="password"
+                  placeholder="Enter your password"></piwo-input>
+    </piwo-label>
 
-  <script type="module">
-    import { registerField, registerForm } from './event-logger.js'
-    registerField('piwo-input, piwo-checkbox, piwo-textarea')
-    registerForm('form')
-  </script>
+    <piwo-label>
+      <piwo-checkbox name="remember-me"></piwo-checkbox>
+      Rememeber me
+    </piwo-label>
+    <piwo-label>
+      <piwo-checkbox name="i-agree" required></piwo-checkbox>
+      I agree with collecting my name and password
+    </piwo-label>
 
-  <script src="index.min.mjs" type="module"></script>
+    <piwo-spacer></piwo-spacer>
+
+    <piwo-label>Comment:
+      <piwo-textarea name="comment"></piwo-textarea>
+    </piwo-label>
+
+    <piwo-spacer></piwo-spacer>
+
+    <piwo-button>Submit</piwo-button>
+    <piwo-button type="reset" outline>Reset</piwo-button>
+  </form>
+</main>
+</div>
+<h2>Components</h2>
+<h3>Button</h3>
+<p>Button for general usage and for submitting forms.</p>
+<ul>
+<li>Lightweight - only a slot for inner content. The host element itself has the role <code>button</code>.</li>
+<li>Form-associated element. Can be used like <code>input[type=submit]</code> for submitting forms.</li>
+<li>Implements many attributes of the native element.</li>
+<li>Supports the events <code>click</code> fired also by keys <code>Enter</code>and <code>Space</code>.</li>
+<li>Resets the form if it is <code>type=reset</code>.</li>
+<li>Exposes the state <code>disabled</code> in CSS.</li>
+</ul>
+<pre><code class="language-html">
+&lt;piwo-button&gt;Primary&lt;/piwo-button&gt;
+&lt;piwo-button kind="secondary"&gt;Secondary&lt;/piwo-button&gt;
+&lt;piwo-button kind="contrast"&gt;Contrast&lt;/piwo-button&gt;
+&lt;br&gt;
+&lt;piwo-button outline&gt;Primary outline&lt;/piwo-button&gt;
+&lt;piwo-button kind="secondary" outline&gt;Secondary outline&lt;/piwo-button&gt;
+&lt;piwo-button kind="contrast" outline&gt;Contrast outline&lt;/piwo-button&gt;
+</code></pre>
+<div class="live-code">
+<piwo-button>Primary</piwo-button>
+<piwo-button kind="secondary">Secondary</piwo-button>
+<piwo-button kind="contrast">Contrast</piwo-button>
+<br>
+<piwo-button outline>Primary outline</piwo-button>
+<piwo-button kind="secondary" outline>Secondary outline</piwo-button>
+<piwo-button kind="contrast" outline>Contrast outline</piwo-button>
+</div>
+<h3>Label</h3>
+<p>Label for form fields.</p>
+<ul>
+<li>Lightweight - only a slot for inner content. The host element has no role.</li>
+<li>Can be used just like the native label - by wrapping the field in its body, by pointing to a field by the <code>for</code> attribute, or by having the field point to it by the <code>aria-labelledby</code> attribute.</li>
+<li>Attributes and element content can be modified any time later.</li>
+<li>Clicks are forwarded to the target field.</li>
+</ul>
+<pre><code class="language-html">
+&lt;piwo-label for="first-name"&gt;First Name:&lt;/piwo-label&gt;
+&lt;piwo-input name="first-name" id="first-name" type="text"&gt;&lt;/piwo-input&gt;
+</code></pre>
+<div class="live-code">
+<piwo-label for="first-name">First Name:</piwo-label>
+<piwo-input name="first-name" id="first-name" type="text"></piwo-input>
+</div>
+<h3>Checkbox</h3>
+<p>Checkbox form field.</p>
+<ul>
+<li>Lightweight - only an SVG image in the inner content. The host element itself has the role <code>checkbox</code>.</li>
+<li>Form-associated element. Can be used like <code>input[type=checkbox]</code>.</li>
+<li>Implements many attributes of the native element.</li>
+<li>Supports events <code>click</code>, <code>beforeinput</code>, <code>input</code> and <code>change</code> including <code>preventDefault</code>.</li>
+<li>Fills the value <code>on</code> or nothing to <code>FormData</code>.</li>
+<li>Remembers the current state for back and forth navigation in the browser.</li>
+<li>Can reset the value on form <code>reset</code>.</li>
+<li>Exposes states <code>checked</code>, <code>indeterminate</code>, <code>disabled</code>, <code>readonly</code> and <code>required</code> in CSS.</li>
+<li>Validates input including custom errors.</li>
+<li>Emphasises valid or invalid state if <code>aria-invalid</code> is set explicitly.</li>
+<li>Allows either showing the browser popup, or a HTML message for invalid fields, if <code>describeerror</code> is set and the last ID in <code>aria-describedby</code> points to an element with content. If the element is hidden, it&#39;ll be temporarily shown.</li>
+</ul>
+<pre><code class="language-html">
+&lt;div&gt;
+  &lt;piwo-checkbox id="unchecked"&gt;&lt;/piwo-checkbox&gt;
+  &lt;piwo-label for="unchecked"&gt;Unchecked&lt;/piwo-label&gt;
+
+  &lt;piwo-checkbox id="checked" checked&gt;&lt;/piwo-checkbox&gt;
+  &lt;piwo-label for="checked"&gt;Checked&lt;/piwo-label&gt;
+
+  &lt;piwo-checkbox id="invalid" required aria-invalid="true"&gt;&lt;/piwo-checkbox&gt;
+  &lt;piwo-label for="invalid"&gt;Invalid&lt;/piwo-label&gt;
+
+  &lt;piwo-checkbox id="valid" checked aria-invalid="false"&gt;&lt;/piwo-checkbox&gt;
+  &lt;piwo-label for="valid"&gt;Valid&lt;/piwo-label&gt;
+&lt;/div&gt;
+
+&lt;piwo-label&gt;
+  &lt;piwo-checkbox indeterminate&gt;&lt;/piwo-checkbox&gt;
+  Indeterminate
+&lt;/piwo-label&gt;
+</code></pre>
+<div class="live-code">
+<div>
+  <piwo-checkbox id="unchecked"></piwo-checkbox>
+  <piwo-label for="unchecked">Unchecked</piwo-label>
+
+  <piwo-checkbox id="checked" checked></piwo-checkbox>
+  <piwo-label for="checked">Checked</piwo-label>
+
+  <piwo-checkbox id="invalid" required aria-invalid="true"></piwo-checkbox>
+  <piwo-label for="invalid">Invalid</piwo-label>
+
+  <piwo-checkbox id="valid" checked aria-invalid="false"></piwo-checkbox>
+  <piwo-label for="valid">Valid</piwo-label>
+</div>
+
+<piwo-label>
+  <piwo-checkbox indeterminate></piwo-checkbox>
+  Indeterminate
+</piwo-label>
+</div>
+<h3>Input</h3>
+<p>Input form field.</p>
+<ul>
+<li>Uses a native <code>input</code> element for the editing functionality. Hides it from accessible technologies. (This may yet change.) The host element itself has the role <code>textbox</code>.</li>
+<li>Form-associated element. Can be used like <code>input[type=text]</code> and other types using a textbox for editing.</li>
+<li>Implements many attributes of the native element.</li>
+<li>Supports events <code>click</code>, <code>beforeinput</code>, <code>input</code> and <code>change</code> including <code>preventDefault</code>.</li>
+<li>Fills the value to <code>FormData</code>.</li>
+<li>Remembers the current value for back and forth navigation in the browser.</li>
+<li>Can reset the value on form <code>reset</code>.</li>
+<li>Exposes states <code>disabled</code>, <code>readonly</code> and <code>required</code> in CSS.</li>
+<li>Validates input including custom errors.</li>
+<li>Emphasises valid or invalid state if <code>aria-invalid</code> is set explicitly.</li>
+<li>Allows either showing the browser popup, or a HTML message for invalid fields, if <code>describeerror</code> is set and the last ID in <code>aria-describedby</code> points to an element with content. If the element is hidden, it&#39;ll be temporarily shown.</li>
+</ul>
+<pre><code class="language-html">
+&lt;piwo-input name="last-name" type="text" aria-label="Last name"
+            placeholder="Enter your last name"&gt;&lt;/piwo-input&gt;
+&lt;piwo-input name="missing-last-name" type="text" aria-label="Last name"
+            placeholder="Enter your last name" aria-invalid="true"
+            required&gt;&lt;/piwo-input&gt;
+&lt;piwo-input name="entered-last-name" type="text" aria-label="Last name"
+            placeholder="Enter your last name" aria-invalid="false"
+            required value="Doe"&gt;&lt;/piwo-input&gt;
+</code></pre>
+<div class="live-code">
+<piwo-input name="last-name" type="text" aria-label="Last name"
+            placeholder="Enter your last name"></piwo-input>
+<piwo-input name="missing-last-name" type="text" aria-label="Last name"
+            placeholder="Enter your last name" aria-invalid="true"
+            required></piwo-input>
+<piwo-input name="entered-last-name" type="text" aria-label="Last name"
+            placeholder="Enter your last name" aria-invalid="false"
+            required value="Doe"></piwo-input>
+</div>
+<h3>TextArea</h3>
+<p>TextArea form field.</p>
+<ul>
+<li>Lightweight - only a slot for the edited text. The host element itself has the role <code>textbox</code>.</li>
+<li>Form-associated element. Can be used like <code>textarea</code>.</li>
+<li>Implements many attributes of the native element.</li>
+<li>Supports events <code>beforeinput</code>, <code>input</code> and <code>change</code> including <code>preventDefault</code>.</li>
+<li>Fills the value to <code>FormData</code>.</li>
+<li>Remembers the current value for back and forth navigation in the browser.</li>
+<li>Can reset the value on form <code>reset</code>.</li>
+<li>Exposes states <code>disabled</code>, <code>readonly</code> and <code>required</code> in CSS.</li>
+<li>Validates input including custom errors.</li>
+<li>Emphasises valid or invalid state if <code>aria-invalid</code> is set explicitly.</li>
+<li>Allows either showing the browser popup, or a HTML message for invalid fields, if <code>describeerror</code> is set and the last ID in <code>aria-describedby</code> points to an element with content. If the element is hidden, it&#39;ll be temporarily shown.</li>
+</ul>
+<pre><code class="language-html">
+&lt;piwo-textarea name="review" aria-label="Review" placeholder="Write a review"&gt;&lt;/piwo-textarea&gt;
+&lt;piwo-textarea name="missing-review" aria-label="Review" placeholder="Write a review"
+               aria-invalid="true" required&gt;&lt;/piwo-textarea&gt;
+&lt;piwo-textarea name="entered-review" aria-label="Review" placeholder="Write a review"
+               aria-invalid="false" required&gt;I like it.&lt;/piwo-textarea&gt;
+</code></pre>
+<div class="live-code">
+<piwo-textarea name="review" aria-label="Review" placeholder="Write a review"></piwo-textarea>
+<piwo-textarea name="missing-review" aria-label="Review" placeholder="Write a review"
+               aria-invalid="true" required></piwo-textarea>
+<piwo-textarea name="entered-review" aria-label="Review" placeholder="Write a review"
+               aria-invalid="false" required>I like it.</piwo-textarea>
+</div>
+<h3>Message</h3>
+<p>Information or error message for form fields.</p>
+<ul>
+<li>Lightweight - only a slot for inner content. The host element has no role.</li>
+<li>Multi-purpose. Information message can be temporarily replaced by the error message.</li>
+<li>Can be used just like the native elements - by having the field point to it by the <code>aria-describedby</code> attribute.</li>
+</ul>
+<pre><code class="language-html">
+&lt;piwo-input name="user-name" type="text" placeholder="Enter your user name"
+            aria-label="User name" aria-describedby="user-name-msg"&gt;&lt;/piwo-input&gt;
+&lt;piwo-small id="user-name-msg"&gt;Ask the admin about your user name.&lt;/piwo-small&gt;
+
+&lt;piwo-input name="login-name" type="text" placeholder="Enter your login name"
+            aria-label="Login name" aria-describedby="login-name-msg"
+            aria-invalid="true" required describeerror&gt;&lt;/piwo-input&gt;
+&lt;piwo-small id="login-name-msg"&gt;Ask the admin about your login name.&lt;/piwo-small&gt;
+</code></pre>
+<div class="live-code">
+<piwo-input name="user-name" type="text" placeholder="Enter your user name"
+            aria-label="User name" aria-describedby="user-name-msg"></piwo-input>
+<piwo-small id="user-name-msg">Ask the admin about your user name.</piwo-small>
+
+<piwo-input name="login-name" type="text" placeholder="Enter your login name"
+            aria-label="Login name" aria-describedby="login-name-msg"
+            aria-invalid="true" required describeerror></piwo-input>
+<piwo-small id="login-name-msg">Ask the admin about your login name.</piwo-small>
+</div>
+<h3>Heading</h3>
+<p>Heading element of the level 1 - 6 aligned with <code>h1</code> - <code>h6</code>.</p>
+<ul>
+<li>Lightweight - only a slot for inner content. The host element has the <code>heading</code> role with the corresponding level.</li>
+</ul>
+<pre><code class="language-html">
+&lt;piwo-h level="1"&gt;Login&lt;/piwo-h&gt;
+</code></pre>
+<div class="live-code">
+<piwo-h level="1">Login</piwo-h>
+</div>
+<h3>Paragraph</h3>
+<p>Paragraph element.</p>
+<ul>
+<li>Lightweight - only a slot for inner content. The host element has the <code>paragraph</code> role.</li>
+</ul>
+<pre><code class="language-html">
+&lt;piwo-p&gt;Provide your credentials to authenticate to the web application.&lt;/piwo-p&gt;
+</code></pre>
+<div class="live-code">
+<piwo-p>Provide your credentials to authenticate to the web application.</piwo-p>
+</div>
+<h3>Link</h3>
+<p>A hyperlink.</p>
+<ul>
+<li>Lightweight - only a slot for inner content. The host element itself has the role <code>link</code>.</li>
+</ul>
+<pre><code class="language-html">
+&lt;piwo-link href="/"&gt;Primary&lt;/piwo-link&gt;
+&lt;piwo-link href="/" kind="secondary"&gt;Secondary&lt;/piwo-link&gt;
+&lt;piwo-link href="/" kind="contrast"&gt;Contrast&lt;/piwo-link&gt;
+</code></pre>
+<div class="live-code">
+<piwo-link href="/">Primary</piwo-link>
+<piwo-link href="/" kind="secondary">Secondary</piwo-link>
+<piwo-link href="/" kind="contrast">Contrast</piwo-link>
+</div>
+<h3>Container</h3>
+<p>Presentation element ensuring fixed responsive width.</p>
+<ul>
+<li>Lightweight - only a slot for inner content. The host element has no role.</li>
+</ul>
+<pre><code class="language-html">
+&lt;piwo-container&gt;
+  &lt;main&gt;
+    ...
+  &lt;/main&gt;
+&lt;/piwo-container&gt;
+</code></pre>
+<div class="live-code">
+<piwo-container>
+  <main>
+    ...
+  </main>
+</piwo-container>
+</div>
+<h3>Horizontal Rule</h3>
+<p>Vertical line separator.</p>
+<ul>
+<li>Lightweight - no content. The host element has the <code>separator</code> role.</li>
+</ul>
+<pre><code class="language-html">
+&lt;piwo-hr&gt;&lt;/piwo-hr&gt;
+</code></pre>
+<div class="live-code">
+<piwo-hr></piwo-hr>
+</div>
+<h3>Spacer</h3>
+<p>Inserts empty vertical space.</p>
+<ul>
+<li>Lightweight - no content. The host element has no role.</li>
+</ul>
+<pre><code class="language-html">
+&lt;piwo-spacer factor="1.5"&gt;&lt;/piwo-spacer&gt;
+</code></pre>
+<div class="live-code">
+<piwo-spacer factor="1.5"></piwo-spacer>
+</div>
+<h2>Findings</h2>
+<p>Almost all of the problems found when implementing the custom elements were solved by adding custom code. Only Submitter and Validity Anchor have ugly workarounds.</p>
+<h3>Tab Index</h3>
+<p>Focusability of an element <a href="https://github.com/WICG/webcomponents/issues/762">cannot be declared yet</a>. The attribute <code>tabindex</code> has to be set to zero as a workaround. It makes the attribute visible on the element in DOM. Otherwise no problem.</p>
+<h3>Label</h3>
+<p>The role of a <a href="https://github.com/WICG/webcomponents/issues/917">label cannot be delegated yet</a>, but the click-functionality and the property <code>labels</code> can be implemented by custom code. No problem.</p>
+<h3>Change Event</h3>
+<p>When using a <code>contenteditable</code> custom element as the host, the <code>change</code> event should be dispatched on <code>blur</code>. Unlike with teh native elements, the event will be dispatched after the blur event, because there&#39;s no <code>beforeblur</code> event to hook in. Not a big deal.</p>
+<h3>Preventing Default Behaviour</h3>
+<p>To be able to support <code>event.defaultPrevented</code>, <code>input</code> and <code>change</code> events on mouse and keyboard interactions are triggered asynchronously by <code>setTimeout</code>. (The mouse and keyboard handlers registered by the custom element are triggered at first.) Native elements process the interaction (probably) synchronously. Probably not a big deal.</p>
+<h3>Submitter</h3>
+<p>When calling <code>requestSubmit(submitter)</code> on a form, <code>submitter</code> has to be an <code>input</code> element. It cannot be just a form-associated custom element. A possible workaround is to create a temporary <code>input</code> element and optionally assign it a <code>name </code>attribute, when the submit is triggered by custom button. It&#39;s a problem, because <code>event.explicitOriginalTarget</code> won&#39;t be set to the actual button, but to the temporary element. A custom interface can be provided, like setting <code>form.submitter</code> to the <code>input</code> element and <code>form.submitter.button</code> to the actual button, but it&#39;s different from the native interface.</p>
+<p>On the other hand, the submitter doesn&#39;t have to be read dynamically using the event or the form. Forms usually have well-known submit buttons. And forms with more submit buttons assign a unique value to the <code>name</code> attribute to be able to recognise the button in <code>FormData</code> on the client or on the server side.</p>
+<h3>Validity Anchor</h3>
+<p>When calling <code>setValidity</code> from<code>ElementInternals</code> with an anchor, this anchor has to be an input element. It cannot be just a form-associated custom element. A clumsy workaround is to create a hidden <code>input</code> element and make it visible when the custom element becomes invalid. If it&#39;s zero-sized, it won&#39;t be visible, but it&#39;ll be focusable, when hitting the <code>Tab</code> key in the invalid element. It&#39;s a problem, waiting for a better workaround.</p>
+<p>On the other hand, real-world forms use error placeholders referred to by <code>aria-describedby</code> anyway. I added automatic showing and hiding of the error placeholder (<code>describeerror</code>) and focusing of the first invalid field in the form (<code>focuserror</code>) beyond the native element functionality for convenience and also to provide a good workaround for the not working anchor.</p>
+<h3>Checkbox</h3>
+<p>Better than the native element, the custom element can support the <code>readonly</code> attribute and the <code>indeterminate</code> attribute in the markup. Great!</p>
+<h2>Contributing</h2>
+<p>In lieu of a formal styleguide, take care to maintain the existing coding style. Lint and test your code.</p>
+<h2>License</h2>
+<p>Copyright (C) 2024 Ferdinand Prantl</p>
+<p>Licensed under the <a href="http://en.wikipedia.org/wiki/MIT_License">MIT License</a>.</p>
+<hr>
+<small>PiWo 0.5.0 © 2024 Ferdinand Prantl, see the <a href="https://github.com/prantlf/piwo">project on GitHub</a></small>
+<script type="module">
+import { registerField, registerForm } from './event-logger.js'
+registerField('piwo-input, piwo-checkbox, piwo-textarea')
+registerForm('form')
+</script>
+<script src="dist/index.mjs" type="module"></script>
 </body>
 </html>
+
