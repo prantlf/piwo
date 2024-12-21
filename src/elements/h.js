@@ -27,7 +27,7 @@ class PiWoHeading extends HTMLElement {
 
   set level(value) {
     if (value == null) value = ''
-    if (value === this.level) return
+    if (value === this.#level) return
     this.#internals.ariaLevel = value
     this.toggleAttribute('level', value)
   }

@@ -65,7 +65,7 @@ class PiWoCheckbox extends HTMLElement {
 
   set name(value) {
     if (value == null) value = ''
-    if (value === this.name) return
+    if (value === this.#name) return
     this.#name = value
     this.setAttribute('name', value)
   }
@@ -115,7 +115,7 @@ class PiWoCheckbox extends HTMLElement {
 
   set describeError(value) {
     value = Boolean(value)
-    if (value === this.describeError) return
+    if (value === this.#describeError) return
     this.#describeError = value
     this.toggleAttribute('describeerror', value)
   }
@@ -128,7 +128,7 @@ class PiWoCheckbox extends HTMLElement {
 
   set focusError(value) {
     value = Boolean(value)
-    if (value === this.focusError) return
+    if (value === this.#focusError) return
     this.#focusError = value
     this.toggleAttribute('focuserror', value)
   }
@@ -293,7 +293,7 @@ class PiWoCheckbox extends HTMLElement {
     // detect if `reportValidity` was called from a user interaction
     if (event.explicitOriginalTarget && event.explicitOriginalTarget !== this || this.form.submitter) {
       this.ariaInvalid = 'true'
-      if (this.describeError) {
+      if (this.#describeError) {
         event.preventDefault()
         this.#markInvalid()
       }
@@ -305,7 +305,7 @@ class PiWoCheckbox extends HTMLElement {
       this.#messageElement.style.display = ''
       this.#messageElement.textContent = this.validationMessage
       const { form } = this
-      if (this.focusError && !form?.errorFocused) {
+      if (this.#focusError && !form?.errorFocused) {
         if (form) {
           form.errorFocused = true
         }

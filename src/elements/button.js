@@ -48,7 +48,7 @@ class PiWoButton extends HTMLElement {
 
   set name(value) {
     if (value == null) value = ''
-    if (value === this.name) return
+    if (value === this.#name) return
     this.#name = value
     this.setAttribute('name', value)
   }
@@ -61,7 +61,7 @@ class PiWoButton extends HTMLElement {
 
   set type(value) {
     if (value == null) value = ''
-    if (value === this.type) return
+    if (value === this.#type) return
     this.#type = value
     this.setAttribute('type', value)
   }

@@ -66,7 +66,7 @@ class PiWoInput extends HTMLElement {
 
   set name(value) {
     if (value == null) value = ''
-    if (value === this.name) return
+    if (value === this.#name) return
     this.#name = value
     this.setAttribute('name', value)
   }
@@ -79,9 +79,9 @@ class PiWoInput extends HTMLElement {
 
   set type(value) {
     if (value == null) value = ''
-    if (value === this.type) return
+    if (value === this.#type) return
     this.#type = this.#innerInput.type = value
-    this.setAttribute('type', this.#type)
+    this.setAttribute('type', value)
   }
 
   #placeholder = ''
@@ -92,9 +92,9 @@ class PiWoInput extends HTMLElement {
 
   set placeholder(value) {
     if (value == null) value = ''
-    if (value === this.placeholder) return
+    if (value === this.#placeholder) return
     this.#placeholder = this.#innerInput.placeholder = value
-    this.setAttribute('placeholder', this.#placeholder)
+    this.setAttribute('placeholder', value)
   }
 
   #value = ''
@@ -105,7 +105,7 @@ class PiWoInput extends HTMLElement {
 
   set value(value) {
     if (value == null) value = ''
-    if (value === this.value) return
+    if (value === this.#value) return
     this.#value = this.#innerInput.value = value
     this.#updateValidity()
   }
@@ -118,7 +118,7 @@ class PiWoInput extends HTMLElement {
 
   set autocomplete(value) {
     if (value == null) value = ''
-    if (value === this.autocomplete) return
+    if (value === this.#autocomplete) return
     this.#autocomplete = this.#innerInput.autocomplete = value
     this.setAttribute('autocomplete', value)
   }
@@ -131,7 +131,7 @@ class PiWoInput extends HTMLElement {
 
   set max(value) {
     if (value == null) value = ''
-    if (value === this.max) return
+    if (value === this.#max) return
     this.#max = this.#innerInput.max = value
     this.setAttribute('max', value)
   }
@@ -144,7 +144,7 @@ class PiWoInput extends HTMLElement {
 
   set min(value) {
     if (value == null) value = ''
-    if (value === this.min) return
+    if (value === this.#min) return
     this.#min = this.#innerInput.min = value
     this.setAttribute('min', value)
   }
@@ -164,7 +164,7 @@ class PiWoInput extends HTMLElement {
         value = -1
       }
     }
-    if (value === this.maxLength) return
+    if (value === this.#maxLength) return
     this.#maxLength = this.#innerInput.maxLength = value
     this.setAttribute('maxlength', value)
   }
@@ -184,7 +184,7 @@ class PiWoInput extends HTMLElement {
         value = -1
       }
     }
-    if (value === this.minLength) return
+    if (value === this.#minLength) return
     this.#minLength = this.#innerInput.minLength = value
     this.setAttribute('minlength', value)
   }
@@ -197,7 +197,7 @@ class PiWoInput extends HTMLElement {
 
   set multiple(value) {
     value = Boolean(value)
-    if (value === this.multiple) return
+    if (value === this.#multiple) return
     this.#multiple = this.#innerInput.multiple = value
     this.toggleAttribute('multiple', value)
   }
@@ -210,7 +210,7 @@ class PiWoInput extends HTMLElement {
 
   set describeError(value) {
     value = Boolean(value)
-    if (value === this.describeError) return
+    if (value === this.#describeError) return
     this.#describeError = value
     this.toggleAttribute('describeerror', value)
   }
@@ -223,7 +223,7 @@ class PiWoInput extends HTMLElement {
 
   set focusError(value) {
     value = Boolean(value)
-    if (value === this.focusError) return
+    if (value === this.#focusError) return
     this.#focusError = value
     this.toggleAttribute('focuserror', value)
   }
@@ -236,7 +236,7 @@ class PiWoInput extends HTMLElement {
 
   set pattern(value) {
     if (value == null) value = ''
-    if (value === this.pattern) return
+    if (value === this.#pattern) return
     this.#pattern = this.#innerInput.pattern = value
     this.setAttribute('pattern', value)
   }
@@ -249,7 +249,7 @@ class PiWoInput extends HTMLElement {
 
   set step(value) {
     if (value == null) value = ''
-    if (value === this.step) return
+    if (value === this.#step) return
     this.#step = this.#innerInput.step = value
     this.setAttribute('step', value)
   }

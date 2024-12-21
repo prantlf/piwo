@@ -42,7 +42,7 @@ class PiWoLink extends HTMLElement {
 
   set href(value) {
     if (value == null) value = ''
-    if (value === this.href) return
+    if (value === this.#href) return
     this.#href = value
     this.setAttribute('href', value)
   }

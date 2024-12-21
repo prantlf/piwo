@@ -29,7 +29,7 @@ class PiWoSpacer extends HTMLElement {
         value = 1
       }
     }
-    if (value === this.factor) return
+    if (value === this.#factor) return
     this.#factor = value
     this.setAttribute('factor', String(value))
     this.#updateSpace()
@@ -43,7 +43,7 @@ class PiWoSpacer extends HTMLElement {
 
   set typography(value) {
     value = Boolean(value)
-    if (value === this.typography) return
+    if (value === this.#typography) return
     this.#typography = value
     this.toggleAttribute('typography', value)
   }
@@ -59,8 +59,8 @@ class PiWoSpacer extends HTMLElement {
   }
 
   #updateSpace() {
-    if (this.factor !== 1) {
-      this.style.setProperty('--pico-spacing-factor', this.factor)
+    if (this.#factor !== 1) {
+      this.style.setProperty('--pico-spacing-factor', this.#factor)
     } else {
       this.style.removeProperty('--pico-spacing-factor')
     }

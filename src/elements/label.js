@@ -29,7 +29,7 @@ class PiWoLabel extends HTMLElement {
 
   set htmlFor(value) {
     if (value == null) value = ''
-    if (value === this.htmlFor) return
+    if (value === this.#for) return
     this.#for = value
     this.setAttribute('for', value)
     this.#updateLabel()
@@ -79,7 +79,7 @@ class PiWoLabel extends HTMLElement {
 
   #getPointedTarget() {
     // label cannot be delegated yet - https://github.com/WICG/webcomponents/issues/917
-    const targetId = this.htmlFor
+    const targetId = this.#for
     if (targetId) {
       const scope = this.getRootNode()
       return scope.getElementById(targetId)

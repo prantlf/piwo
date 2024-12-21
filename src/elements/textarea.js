@@ -77,7 +77,7 @@ class PiWoTextArea extends HTMLElement {
 
   set name(value) {
     if (value == null) value = ''
-    if (value === this.name) return
+    if (value === this.#name) return
     this.#name = value
     this.setAttribute('name', value)
   }
@@ -90,9 +90,9 @@ class PiWoTextArea extends HTMLElement {
 
   set placeholder(value) {
     if (value == null) value = ''
-    if (value === this.placeholder) return
+    if (value === this.#placeholder) return
     this.#placeholder = this.#internals.placeholder = this.#internals.ariaPlaceholder = value
-    this.setAttribute('placeholder', this.#placeholder)
+    this.setAttribute('placeholder', value)
   }
 
   #value = ''
@@ -103,7 +103,7 @@ class PiWoTextArea extends HTMLElement {
 
   set value(value) {
     if (value == null) value = ''
-    if (value === this.value) return
+    if (value === this.#value) return
     this.#value = value
     this.#updateValidity()
   }
@@ -123,7 +123,7 @@ class PiWoTextArea extends HTMLElement {
         value = -1
       }
     }
-    if (value === this.maxLength) return
+    if (value === this.#maxLength) return
     this.#maxLength = this.#internals.maxLength = value
     this.setAttribute('maxlength', value)
   }
@@ -143,7 +143,7 @@ class PiWoTextArea extends HTMLElement {
         value = -1
       }
     }
-    if (value === this.minLength) return
+    if (value === this.#minLength) return
     this.#minLength = this.#internals.minLength = value
     this.setAttribute('minlength', value)
   }
@@ -156,7 +156,7 @@ class PiWoTextArea extends HTMLElement {
 
   set describeError(value) {
     value = Boolean(value)
-    if (value === this.describeError) return
+    if (value === this.#describeError) return
     this.#describeError = value
     this.toggleAttribute('describeerror', value)
   }
@@ -169,7 +169,7 @@ class PiWoTextArea extends HTMLElement {
 
   set focusError(value) {
     value = Boolean(value)
-    if (value === this.focusError) return
+    if (value === this.#focusError) return
     this.#focusError = value
     this.toggleAttribute('focuserror', value)
   }
@@ -295,7 +295,7 @@ class PiWoTextArea extends HTMLElement {
       this.#dirty = false
       this.dispatchEvent(new CustomEvent('change', {
         detail: {
-          value: this.value,
+          value: this.#value,
         },
         bubbles: true,
         cancelable: false,
@@ -308,7 +308,7 @@ class PiWoTextArea extends HTMLElement {
     // detect if `reportValidity` was called from a user interaction
     if (event.explicitOriginalTarget && event.explicitOriginalTarget !== this || this.form.submitter) {
       this.ariaInvalid = 'true'
-      if (this.describeError) {
+      if (this.#describeError) {
         event.preventDefault()
         this.#markInvalid()
       }
@@ -320,7 +320,7 @@ class PiWoTextArea extends HTMLElement {
       this.#messageElement.style.display = ''
       this.#messageElement.textContent = this.validationMessage
       const { form } = this
-      if (this.focusError && !form?.errorFocused) {
+      if (this.#focusError && !form?.errorFocused) {
         if (form) {
           form.errorFocused = true
         }
