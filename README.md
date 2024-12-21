@@ -68,11 +68,13 @@ Markup:
   <form id="login">
     <piwo-label for="name">Name:</piwo-label>
     <piwo-input name="name" type="text" placeholder="Enter your login name"
-                id="name" aria-describedby="name-msg" required describeerror focuserror></piwo-input>
+                id="name" aria-describedby="name-msg"
+                required describeerror focuserror></piwo-input>
     <piwo-small id="name-msg">Ask the admin about your user name.</piwo-small>
     <piwo-label>
       Password:
-      <piwo-input name="password" type="password" placeholder="Enter your password"></piwo-input>
+      <piwo-input name="password" type="password"
+                  placeholder="Enter your password"></piwo-input>
     </piwo-label>
 
     <piwo-label>
@@ -189,9 +191,14 @@ Input form field.
 * Allows either showing the browser popup, or a HTML message for invalid fields, if `describeerror` is set and the last ID in `aria-describedby` points to an element with content. If the element is hidden, it'll be temporarily shown.
 
 ```html
-<piwo-input name="last-name" type="text" aria-label="Last name" placeholder="Enter your last name"></piwo-input>
-<piwo-input name="missing-last-name" type="text" aria-label="Last name" placeholder="Enter your last name" aria-invalid="true" required></piwo-input>
-<piwo-input name="entered-last-name" type="text" aria-label="Last name" placeholder="Enter your last name" aria-invalid="false" required value="Doe"></piwo-input>
+<piwo-input name="last-name" type="text" aria-label="Last name"
+            placeholder="Enter your last name"></piwo-input>
+<piwo-input name="missing-last-name" type="text" aria-label="Last name"
+            placeholder="Enter your last name" aria-invalid="true"
+            required></piwo-input>
+<piwo-input name="entered-last-name" type="text" aria-label="Last name"
+            placeholder="Enter your last name" aria-invalid="false"
+            required value="Doe"></piwo-input>
 ```
 
 ### TextArea
@@ -212,8 +219,10 @@ TextArea form field.
 
 ```html
 <piwo-textarea name="review" aria-label="Review" placeholder="Write a review"></piwo-textarea>
-<piwo-textarea name="missing-review" aria-label="Review" placeholder="Write a review" aria-invalid="true" required></piwo-textarea>
-<piwo-textarea name="entered-review" aria-label="Review" placeholder="Write a review" aria-invalid="false" required>I like it.</piwo-textarea>
+<piwo-textarea name="missing-review" aria-label="Review" placeholder="Write a review"
+               aria-invalid="true" required></piwo-textarea>
+<piwo-textarea name="entered-review" aria-label="Review" placeholder="Write a review"
+               aria-invalid="false" required>I like it.</piwo-textarea>
 ```
 
 ### Message
@@ -225,10 +234,13 @@ Information or error message for form fields.
 * Can be used just like the native elements - by having the field point to it by the `aria-describedby` attribute.
 
 ```html
-<piwo-input name="user-name" type="text" placeholder="Enter your user name" aria-label="User name" aria-describedby="user-name-msg"></piwo-input>
+<piwo-input name="user-name" type="text" placeholder="Enter your user name"
+            aria-label="User name" aria-describedby="user-name-msg"></piwo-input>
 <piwo-small id="user-name-msg">Ask the admin about your user name.</piwo-small>
 
-<piwo-input name="login-name" type="text" placeholder="Enter your login name" aria-label="Login name" aria-describedby="login-name-msg" aria-invalid="true" required describeerror></piwo-input>
+<piwo-input name="login-name" type="text" placeholder="Enter your login name"
+            aria-label="Login name" aria-describedby="login-name-msg"
+            aria-invalid="true" required describeerror></piwo-input>
 <piwo-small id="login-name-msg">Ask the admin about your login name.</piwo-small>
 ```
 
@@ -285,7 +297,7 @@ Vertical line separator.
 * Lightweight - no content. The host element has the `separator` role.
 
 ```html
-<piwo-hr>
+<piwo-hr></piwo-hr>
 ```
 
 ### Spacer

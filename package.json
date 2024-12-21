@@ -37,11 +37,12 @@
     "web": "bun run web:sync && bun run web:deploy",
     "web:clone": "test ! -d ../piwo-pages && git clone --single-branch --branch gh-pages `git remote get-url origin` ../piwo-pages",
     "web:pull": "cd ../piwo-pages && git pull",
-    "web:sync": "bun scripts/sync-web.js",
+    "web:sync": "bun scripts/md-html.js > index.html && bun scripts/sync-web.js",
     "web:deploy": "cd ../piwo-pages && git commit -a -m 'Deploy site updates' && git push origin gh-pages"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
+    "marked": "^15.0.4",
     "rollup": "^4.29.1",
     "rollup-plugin-import-stylesheet": "^1.0.0",
     "rollup-plugin-livereload": "^2.0.5",

@@ -1,12 +1,15 @@
-import { copyFile, readFile, writeFile } from 'node:fs/promises'
+import { copyFile, readFile, writeFile, unlink } from 'node:fs/promises'
 import pkg from '../package.json' with { type: 'json' }
 
 async function writeIndex() {
-  let content = await readFile('examples/login.html', 'utf8')
+  let content = await readFile('index.html', 'utf8')
   content = content
     .replace('{version}', pkg.version)
     .replace('../dist/index.mjs', 'index.min.mjs')
-  await writeFile('../piwo-pages/index.html', content)
+  await Promise.all([
+    writeFile('../piwo-pages/index.html', content),
+    unlink('index.html')
+  ])
 }
 
 await Promise.all([

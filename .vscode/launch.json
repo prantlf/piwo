@@ -22,6 +22,16 @@
       "skipFiles": [
         "<node_internals>/**"
       ]
+    },
+    {
+      "name": "run",
+      "type": "node",
+      "request": "launch",
+      "program": "${file}",
+      "cwd": "${workspaceFolder}",
+      "skipFiles": [
+        "<node_internals>/**"
+      ]
     }
   ]
 }
