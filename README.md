@@ -11,6 +11,14 @@ Experimental web components. A demonstration of the technology rather than a lib
 
 Styles aren't cleaned up yet. It's just a copy of a part of [Pico CSS]. Refactoring to improve and share code among the components will be done after more concepts are evaluated.
 
+* [Motivation](#motivation)
+* [Usage](#usage)
+* [Example](#example)
+* [Components](#components)
+* [Findings](#findings)
+* [Contributing](#contributing)
+* [License](#license)
+
 ## Motivation
 
 * Prototype lightweight low-level web components, which can be used interchangeably with the native HTML elements.
@@ -28,7 +36,7 @@ npm i -D piwecko
 And load the web components on a testing page:
 
 ```html
-<script src="node_modules/piwecko/dist/index.mjs" type="module"></script>
+<script src="node_modules/piwecko/dist/index.min.mjs" type="module"></script>
 ```
 
 At this time, this package is more for experimenting with and debugging. You can download it, build it and debug the included pages:
@@ -38,7 +46,7 @@ git clone https://github.com/prantlf/piwo.git
 cd piwo
 bun i --frozen-lockfile
 bun run start
-open http://localhost:8080/examples/checkbox.html
+open http://localhost:8080/examples/login.html
 ```
 
 And the GitHub pages web site:
