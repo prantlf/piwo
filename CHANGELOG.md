@@ -1,5 +1,15 @@
 # Changes
 
+## [0.6.0](https://github.com/prantlf/piwo/compare/v0.5.0...v0.6.0) (2024-12-22)
+
+### Features
+
+* Support piwo-link@rel attribute ([9b9b3a4](https://github.com/prantlf/piwo/commit/9b9b3a4060ed1b4b82b6f83116f0759c4e079833))
+
+### Bug Fixes
+
+* No outline on the zero-sized submitter ([9f1671b](https://github.com/prantlf/piwo/commit/9f1671b4def15f1c5dcc1af287d0c60b5a0f4979))
+
 ## [0.5.0](https://github.com/prantlf/piwo/compare/v0.4.0...v0.5.0) (2024-12-21)
 
 ### Features
