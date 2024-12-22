@@ -2,7 +2,7 @@ import { upgradeProperty } from '../shared/helpers.js'
 import commonStylesheet from '../shared/common.css'
 import thisStylesheet from './link.css'
 
-const allAttributes = ['href', 'target', 'referrerpolicy']
+const allAttributes = ['href', 'target', 'referrerpolicy', 'rel']
 const propertyNames = {
   referrerpolicy: 'referrerPolicy'
 }
@@ -74,6 +74,19 @@ class PiWoLink extends HTMLElement {
     this.setAttribute('referrerpolicy', value)
   }
 
+  #rel = ''
+
+  get rel() {
+    return this.#rel
+  }
+
+  set rel(value) {
+    if (value == null) value = ''
+    if (value === this.#rel) return
+    this.#rel = value
+    this.setAttribute('rel', value)
+  }
+
   // ----- life-cycle callbacks
 
   static get observedAttributes() {
@@ -101,8 +114,18 @@ class PiWoLink extends HTMLElement {
     setTimeout(() => {
       if (event.defaultPrevented) return
       if (this.#target) {
-        const features = this.#referrerPolicy.includes('no-referrer') ? 'noopener,noreferrer' : ''
-        window.open(this.#href, this.#target, features)
+        const features = []
+        if (this.#referrerPolicy.includes('no-referrer')) {
+          features.push('noreferrer', 'noopener')
+        } else {
+          if (this.#rel.includes('noreferrer')) {
+            features.push('noreferrer')
+          }
+          if (this.#rel.includes('noopener')) {
+            features.push('noopener')
+          }
+        }
+        window.open(this.#href, this.#target, features.join(''))
       } else {
         location.href = this.#href
       }
