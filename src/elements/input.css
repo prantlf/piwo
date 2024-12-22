@@ -10,12 +10,8 @@ input {
   --pico-readonly-border-color: var(--pico-form-element-readonly-border-color);
   --pico-color: var(--pico-form-element-color);
   --pico-box-shadow: none;
-  box-sizing: border-box;
-  background-repeat: no-repeat;
   margin: 0;
   font-size: 1rem;
-  line-height: var(--pico-line-height);
-  font-family: var(--pico-font-family);
   letter-spacing: inherit;
   overflow: visible;
   height: calc(1rem * var(--pico-line-height) + var(--pico-form-element-spacing-vertical) * 2 + var(--pico-border-width) * 2);
@@ -27,8 +23,6 @@ input {
   outline: none;
   background-color: var(--pico-background-color);
   box-shadow: var(--pico-box-shadow);
-  color: var(--pico-color);
-  font-weight: var(--pico-font-weight);
   transition: background-color var(--pico-transition), border-color var(--pico-transition), color var(--pico-transition), box-shadow var(--pico-transition);
   margin-bottom: var(--pico-spacing);
 }
@@ -117,20 +111,4 @@ input::placeholder {
 
 input::selection {
   background-color: var(--pico-text-selection-color);
-}
-
-:host([hidden]) {
-  display: none;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  :host(:not([aria-busy=true])), :host(:not([aria-busy=true]))::after, :host(:not([aria-busy=true]))::before {
-    background-attachment: initial !important;
-    animation-duration: 1ms !important;
-    animation-delay: -1ms !important;
-    animation-iteration-count: 1 !important;
-    scroll-behavior: auto !important;
-    transition-delay: 0s !important;
-    transition-duration: 0s !important;
-  }
 }

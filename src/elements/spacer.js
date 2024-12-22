@@ -1,12 +1,13 @@
 import { upgradeProperty } from '../shared/helpers.js'
-import stylesheet from './spacer.css'
+import commonStylesheet from '../shared/common.css'
+import thisStylesheet from './spacer.css'
 
 class PiWoSpacer extends HTMLElement {
   constructor() {
     super()
 
     this.attachShadow({ mode: 'open' })
-    this.shadowRoot.adoptedStyleSheets = [stylesheet]
+    this.shadowRoot.adoptedStyleSheets = [commonStylesheet, thisStylesheet]
 
     upgradeProperty(this, 'factor')
     upgradeProperty(this, 'typography')

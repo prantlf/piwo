@@ -4,12 +4,8 @@
   --pico-border-color: var(--pico-form-element-border-color);
   --pico-color: var(--pico-form-element-color);
   --pico-box-shadow: none;
-  box-sizing: border-box;
-  background-repeat: no-repeat;
   margin: 0;
   font-size: 1rem;
-  line-height: var(--pico-line-height);
-  font-family: var(--pico-font-family);
   letter-spacing: inherit;
   overflow: auto;
   width: 100%;
@@ -20,8 +16,6 @@
   outline: none;
   background-color: var(--pico-background-color);
   box-shadow: var(--pico-box-shadow);
-  color: var(--pico-color);
-  font-weight: var(--pico-font-weight);
   transition: background-color var(--pico-transition), border-color var(--pico-transition), color var(--pico-transition), box-shadow var(--pico-transition);
   margin-bottom: var(--pico-spacing);
   display: block;
@@ -87,10 +81,6 @@
 :host::placeholder {
   color: var(--pico-form-element-placeholder-color);
   opacity: 1;
-}
-
-:host([hidden]) {
-  display: none;
 }
 
 input {

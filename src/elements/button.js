@@ -1,5 +1,6 @@
 import { findClosestAncestorByTagName, upgradeProperty } from '../shared/helpers.js'
-import stylesheet from './button.css'
+import commonStylesheet from '../shared/common.css'
+import thisStylesheet from './button.css'
 
 const booleanAttributes = [
   'disabled'
@@ -24,7 +25,7 @@ class PiWoButton extends HTMLElement {
     this.attachShadow({ mode: 'open' })
     const slot = document.createElement('slot')
     this.shadowRoot.appendChild(slot)
-    this.shadowRoot.adoptedStyleSheets = [stylesheet]
+    this.shadowRoot.adoptedStyleSheets = [commonStylesheet, thisStylesheet]
 
     this.addEventListener('click', event => this.#handleClick(event))
     this.addEventListener('keyup', event => this.#handleKeyUp(event))

@@ -1,5 +1,6 @@
 import { findLabels, upgradeProperty } from '../shared/helpers.js'
-import stylesheet from './input.css'
+import commonStylesheet from '../shared/common.css'
+import thisStylesheet from './input.css'
 
 const booleanAttributes = [
   'disabled', 'readonly', 'required', 'multiple', 'describeerror', 'focuserror'
@@ -30,7 +31,7 @@ class PiWoInput extends HTMLElement {
     this.#internals.role = 'textbox'
 
     this.attachShadow({ mode: 'open', delegatesFocus: true })
-    this.shadowRoot.adoptedStyleSheets = [stylesheet]
+    this.shadowRoot.adoptedStyleSheets = [commonStylesheet, thisStylesheet]
     this.#innerInput = document.createElement('input')
     this.#innerInput.ariaHidden = 'true'
     this.shadowRoot.appendChild(this.#innerInput)

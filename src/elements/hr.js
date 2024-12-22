@@ -1,4 +1,5 @@
-import stylesheet from './hr.css'
+import commonStylesheet from '../shared/common.css'
+import thisStylesheet from './hr.css'
 
 class PiWoHorizontalRule extends HTMLElement {
   #internals
@@ -9,7 +10,7 @@ class PiWoHorizontalRule extends HTMLElement {
     this.#internals.role = 'separator'
 
     this.attachShadow({ mode: 'open' })
-    this.shadowRoot.adoptedStyleSheets = [stylesheet]
+    this.shadowRoot.adoptedStyleSheets = [commonStylesheet, thisStylesheet]
   }
 }
 

@@ -5,7 +5,6 @@
   --pico-underline: var(--pico-primary-underline);
   outline: none;
   background-color: var(--pico-background-color);
-  color: var(--pico-color);
   text-decoration: var(--pico-text-decoration);
   text-decoration-color: var(--pico-underline);
   text-underline-offset: 0.125em;
@@ -13,15 +12,6 @@
   transition: background-color var(--pico-transition), color var(--pico-transition), text-decoration var(--pico-transition), box-shadow var(--pico-transition);
   transition: background-color var(--pico-transition), color var(--pico-transition), text-decoration var(--pico-transition), box-shadow var(--pico-transition), -webkit-text-decoration var(--pico-transition);
   cursor: pointer;
-  color: var(--pico-color);
-  font-weight: var(--pico-font-weight);
-  font-size: var(--pico-font-size);
-  line-height: var(--pico-line-height);
-  font-family: var(--pico-font-family);
-  text-underline-offset: var(--pico-text-underline-offset);
-  text-rendering: optimizeLegibility;
-  overflow-wrap: break-word;
-  tab-size: 4;
 }
 
 :host(:is(:hover, :active, :focus)) {
@@ -105,10 +95,6 @@
   filter: brightness(0) invert(1);
 }
 
-:host([hidden]) {
-  display: none;
-}
-
 :host([type=submit]) {
   width: 100%;
 }
@@ -135,20 +121,4 @@
 
 :host([aria-busy=true]:empty) {
   text-align: center;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  :host(:not([aria-busy=true])), :host(:not([aria-busy=true]))::after, :host(:not([aria-busy=true]))::before {
-    background-attachment: initial !important;
-    animation-duration: 1ms !important;
-    animation-delay: -1ms !important;
-    animation-iteration-count: 1 !important;
-    scroll-behavior: auto !important;
-    transition-delay: 0s !important;
-    transition-duration: 0s !important;
-  }
-}
-
-input {
-  display: none;
 }

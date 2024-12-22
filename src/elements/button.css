@@ -6,7 +6,6 @@
   --pico-box-shadow: var(--pico-button-box-shadow, 0 0 0 rgba(0, 0, 0, 0));
   margin: 0;
   overflow: visible;
-  font-family: var(--pico-font-family);
   text-transform: none;
   appearance: button;
   padding: var(--pico-form-element-spacing-vertical) var(--pico-form-element-spacing-horizontal);
@@ -15,17 +14,13 @@
   outline: none;
   background-color: var(--pico-background-color);
   box-shadow: var(--pico-box-shadow);
-  color: var(--pico-color);
-  font-weight: var(--pico-font-weight);
   font-size: 1rem;
-  line-height: var(--pico-line-height);
   text-align: center;
   text-decoration: none;
   cursor: pointer;
   user-select: none;
   transition: background-color var(--pico-transition), border-color var(--pico-transition), color var(--pico-transition), box-shadow var(--pico-transition);
   margin-bottom: var(--pico-spacing);
-  box-sizing: border-box;
   white-space: unset;
   display: inline-block;
 }
@@ -125,10 +120,6 @@
   filter: brightness(0) invert(1);
 }
 
-:host([hidden]) {
-  display: none;
-}
-
 :host([type=submit]) {
   width: 100%;
 }
@@ -155,18 +146,6 @@
 
 :host([aria-busy=true]:empty) {
   text-align: center;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  :host(:not([aria-busy=true])), :host(:not([aria-busy=true]))::after, :host(:not([aria-busy=true]))::before {
-    background-attachment: initial !important;
-    animation-duration: 1ms !important;
-    animation-delay: -1ms !important;
-    animation-iteration-count: 1 !important;
-    scroll-behavior: auto !important;
-    transition-delay: 0s !important;
-    transition-duration: 0s !important;
-  }
 }
 
 input {

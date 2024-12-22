@@ -1,4 +1,5 @@
-import stylesheet from './container.css'
+import commonStylesheet from '../shared/common.css'
+import thisStylesheet from './container.css'
 
 class PiWoContainer extends HTMLElement {
   #slot
@@ -8,7 +9,7 @@ class PiWoContainer extends HTMLElement {
     this.attachShadow({ mode: 'open' })
     this.#slot = document.createElement('slot')
     this.shadowRoot.appendChild(this.#slot)
-    this.shadowRoot.adoptedStyleSheets = [stylesheet]
+    this.shadowRoot.adoptedStyleSheets = [commonStylesheet, thisStylesheet]
   }
 }
 

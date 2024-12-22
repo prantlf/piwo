@@ -1,25 +1,7 @@
 :host {
-  color: var(--pico-color);
-  font-weight: var(--pico-font-weight);
-  font-size: var(--pico-font-size);
-  line-height: var(--pico-line-height);
-  font-family: var(--pico-font-family);
-  text-underline-offset: var(--pico-text-underline-offset);
-  text-rendering: optimizeLegibility;
-  overflow-wrap: break-word;
-  tab-size: 4;
-  margin-bottom: var(--pico-typography-spacing-vertical);
+  display: block;
   margin-top: 0;
   margin-bottom: var(--pico-typography-spacing-vertical);
-  color: var(--pico-color);
-  font-style: normal;
-  display: block;
-  margin-block-start: 1em;
-  margin-block-end: 1em;
-}
-
-:host([hidden]) {
-  display: none;
 }
 
 @media (min-width: 768px) {

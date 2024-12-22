@@ -6,13 +6,9 @@
   --pico-outline-width: 0.0625rem;
   --pico-border-width: 0.125rem;
   --pico-form-element-focus-color: var(--pico-primary-focus);
-  box-sizing: border-box;
-  background-repeat: no-repeat;
   display: inline-block;
   margin: 0;
   font-size: 1rem;
-  line-height: var(--pico-line-height);
-  font-family: var(--pico-font-family);
   letter-spacing: inherit;
   overflow: visible;
   border: var(--pico-border-width) solid var(--pico-border-color);
@@ -20,8 +16,6 @@
   outline: none;
   background-color: var(--pico-background-color);
   box-shadow: var(--pico-box-shadow);
-  color: var(--pico-color);
-  font-weight: var(--pico-font-weight);
   transition: background-color var(--pico-transition), border-color var(--pico-transition), color var(--pico-transition), box-shadow var(--pico-transition);
   accent-color: var(--pico-primary);
   padding: 0;
@@ -79,10 +73,6 @@
   --pico-border-color: var(--pico-form-element-invalid-active-border-color) !important;
 }
 
-:host([hidden]) {
-  display: none;
-}
-
 :host(:state(checked)), :host(:state(checked):active), :host(:state(checked):focus) {
   --pico-background-color: var(--pico-primary-background);
   --pico-border-color: var(--pico-primary-border);
@@ -113,18 +103,6 @@
 :host([aria-invalid=true]:state(checked):focus) {
   --pico-background-color: var(--pico-form-element-invalid-border-color);
   --pico-border-color: var(--pico-form-element-invalid-border-color);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  :host(:not([aria-busy=true])), :host(:not([aria-busy=true]))::after, :host(:not([aria-busy=true]))::before {
-    background-attachment: initial !important;
-    animation-duration: 1ms !important;
-    animation-delay: -1ms !important;
-    animation-iteration-count: 1 !important;
-    scroll-behavior: auto !important;
-    transition-delay: 0s !important;
-    transition-duration: 0s !important;
-  }
 }
 
 input {

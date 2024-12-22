@@ -1,5 +1,6 @@
 import { upgradeProperty } from '../shared/helpers.js'
-import stylesheet from './label.css'
+import commonStylesheet from '../shared/common.css'
+import thisStylesheet from './label.css'
 
 let counter = 0
 
@@ -11,7 +12,7 @@ class PiWoLabel extends HTMLElement {
     this.attachShadow({ mode: 'open' })
     this.#slot = document.createElement('slot')
     this.shadowRoot.appendChild(this.#slot)
-    this.shadowRoot.adoptedStyleSheets = [stylesheet]
+    this.shadowRoot.adoptedStyleSheets = [commonStylesheet, thisStylesheet]
 
     this.#slot.addEventListener('slotchange', () => this.#updateLabel())
     this.addEventListener('click', event => this.#handleClick(event))

@@ -1,5 +1,6 @@
 import { upgradeProperty } from '../shared/helpers.js'
-import stylesheet from './link.css'
+import commonStylesheet from '../shared/common.css'
+import thisStylesheet from './link.css'
 
 const allAttributes = ['href', 'target', 'referrerpolicy']
 const propertyNames = {
@@ -21,7 +22,7 @@ class PiWoLink extends HTMLElement {
     this.attachShadow({ mode: 'open' })
     const slot = document.createElement('slot')
     this.shadowRoot.appendChild(slot)
-    this.shadowRoot.adoptedStyleSheets = [stylesheet]
+    this.shadowRoot.adoptedStyleSheets = [commonStylesheet, thisStylesheet]
 
     this.addEventListener('click', event => this.#handleClick(event))
     this.addEventListener('keyup', event => this.#handleKeyUp(event))

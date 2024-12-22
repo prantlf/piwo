@@ -1,5 +1,6 @@
 import { findLabels, upgradeProperty } from '../shared/helpers.js'
-import stylesheet from './checkbox.css'
+import commonStylesheet from '../shared/common.css'
+import thisStylesheet from './checkbox.css'
 
 const booleanAttributes = [
   'disabled', 'readonly', 'required', 'describeerror', 'focuserror'
@@ -28,7 +29,7 @@ class PiWoCheckbox extends HTMLElement {
     this.#internals.ariaChecked = 'false'
 
     this.attachShadow({ mode: 'open' })
-    this.shadowRoot.adoptedStyleSheets = [stylesheet]
+    this.shadowRoot.adoptedStyleSheets = [commonStylesheet, thisStylesheet]
     this.#errorAnchor = document.createElement('input')
     this.#errorAnchor.tabIndex = -1
     this.#errorAnchor.ariaHidden = 'true'

@@ -3,15 +3,6 @@
   margin: var(--pico-typography-spacing-vertical) 0;
   border: 0;
   border-top: 1px solid var(--pico-muted-border-color);
-  color: inherit;
-  box-sizing: border-box;
-  background-repeat: no-repeat;
-  margin-block: 0.5em;
-  margin-inline: auto;
   overflow: hidden;
   display: block;
-}
-
-:host([hidden]) {
-  display: none;
 }

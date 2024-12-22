@@ -16,7 +16,7 @@
     </header>
 
     <main>
-      <form id="form">
+      <form id="login">
         <piwo-label for="name">Name:</piwo-label>
         <piwo-input name="name" type="text" placeholder="Enter your login name"
                     id="name" aria-describedby="name-msg"
@@ -57,7 +57,7 @@
   <script type="module">
     import { registerField, registerForm } from './event-logger.js'
     registerField('piwo-input, piwo-checkbox, piwo-textarea')
-    registerForm('form')
+    registerForm('login')
   </script>
 
   <script src="../dist/index.mjs" type="module"></script>

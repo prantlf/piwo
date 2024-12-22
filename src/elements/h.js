@@ -1,5 +1,6 @@
 import { upgradeProperty } from '../shared/helpers.js'
-import stylesheet from './h.css'
+import commonStylesheet from '../shared/common.css'
+import thisStylesheet from './h.css'
 
 class PiWoHeading extends HTMLElement {
   #internals
@@ -12,7 +13,7 @@ class PiWoHeading extends HTMLElement {
     this.attachShadow({ mode: 'open' })
     const slot = document.createElement('slot')
     this.shadowRoot.appendChild(slot)
-    this.shadowRoot.adoptedStyleSheets = [stylesheet]
+    this.shadowRoot.adoptedStyleSheets = [commonStylesheet, thisStylesheet]
 
     upgradeProperty(this, 'level')
   }
