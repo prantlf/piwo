@@ -1,15 +1,14 @@
-import commonStylesheet from '../shared/common.css'
+import { ElementMixin } from '../shared/element.js'
 import thisStylesheet from './container.css'
 
-class PiWoContainer extends HTMLElement {
+class PiWoContainer extends ElementMixin(HTMLElement) {
   #slot
 
   constructor() {
     super()
-    this.attachShadow({ mode: 'open' })
     this.#slot = document.createElement('slot')
     this.shadowRoot.appendChild(this.#slot)
-    this.shadowRoot.adoptedStyleSheets = [commonStylesheet, thisStylesheet]
+    this.shadowRoot.adoptedStyleSheets.push(thisStylesheet)
   }
 }
 

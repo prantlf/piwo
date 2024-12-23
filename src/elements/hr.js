@@ -1,16 +1,14 @@
-import commonStylesheet from '../shared/common.css'
+import { ElementMixin, internals } from '../shared/element.js'
 import thisStylesheet from './hr.css'
 
-class PiWoHorizontalRule extends HTMLElement {
-  #internals
-
+class PiWoHorizontalRule extends ElementMixin(HTMLElement, {
+  internals: true
+}) {
   constructor() {
     super()
-    this.#internals = this.attachInternals()
-    this.#internals.role = 'separator'
+    this[internals].role = 'separator'
 
-    this.attachShadow({ mode: 'open' })
-    this.shadowRoot.adoptedStyleSheets = [commonStylesheet, thisStylesheet]
+    this.shadowRoot.adoptedStyleSheets.push(thisStylesheet)
   }
 }
 

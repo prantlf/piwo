@@ -1,49 +1,29 @@
-import { upgradeProperty } from '../shared/helpers.js'
-import commonStylesheet from '../shared/common.css'
+import { ElementMixin } from '../shared/element.js'
 import thisStylesheet from './label.css'
 
+const updateLabel = Symbol('updateLabel')
 let counter = 0
 
-class PiWoLabel extends HTMLElement {
+class PiWoLabel extends ElementMixin(HTMLElement, {
+  attributes: {
+    for: {
+      type: 'string', property: 'htmlFor', reflect: true,
+      set() {
+        this[updateLabel]() 
+      }
+    }
+  }
+}) {
   #slot
 
   constructor() {
     super()
-    this.attachShadow({ mode: 'open' })
     this.#slot = document.createElement('slot')
     this.shadowRoot.appendChild(this.#slot)
-    this.shadowRoot.adoptedStyleSheets = [commonStylesheet, thisStylesheet]
+    this.shadowRoot.adoptedStyleSheets.push(thisStylesheet)
 
-    this.#slot.addEventListener('slotchange', () => this.#updateLabel())
+    this.#slot.addEventListener('slotchange', () => this[updateLabel]())
     this.addEventListener('click', event => this.#handleClick(event))
-
-    upgradeProperty(this, 'htmlFor')
-  }
-
-  // ----- properties
-
-  #for = ''
-
-  get htmlFor() {
-    return this.#for
-  }
-
-  set htmlFor(value) {
-    if (value == null) value = ''
-    if (value === this.#for) return
-    this.#for = value
-    this.setAttribute('for', value)
-    this.#updateLabel()
-  }
-
-  // ----- life-cycle callbacks
-
-  static get observedAttributes() {
-    return ['for']
-  }
-
-  attributeChangedCallback(_name, _oldValue, newValue) {
-    this.htmlFor = newValue
   }
 
   // ----- event handlers
@@ -58,7 +38,7 @@ class PiWoLabel extends HTMLElement {
 
   // ----- connecting the label to a field
 
-  async #updateLabel() {
+  async [updateLabel]() {
     // let the caller create the full markup after setting the `for` attribute
     await Promise.resolve()
     if (!this.id) {
@@ -80,7 +60,7 @@ class PiWoLabel extends HTMLElement {
 
   #getPointedTarget() {
     // label cannot be delegated yet - https://github.com/WICG/webcomponents/issues/917
-    const targetId = this.#for
+    const targetId = this.htmlFor
     if (targetId) {
       const scope = this.getRootNode()
       return scope.getElementById(targetId)

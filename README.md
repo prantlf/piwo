@@ -320,7 +320,7 @@ Inserts empty vertical space.
 
 ## Findings
 
-Almost all of the problems found when implementing the custom elements were solved by adding custom code. Only Submitter and Validity Anchor have ugly workarounds.
+Most of the problems found when implementing the custom elements were solved by adding custom code. Only Submitter and Validity Anchor have ugly workarounds and Placeholder has none.
 
 ### Tab Index
 
@@ -329,6 +329,10 @@ Focusability of an element [cannot be declared yet](https://github.com/WICG/webc
 ### Label
 
 The role of a [label cannot be delegated yet](https://github.com/WICG/webcomponents/issues/917), but the click-functionality and the property `labels` can be implemented by custom code. No problem.
+
+### Placeholder
+
+Although the placeholder can be specified by `ariaPlaceholder` from `ElementInternals`, it will be used only by assistive technologies. The placeholder will have to be rendered by the code in the custom element for sighted users. I haven't done it yet.
 
 ### Change Event
 
@@ -346,7 +350,7 @@ On the other hand, the submitter doesn't have to be read dynamically using the e
 
 ### Validity Anchor
 
-When calling `setValidity` from`ElementInternals` with an anchor, this anchor has to be an input element. It cannot be just a form-associated custom element. A clumsy workaround is to create a hidden `input` element and make it visible when the custom element becomes invalid. If it's zero-sized, it won't be visible, but it'll be focusable, when hitting the `Tab` key in the invalid element. It's a problem, waiting for a better workaround.
+When calling `setValidity` from `ElementInternals` with an anchor, this anchor has to be an input element. It cannot be just a form-associated custom element. A clumsy workaround is to create a hidden `input` element and make it visible when the custom element becomes invalid. If it's zero-sized, it won't be visible, but it'll be focusable, when hitting the `Tab` key in the invalid element. It's a problem, waiting for a better workaround.
 
 On the other hand, real-world forms use error placeholders referred to by `aria-describedby` anyway. I added automatic showing and hiding of the error placeholder (`describeerror`) and focusing of the first invalid field in the form (`focuserror`) beyond the native element functionality for convenience and also to provide a good workaround for the not working anchor.
 

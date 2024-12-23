@@ -995,7 +995,7 @@ html:not([data-theme]) #theme-toggle::before,
 `
 
 const epilog = `<hr>
-<small>PiWo ${pkg.version} © 2024 Ferdinand Prantl</small>
+<small>PiWo ${pkg.version}</small>
 <script type="module">
 import { registerField, registerForm } from './event-logger.js'
 registerField('piwo-input, piwo-checkbox, piwo-textarea')
@@ -1045,7 +1045,7 @@ ${text}
 `
     }
   }]
-});
+})
 
 const md = await readFile('README.md', 'utf8')
 const html = `${prolog}${marked.parse(md)}${epilog}`
