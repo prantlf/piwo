@@ -12,7 +12,9 @@ input {
   --pico-box-shadow: none;
   margin: 0;
   font-size: 1rem;
+  font-family: var(--pico-font-family);
   letter-spacing: inherit;
+  line-height: var(--pico-line-height);
   overflow: visible;
   height: calc(1rem * var(--pico-line-height) + var(--pico-form-element-spacing-vertical) * 2 + var(--pico-border-width) * 2);
   width: 100%;
@@ -25,6 +27,8 @@ input {
   box-shadow: var(--pico-box-shadow);
   transition: background-color var(--pico-transition), border-color var(--pico-transition), color var(--pico-transition), box-shadow var(--pico-transition);
   margin-bottom: var(--pico-spacing);
+  box-sizing: border-box;
+  background-repeat: no-repeat;
 }
 
 :host(:is(:active, :focus)) > input {
