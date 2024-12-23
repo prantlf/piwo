@@ -1390,11 +1390,13 @@ open http://localhost:3000/piwo/
 <piwo-spacer factor="1.5"></piwo-spacer>
 </div>
 <h2>Findings</h2>
-<p>Almost all of the problems found when implementing the custom elements were solved by adding custom code. Only Submitter and Validity Anchor have ugly workarounds.</p>
+<p>Most of the problems found when implementing the custom elements were solved by adding custom code. Only Submitter and Validity Anchor have ugly workarounds and Placeholder has none.</p>
 <h3>Tab Index</h3>
 <p>Focusability of an element <a href="https://github.com/WICG/webcomponents/issues/762">cannot be declared yet</a>. The attribute <code>tabindex</code> has to be set to zero as a workaround. It makes the attribute visible on the element in DOM. Otherwise no problem.</p>
 <h3>Label</h3>
 <p>The role of a <a href="https://github.com/WICG/webcomponents/issues/917">label cannot be delegated yet</a>, but the click-functionality and the property <code>labels</code> can be implemented by custom code. No problem.</p>
+<h3>Placeholder</h3>
+<p>Although the placeholder can be specified by <code>ariaPlaceholder</code> from <code>ElementInternals</code>, it will be used only by assistive technologies. The placeholder will have to be rendered by the code in the custom element for sighted users. I haven&#39;t done it yet.</p>
 <h3>Change Event</h3>
 <p>When using a <code>contenteditable</code> custom element as the host, the <code>change</code> event should be dispatched on <code>blur</code>. Unlike with teh native elements, the event will be dispatched after the blur event, because there&#39;s no <code>beforeblur</code> event to hook in. Not a big deal.</p>
 <h3>Preventing Default Behaviour</h3>
@@ -1403,7 +1405,7 @@ open http://localhost:3000/piwo/
 <p>When calling <code>requestSubmit(submitter)</code> on a form, <code>submitter</code> has to be an <code>input</code> element. It cannot be just a form-associated custom element. A possible workaround is to create a temporary <code>input</code> element and optionally assign it a <code>name </code>attribute, when the submit is triggered by custom button. It&#39;s a problem, because <code>event.explicitOriginalTarget</code> won&#39;t be set to the actual button, but to the temporary element. A custom interface can be provided, like setting <code>form.submitter</code> to the <code>input</code> element and <code>form.submitter.button</code> to the actual button, but it&#39;s different from the native interface.</p>
 <p>On the other hand, the submitter doesn&#39;t have to be read dynamically using the event or the form. Forms usually have well-known submit buttons. And forms with more submit buttons assign a unique value to the <code>name</code> attribute to be able to recognise the button in <code>FormData</code> on the client or on the server side.</p>
 <h3>Validity Anchor</h3>
-<p>When calling <code>setValidity</code> from<code>ElementInternals</code> with an anchor, this anchor has to be an input element. It cannot be just a form-associated custom element. A clumsy workaround is to create a hidden <code>input</code> element and make it visible when the custom element becomes invalid. If it&#39;s zero-sized, it won&#39;t be visible, but it&#39;ll be focusable, when hitting the <code>Tab</code> key in the invalid element. It&#39;s a problem, waiting for a better workaround.</p>
+<p>When calling <code>setValidity</code> from <code>ElementInternals</code> with an anchor, this anchor has to be an input element. It cannot be just a form-associated custom element. A clumsy workaround is to create a hidden <code>input</code> element and make it visible when the custom element becomes invalid. If it&#39;s zero-sized, it won&#39;t be visible, but it&#39;ll be focusable, when hitting the <code>Tab</code> key in the invalid element. It&#39;s a problem, waiting for a better workaround.</p>
 <p>On the other hand, real-world forms use error placeholders referred to by <code>aria-describedby</code> anyway. I added automatic showing and hiding of the error placeholder (<code>describeerror</code>) and focusing of the first invalid field in the form (<code>focuserror</code>) beyond the native element functionality for convenience and also to provide a good workaround for the not working anchor.</p>
 <h3>Checkbox</h3>
 <p>Better than the native element, the custom element can support the <code>readonly</code> attribute and the <code>indeterminate</code> attribute in the markup. Great!</p>
@@ -1413,7 +1415,7 @@ open http://localhost:3000/piwo/
 <p>Copyright (C) 2024 Ferdinand Prantl</p>
 <p>Licensed under the <a href="http://en.wikipedia.org/wiki/MIT_License">MIT License</a>.</p>
 <hr>
-<small>PiWo 0.6.0 © 2024 Ferdinand Prantl</small>
+<small>PiWo 0.6.0</small>
 <script type="module">
 import { registerField, registerForm } from './event-logger.js'
 registerField('piwo-input, piwo-checkbox, piwo-textarea')
