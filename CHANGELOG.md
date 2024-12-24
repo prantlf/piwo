@@ -1,5 +1,11 @@
 # Changes
 
+## [0.9.0](https://github.com/prantlf/piwo/compare/v0.8.0...v0.9.0) (2024-12-24)
+
+### Features
+
+* Implement shadow using a mixin ([dd24551](https://github.com/prantlf/piwo/commit/dd24551877a93733523ae74a76d38ebf3578813f))
+
 ## [0.8.0](https://github.com/prantlf/piwo/compare/v0.7.1...v0.8.0) (2024-12-24)
 
 ### Features
