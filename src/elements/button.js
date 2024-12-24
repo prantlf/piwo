@@ -1,8 +1,9 @@
 import { ElementMixin, internals } from '../shared/element.js'
 import { findClosestAncestorByTagName, onDisabledChange } from '../shared/helpers.js'
+import { InteractiveMixin } from '../shared/interactive.js'
 import thisStylesheet from './button.css'
 
-class PiWoButton extends ElementMixin(HTMLElement, {
+class PiWoButton extends InteractiveMixin(ElementMixin(HTMLElement, {
   internals: true,
   attributes: {
     disabled: {
@@ -13,9 +14,8 @@ class PiWoButton extends ElementMixin(HTMLElement, {
     },
     name: { type: 'string', reflect: true },
     type: { type: 'string', reflect: true }
-  },
-  interactive: true
-}) {
+  }
+})) {
   static get formAssociated() {
     return true
   }

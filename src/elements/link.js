@@ -1,16 +1,16 @@
 import { ElementMixin, internals } from '../shared/element.js'
+import { InteractiveMixin } from '../shared/interactive.js'
 import thisStylesheet from './link.css'
 
-class PiWoLink extends ElementMixin(HTMLElement, {
+class PiWoLink extends ElementMixin(InteractiveMixin(HTMLElement, {
   internals: true,
   attributes: {
     href: { type: 'string', reflect: true },
     target: { type: 'string', reflect: true },
     referrerpolicy: { type: 'string', property: 'referrerPolicy', reflect: true },
     rel: { type: 'string', reflect: true }
-  },
-  interactive: true
-}) {
+  }
+})) {
   constructor() {
     super()
     this[internals].role = 'link'

@@ -1,11 +1,12 @@
 import { ElementMixin, internals } from '../shared/element.js'
 import { FieldMixin } from '../shared/field.js'
 import { ensureMessageElement, markInvalid, markValid, onDisabledChange, setCustomError } from '../shared/helpers.js'
+import { InteractiveMixin } from '../shared/interactive.js'
 import thisStylesheet from './checkbox.css'
 
 const updateValidity = Symbol('updateValidity')
 
-class PiWoCheckbox extends FieldMixin(ElementMixin(HTMLElement, {
+class PiWoCheckbox extends FieldMixin(InteractiveMixin(ElementMixin(HTMLElement, {
   internals: true,
   attributes: {
     disabled: {
@@ -36,9 +37,8 @@ class PiWoCheckbox extends FieldMixin(ElementMixin(HTMLElement, {
         }
       }
     }
-  },
-  interactive: true
-})) {
+  }
+}))) {
   #errorAnchor
 
   constructor() {

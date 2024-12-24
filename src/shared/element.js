@@ -6,7 +6,6 @@ const internals = Symbol('internals')
 const ElementMixin = (ParentElement, {
   internals: enableInternals,
   attributes = {},
-  interactive,
   delegatesFocus
 } = {}) => {
   const observedAttributeNames = []
@@ -36,13 +35,6 @@ const ElementMixin = (ParentElement, {
     attributeChangedCallback(name, _oldValue, newValue) {
       const { property, boolean } = attributes[name]
       this[property ?? name] = boolean ? newValue != null : newValue
-    }
-  
-    connectedCallback() {
-      // not yet in internals - https://github.com/WICG/webcomponents/issues/762
-      if (interactive && !this.hasAttribute('tabindex')) {
-        this.tabIndex = this.disabled ? -1 : 0
-      }
     }
   }
 
