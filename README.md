@@ -182,6 +182,43 @@ Checkbox form field.
 </piwo-label>
 ```
 
+### Switch
+
+Switch form field.
+
+* Lightweight - no inner content. The host element itself has the role `switch`.
+* Form-associated element. Can be used like `input[type=checkbox]`.
+* Implements many attributes of the native element.
+* Supports events `click`, `beforeinput`, `input` and `change` including `preventDefault`.
+* Fills the value `on` or nothing to `FormData`.
+* Remembers the current state for back and forth navigation in the browser.
+* Can reset the value on form `reset`.
+* Exposes states `checked`, `disabled`, `readonly` and `required` in CSS.
+* Validates input including custom errors.
+* Emphasises valid or invalid state if `aria-invalid` is set explicitly.
+* Allows either showing the browser popup, or a HTML message for invalid fields, if `describeerror` is set and the last ID in `aria-describedby` points to an element with content. If the element is hidden, it'll be temporarily shown.
+
+```html
+<div>
+  <piwo-checkbox id="unchecked"></piwo-checkbox>
+  <piwo-label for="unchecked">Unchecked</piwo-label>
+
+  <piwo-checkbox id="checked" checked></piwo-checkbox>
+  <piwo-label for="checked">Checked</piwo-label>
+
+  <piwo-checkbox id="invalid" required aria-invalid="true"></piwo-checkbox>
+  <piwo-label for="invalid">Invalid</piwo-label>
+
+  <piwo-checkbox id="valid" checked aria-invalid="false"></piwo-checkbox>
+  <piwo-label for="valid">Valid</piwo-label>
+</div>
+
+<piwo-label>
+  <piwo-checkbox indeterminate></piwo-checkbox>
+  Indeterminate
+</piwo-label>
+```
+
 ### Input
 
 Input form field.

@@ -124,6 +124,10 @@
   --pico-form-element-valid-border-color: #4c9b8a;
   --pico-form-element-valid-active-border-color: #279977;
   --pico-form-element-valid-focus-color: var(--pico-form-element-valid-active-border-color);
+  --pico-switch-background-color: #bfc7d9;
+  --pico-switch-checked-background-color: var(--pico-primary-background);
+  --pico-switch-color: #fff;
+  --pico-switch-thumb-box-shadow: 0 0 0 rgba(0, 0, 0, 0);
   --pico-icon-valid: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='rgb(76, 155, 138)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
   --pico-icon-invalid: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='rgb(200, 79, 72)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'%3E%3C/circle%3E%3Cline x1='12' y1='8' x2='12' y2='12'%3E%3C/line%3E%3Cline x1='12' y1='16' x2='12.01' y2='16'%3E%3C/line%3E%3C/svg%3E");
   color-scheme: light;
@@ -192,6 +196,10 @@
     --pico-form-element-valid-border-color: #2a7b6f;
     --pico-form-element-valid-active-border-color: #16896a;
     --pico-form-element-valid-focus-color: var(--pico-form-element-valid-active-border-color);
+    --pico-switch-background-color: #333c4e;
+    --pico-switch-checked-background-color: var(--pico-primary-background);
+    --pico-switch-color: #fff;
+    --pico-switch-thumb-box-shadow: 0 0 0 rgba(0, 0, 0, 0);
     --pico-icon-valid: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='rgb(42, 123, 111)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
     --pico-icon-invalid: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='rgb(150, 74, 80)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'%3E%3C/circle%3E%3Cline x1='12' y1='8' x2='12' y2='12'%3E%3C/line%3E%3Cline x1='12' y1='16' x2='12.01' y2='16'%3E%3C/line%3E%3C/svg%3E");
     color-scheme: dark;
@@ -260,16 +268,25 @@
   --pico-form-element-valid-border-color: #2a7b6f;
   --pico-form-element-valid-active-border-color: #16896a;
   --pico-form-element-valid-focus-color: var(--pico-form-element-valid-active-border-color);
+  --pico-switch-background-color: #333c4e;
+  --pico-switch-checked-background-color: var(--pico-primary-background);
+  --pico-switch-color: #fff;
+  --pico-switch-thumb-box-shadow: 0 0 0 rgba(0, 0, 0, 0);
   --pico-icon-valid: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='rgb(42, 123, 111)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
   --pico-icon-invalid: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='rgb(150, 74, 80)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'%3E%3C/circle%3E%3Cline x1='12' y1='8' x2='12' y2='12'%3E%3C/line%3E%3Cline x1='12' y1='16' x2='12.01' y2='16'%3E%3C/line%3E%3C/svg%3E");
   color-scheme: dark;
 }
 
 piwo-label[aria-disabled=true] piwo-checkbox:disabled,
+piwo-label[aria-disabled=true] piwo-switch:disabled,
 piwo-label[aria-disabled=true] piwo-input:disabled {
   opacity: 1;
 }
+piwo-label piwo-switch {
+  font-size: 1rem;
+}
 piwo-label:has(piwo-checkbox),
+piwo-label:has(piwo-switch),
 piwo-label:has(piwo-input) {
   width: fit-content;
   cursor: pointer;
@@ -277,24 +294,29 @@ piwo-label:has(piwo-input) {
 piwo-label:has(:disabled) {
   cursor: default;
 }
-piwo-checkbox ~ piwo-label {
+piwo-checkbox ~ piwo-label,
+piwo-switch ~ piwo-label {
   display: inline-block;
   margin-bottom: 0;
   cursor: pointer;
 }
-piwo-checkbox:disabled ~ piwo-label {
+piwo-checkbox:disabled ~ piwo-label,
+piwo-switch:disabled ~ piwo-label {
   cursor: default;
 }
-piwo-checkbox ~ piwo-label:not(:last-of-type) {
+piwo-checkbox ~ piwo-label:not(:last-of-type),
+piwo-switch ~ piwo-label:not(:last-of-type) {
   margin-inline-end: 1em;
 }
 fieldset[disabled] piwo-checkbox,
+fieldset[disabled] piwo-switch,
 fieldset[disabled] piwo-input,
 fieldset[disabled] piwo-textarea {
   opacity: var(--pico-form-element-disabled-opacity);
   pointer-events: none;
 }
-fieldset[disabled] piwo-checkbox {
+fieldset[disabled] piwo-checkbox,
+fieldset[disabled] piwo-switch {
   cursor: default;
 }
 fieldset[disabled] piwo-label {
@@ -327,17 +349,17 @@ piwo-label > :where(piwo-textarea) {
   margin-top: calc(var(--pico-spacing) * 0.25);
 }
 
-:where(piwo-input, piwo-checkbox, piwo-textarea, fieldset) + piwo-small {
+:where(piwo-input, piwo-checkbox, piwo-switch, piwo-textarea, fieldset) + piwo-small {
   display: block;
   width: 100%;
   margin-top: calc(var(--pico-spacing) * -0.75);
   margin-bottom: var(--pico-spacing);
   color: var(--pico-muted-color);
 }
-:where(piwo-input, piwo-checkbox, piwo-textarea, fieldset)[aria-invalid=false] + piwo-small {
+:where(piwo-input, piwo-checkbox, piwo-switch, piwo-textarea, fieldset)[aria-invalid=false] + piwo-small {
   color: var(--pico-ins-color);
 }
-:where(piwo-input, piwo-checkbox, piwo-textarea, fieldset)[aria-invalid=true] + piwo-small {
+:where(piwo-input, piwo-checkbox, piwo-switch, piwo-textarea, fieldset)[aria-invalid=true] + piwo-small {
   color: var(--pico-del-color);
 }
 

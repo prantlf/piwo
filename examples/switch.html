@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset=utf-8>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="icon" href="data:image/png;base64,iVBORw0KGgo=">
+  <title>PiWo Switch Demo</title>
+</head>
+
+<body>
+  <h1>PiWo Switch Demo</h1>
+
+  <form id="form">
+    <piwo-label>
+      <piwo-switch name="piwo-disabled" disabled></piwo-switch>
+      Disabled piwo-switch
+    </piwo-label>
+
+    <piwo-label>
+      <piwo-switch name="piwo-readonly" checked readonly></piwo-switch>
+      Read-only piwo-switch
+    </piwo-label>
+
+    <piwo-switch name="piwo-optional" id="piwo-optional"></piwo-switch>
+    <piwo-label for="piwo-optional">Optional piwo-switch</piwo-label>
+
+    <piwo-switch name="piwo-required" id="piwo-required" required></piwo-switch>
+    <piwo-label for="piwo-required">Required piwo-switch</piwo-label>
+
+    <br><br>
+
+    <piwo-button name="validate">Validate</piwo-button>
+  </form>
+
+  <script type="module">
+    import { registerField, registerForm } from './event-logger.js'
+    registerField('piwo-switch')
+    registerForm('form')
+  </script>
+
+  <script src="../dist/index.mjs" type="module"></script>
+</body>
+</html>
