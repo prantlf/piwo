@@ -1,5 +1,11 @@
 # Changes
 
+## [0.7.1](https://github.com/prantlf/piwo/compare/v0.7.0...v0.7.1) (2024-12-24)
+
+### Bug Fixes
+
+* Fix missing imports and order of mixins ([5d2a2da](https://github.com/prantlf/piwo/commit/5d2a2dad66bd278165fa32eb3c9f6f061e834fea))
+
 ## [0.7.0](https://github.com/prantlf/piwo/compare/v0.6.1...v0.7.0) (2024-12-24)
 
 ### Features
