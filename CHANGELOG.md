@@ -1,5 +1,11 @@
 # Changes
 
+## [0.7.0](https://github.com/prantlf/piwo/compare/v0.6.1...v0.7.0) (2024-12-24)
+
+### Features
+
+* Implement interactivity using a mixin ([935725d](https://github.com/prantlf/piwo/commit/935725d79f1ba18c69c7744d758b88311a05af8c))
+
 ## [0.6.1](https://github.com/prantlf/piwo/compare/v0.6.0...v0.6.1) (2024-12-23)
 
 ### Bug Fixes
