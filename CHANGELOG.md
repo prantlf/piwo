@@ -1,5 +1,11 @@
 # Changes
 
+## [0.8.0](https://github.com/prantlf/piwo/compare/v0.7.1...v0.8.0) (2024-12-24)
+
+### Features
+
+* Implement internals using a mixin ([f148fe9](https://github.com/prantlf/piwo/commit/f148fe9721f8715097ae4509d4430b9b1dc8593b))
+
 ## [0.7.1](https://github.com/prantlf/piwo/compare/v0.7.0...v0.7.1) (2024-12-24)
 
 ### Bug Fixes
