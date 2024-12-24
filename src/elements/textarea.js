@@ -1,13 +1,13 @@
-import { ElementMixin, internals } from '../shared/element.js'
+import { ElementMixin } from '../shared/element.js'
+import { InternalsMixin, internals } from '../shared/internals.js'
+import { InteractiveMixin } from '../shared/interactive.js'
 import { FieldMixin } from '../shared/field.js'
 import { createErrorAnchor, ensureMessageElement, formatPlural, markInvalid, markValid, onDisabledChange, setCustomError } from '../shared/helpers.js'
-import { InteractiveMixin } from '../shared/interactive.js'
 import thisStylesheet from './textarea.css'
 
 const updateValidity = Symbol('updateValidity')
 
-class PiWoTextArea extends FieldMixin(InteractiveMixin(ElementMixin(HTMLElement, {
-  internals: true,
+class PiWoTextArea extends FieldMixin(InteractiveMixin(InternalsMixin((ElementMixin(HTMLElement, {
   attributes: {
     disabled: {
       type: 'boolean', aria: true, state: true, reflect: true,
@@ -30,7 +30,7 @@ class PiWoTextArea extends FieldMixin(InteractiveMixin(ElementMixin(HTMLElement,
       }
     }
   }
-}))) {
+}))))) {
   #errorAnchor
 
   constructor() {

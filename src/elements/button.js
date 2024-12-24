@@ -1,10 +1,10 @@
-import { ElementMixin, internals } from '../shared/element.js'
-import { findClosestAncestorByTagName, onDisabledChange } from '../shared/helpers.js'
+import { ElementMixin } from '../shared/element.js'
+import { InternalsMixin, internals } from '../shared/internals.js'
 import { InteractiveMixin } from '../shared/interactive.js'
+import { findClosestAncestorByTagName, onDisabledChange } from '../shared/helpers.js'
 import thisStylesheet from './button.css'
 
-class PiWoButton extends InteractiveMixin(ElementMixin(HTMLElement, {
-  internals: true,
+class PiWoButton extends InteractiveMixin(InternalsMixin(ElementMixin(HTMLElement, {
   attributes: {
     disabled: {
       type: 'boolean', aria: true, state: true, reflect: true,
@@ -15,7 +15,7 @@ class PiWoButton extends InteractiveMixin(ElementMixin(HTMLElement, {
     name: { type: 'string', reflect: true },
     type: { type: 'string', reflect: true }
   }
-})) {
+}))) {
   static get formAssociated() {
     return true
   }

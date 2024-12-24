@@ -1,9 +1,8 @@
-import { ElementMixin, internals } from '../shared/element.js'
+import { ElementMixin } from '../shared/element.js'
+import { InternalsMixin, internals } from '../shared/internals.js'
 import thisStylesheet from './p.css'
 
-class PiWoParagraph extends ElementMixin(HTMLElement, {
-  internals: true
-}) {
+class PiWoParagraph extends InternalsMixin(ElementMixin(HTMLElement)) {
   constructor() {
     super()
     this[internals].role = 'paragraph'

@@ -1,14 +1,14 @@
-import { ElementMixin, internals } from '../shared/element.js'
+import { ElementMixin } from '../shared/element.js'
+import { InternalsMixin, internals } from '../shared/internals.js'
+import { InteractiveMixin } from '../shared/interactive.js'
 import { FieldMixin } from '../shared/field.js'
 import { ensureMessageElement, markInvalid, markValid, onDisabledChange } from '../shared/helpers.js'
-import { InteractiveMixin } from '../shared/interactive.js'
 import thisStylesheet from './input.css'
 
 const innerInput = Symbol('innerInput')
 const updateValidity = Symbol('updateValidity')
 
-class PiWoInput extends FieldMixin(InteractiveMixin(ElementMixin(HTMLElement, {
-  internals: true,
+class PiWoInput extends FieldMixin(InteractiveMixin(InternalsMixin(ElementMixin(HTMLElement, {
   attributes: {
     disabled: {
       type: 'boolean', aria: true, state: true, reflect: true,
@@ -95,7 +95,7 @@ class PiWoInput extends FieldMixin(InteractiveMixin(ElementMixin(HTMLElement, {
     }
   },
   delegatesFocus: true
-}))) {
+})))) {
   constructor() {
     super()
     this[internals].role = 'textbox'

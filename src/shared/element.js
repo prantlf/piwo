@@ -1,10 +1,8 @@
 import { upgradeProperty } from './helpers.js'
 import commonStylesheet from './common.css'
-
-const internals = Symbol('internals')
+import { internals } from './internals.js'
 
 const ElementMixin = (ParentElement, {
-  internals: enableInternals,
   attributes = {},
   delegatesFocus
 } = {}) => {
@@ -13,9 +11,6 @@ const ElementMixin = (ParentElement, {
   class ChildElement extends ParentElement {
     constructor() {
       super()
-      if (enableInternals) {
-        this[internals] = this.attachInternals()
-      }
 
       this.attachShadow({ mode: 'open', delegatesFocus })
       this.shadowRoot.adoptedStyleSheets = [commonStylesheet]
