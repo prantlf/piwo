@@ -1,6 +1,6 @@
 import { ElementMixin, internals } from '../shared/element.js'
 import { FieldMixin } from '../shared/field.js'
-import { ensureMessageElement, markInvalid, markValid, onDisabledChange, setCustomError } from '../shared/helpers.js'
+import { createErrorAnchor, ensureMessageElement, markInvalid, markValid, onDisabledChange, setCustomError } from '../shared/helpers.js'
 import { InteractiveMixin } from '../shared/interactive.js'
 import thisStylesheet from './checkbox.css'
 

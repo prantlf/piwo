@@ -2,7 +2,7 @@ import { ElementMixin, internals } from '../shared/element.js'
 import { InteractiveMixin } from '../shared/interactive.js'
 import thisStylesheet from './link.css'
 
-class PiWoLink extends ElementMixin(InteractiveMixin(HTMLElement, {
+class PiWoLink extends InteractiveMixin(ElementMixin(HTMLElement, {
   internals: true,
   attributes: {
     href: { type: 'string', reflect: true },
