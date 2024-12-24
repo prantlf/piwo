@@ -1,10 +1,11 @@
-import { ElementMixin } from '../shared/element.js'
+import { AttributesMixin } from '../shared/attributes.js'
 import { InternalsMixin, internals } from '../shared/internals.js'
+import { ShadowMixin } from '../shared/shadow.js'
 import { InteractiveMixin } from '../shared/interactive.js'
 import { findClosestAncestorByTagName, onDisabledChange } from '../shared/helpers.js'
 import thisStylesheet from './button.css'
 
-class PiWoButton extends InteractiveMixin(InternalsMixin(ElementMixin(HTMLElement, {
+class PiWoButton extends InteractiveMixin(ShadowMixin(InternalsMixin(AttributesMixin(HTMLElement, {
   attributes: {
     disabled: {
       type: 'boolean', aria: true, state: true, reflect: true,
@@ -15,7 +16,7 @@ class PiWoButton extends InteractiveMixin(InternalsMixin(ElementMixin(HTMLElemen
     name: { type: 'string', reflect: true },
     type: { type: 'string', reflect: true }
   }
-}))) {
+})))) {
   static get formAssociated() {
     return true
   }

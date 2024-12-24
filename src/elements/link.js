@@ -1,16 +1,17 @@
-import { ElementMixin } from '../shared/element.js'
+import { AttributesMixin } from '../shared/attributes.js'
 import { InternalsMixin, internals } from '../shared/internals.js'
+import { ShadowMixin } from '../shared/shadow.js'
 import { InteractiveMixin } from '../shared/interactive.js'
 import thisStylesheet from './link.css'
 
-class PiWoLink extends InteractiveMixin(InternalsMixin(ElementMixin(HTMLElement, {
+class PiWoLink extends InteractiveMixin(ShadowMixin(InternalsMixin(AttributesMixin(HTMLElement, {
   attributes: {
     href: { type: 'string', reflect: true },
     target: { type: 'string', reflect: true },
     referrerpolicy: { type: 'string', property: 'referrerPolicy', reflect: true },
     rel: { type: 'string', reflect: true }
   }
-}))) {
+})))) {
   constructor() {
     super()
     this[internals].role = 'link'

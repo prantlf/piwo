@@ -1,7 +1,8 @@
-import { ElementMixin } from '../shared/element.js'
+import { AttributesMixin } from '../shared/attributes.js'
+import { ShadowMixin } from '../shared/shadow.js'
 import thisStylesheet from './small.css'
 
-class PiWoSmall extends ElementMixin(HTMLElement) {
+class PiWoSmall extends ShadowMixin(AttributesMixin(HTMLElement)) {
   #slot
 
   constructor() {

@@ -1,9 +1,10 @@
-import { ElementMixin } from '../shared/element.js'
+import { AttributesMixin } from '../shared/attributes.js'
+import { ShadowMixin } from '../shared/shadow.js'
 import thisStylesheet from './spacer.css'
 
 const updateSpace = Symbol('updateSpace')
 
-class PiWoSpacer extends ElementMixin(HTMLElement, {
+class PiWoSpacer extends ShadowMixin(AttributesMixin(HTMLElement, {
   attributes: {
     factor: {
       type: 'number', reflect: true,
@@ -13,7 +14,7 @@ class PiWoSpacer extends ElementMixin(HTMLElement, {
     },
     typography: { type: 'boolean', reflect: true }
   }
-}) {
+})) {
   constructor() {
     super()
 

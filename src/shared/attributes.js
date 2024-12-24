@@ -1,19 +1,14 @@
 import { upgradeProperty } from './helpers.js'
-import commonStylesheet from './common.css'
 import { internals } from './internals.js'
 
-const ElementMixin = (ParentElement, {
-  attributes = {},
-  delegatesFocus
+const AttributesMixin = (ParentElement, {
+  attributes = {}
 } = {}) => {
   const observedAttributeNames = []
 
-  class ChildElement extends ParentElement {
+  class AttributesElement extends ParentElement {
     constructor() {
       super()
-
-      this.attachShadow({ mode: 'open', delegatesFocus })
-      this.shadowRoot.adoptedStyleSheets = [commonStylesheet]
 
       for (const attributeName in attributes) {
         const propertyName = attributes[attributeName].property ?? attributeName
@@ -33,7 +28,7 @@ const ElementMixin = (ParentElement, {
     }
   }
 
-  const { prototype } = ChildElement
+  const { prototype } = AttributesElement
   const properties = {}
   for (const attributeName in attributes) {
     const attribute = attributes[attributeName]
@@ -142,7 +137,7 @@ const ElementMixin = (ParentElement, {
 
   Object.defineProperties(prototype, properties)
 
-  return ChildElement
+  return AttributesElement
 }
 
-export { ElementMixin, internals }
+export { AttributesMixin }

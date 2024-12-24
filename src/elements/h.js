@@ -1,12 +1,13 @@
-import { ElementMixin } from '../shared/element.js'
+import { AttributesMixin } from '../shared/attributes.js'
 import { InternalsMixin, internals } from '../shared/internals.js'
+import { ShadowMixin } from '../shared/shadow.js'
 import thisStylesheet from './h.css'
 
-class PiWoHeading extends InternalsMixin(ElementMixin(HTMLElement, {
+class PiWoHeading extends ShadowMixin(InternalsMixin(AttributesMixin(HTMLElement, {
   attributes: {
     level: { type: 'string', aria: true, reflect: true }
   }
-})) {
+}))) {
   constructor() {
     super()
     this[internals].role = 'heading'

@@ -1,5 +1,6 @@
-import { ElementMixin } from '../shared/element.js'
+import { AttributesMixin } from '../shared/attributes.js'
 import { InternalsMixin, internals } from '../shared/internals.js'
+import { ShadowMixin } from '../shared/shadow.js'
 import { InteractiveMixin } from '../shared/interactive.js'
 import { FieldMixin } from '../shared/field.js'
 import { createErrorAnchor, ensureMessageElement, markInvalid, markValid, onDisabledChange, setCustomError } from '../shared/helpers.js'
@@ -7,7 +8,7 @@ import thisStylesheet from './checkbox.css'
 
 const updateValidity = Symbol('updateValidity')
 
-class PiWoCheckbox extends FieldMixin(InteractiveMixin(InternalsMixin(ElementMixin(HTMLElement, {
+class PiWoCheckbox extends FieldMixin(InteractiveMixin(ShadowMixin(InternalsMixin(AttributesMixin(HTMLElement, {
   attributes: {
     disabled: {
       type: 'boolean', aria: true, state: true, reflect: true,
@@ -38,7 +39,7 @@ class PiWoCheckbox extends FieldMixin(InteractiveMixin(InternalsMixin(ElementMix
       }
     }
   }
-})))) {
+}))))) {
   #errorAnchor
 
   constructor() {

@@ -1,4 +1,4 @@
-import { internals } from './element.js'
+import { internals } from './internals.js'
 import { findLabels, markInvalid } from './helpers.js'
 
 const FieldMixin = ParentElement => {

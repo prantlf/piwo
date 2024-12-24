@@ -1,10 +1,11 @@
-import { ElementMixin } from '../shared/element.js'
+import { AttributesMixin } from '../shared/attributes.js'
+import { ShadowMixin } from '../shared/shadow.js'
 import thisStylesheet from './label.css'
 
 const updateLabel = Symbol('updateLabel')
 let counter = 0
 
-class PiWoLabel extends ElementMixin(HTMLElement, {
+class PiWoLabel extends ShadowMixin(AttributesMixin(HTMLElement, {
   attributes: {
     for: {
       type: 'string', property: 'htmlFor', reflect: true,
@@ -13,7 +14,7 @@ class PiWoLabel extends ElementMixin(HTMLElement, {
       }
     }
   }
-}) {
+})) {
   #slot
 
   constructor() {
