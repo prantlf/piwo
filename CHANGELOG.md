@@ -1,5 +1,16 @@
 # Changes
 
+## [0.11.0](https://github.com/prantlf/piwo/compare/v0.10.0...v0.11.0) (2024-12-26)
+
+### Features
+
+* Support empty state in CSS for piwo-input ([b314282](https://github.com/prantlf/piwo/commit/b3142829753717a06b663dd89fb9c6d23d8415f5))
+* Support defaultValue and defaultChecked properties ([1f649a0](https://github.com/prantlf/piwo/commit/1f649a05cf7a01f958a84fba154e3a2382c67d88))
+
+### Bug Fixes
+
+* Show placeholder in piwo-textarea ([0d87b48](https://github.com/prantlf/piwo/commit/0d87b484f988e03145aa725d1e3986c3ccff9463))
+
 ## [0.10.0](https://github.com/prantlf/piwo/compare/v0.9.0...v0.10.0) (2024-12-26)
 
 ### Features

@@ -1,6 +1,6 @@
 {
   "name": "piwecko",
-  "version": "0.10.0",
+  "version": "0.11.0",
   "description": "Experimental web components. A demonstration of the technology rather than a library for building applications. But that may change :-)",
   "author": "Ferdinand Prantl <prantlf@gmail.com> (http://prantl.tk)",
   "license": "MIT",
