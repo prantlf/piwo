@@ -26,10 +26,14 @@ class PiWoTextArea extends FieldMixin(InteractiveMixin(ShadowMixin(InternalsMixi
     minlength: { type: 'number', property: 'minLength', value: -1, internals: true, reflect: true },
     value: {
       type: 'string',
-      set() {
+      set(value) {
+        if (value !== this.textContent) {
+          this.textContent = value
+        }
         this[updateValidity]()
       }
-    }
+    },
+    defaultValue: { type: 'string', attribute: 'value', reflect: true }
   }
 })))))) {
   #errorAnchor
@@ -61,7 +65,7 @@ class PiWoTextArea extends FieldMixin(InteractiveMixin(ShadowMixin(InternalsMixi
   connectedCallback() {
     super.connectedCallback()
     const keepValid = this.getAttribute('aria-invalid') === 'false'
-    this.value = this.textContent
+    this.value = this.defaultValue = this.textContent
     this[updateValidity](keepValid)
     if (this.validity.valid) {
       ensureMessageElement(this)
@@ -69,7 +73,7 @@ class PiWoTextArea extends FieldMixin(InteractiveMixin(ShadowMixin(InternalsMixi
   }
 
   formResetCallback() {
-    this.value = this.textContent
+    this.value = this.defaultValue
   }
 
   formStateRestoreCallback(state, _mode) { // restore or autocomplete

@@ -24,26 +24,34 @@ const AttributesMixin = (ParentElement, {
 
     attributeChangedCallback(name, _oldValue, newValue) {
       const { property, boolean } = attributes[name]
-      this[property ?? name] = boolean ? newValue != null : newValue
+      const propertyName = property ?? name
+      if (boolean) newValue = newValue != null
+      console.debug(`attributeChanged: "${name}" -> "${propertyName}", ${_oldValue} -> "${newValue}"`)
+      this[propertyName] = newValue
     }
   }
 
   const { prototype } = AttributesElement
   const properties = {}
-  for (const attributeName in attributes) {
-    const attribute = attributes[attributeName]
-    let { property, type, value, internals: enableInternals, aria, state, reflect, set } = attribute
+  for (let attributeName in attributes) {
+    const options = attributes[attributeName]
+    let { property, attribute, type, value, internals: enableInternals, aria, state, reflect, set } = options
     const propertyName = property ?? attributeName
     const symbol = Symbol(propertyName)
+    if (attribute) {
+      attributeName = attribute
+      options.property = propertyName
+      attributes[attributeName] = options
+    }
 
     let boolean
     let number
     if (value === undefined) {
       if (type === 'boolean') {
-          boolean = attribute.boolean = true
+          boolean = options.boolean = true
           value = false
       } else if (type === 'number') {
-        number = attribute.number = true
+        number = options.number = true
         value = 0
       } else { // string
         value = ''
@@ -52,15 +60,15 @@ const AttributesMixin = (ParentElement, {
       if (typeof value === 'boolean') {
         boolean = true
       } else if (typeof value === 'number') {
-        number = attribute.number = true
+        number = options.number = true
       }
     } else {
       switch (type) {
         case 'boolean':
-          boolean = attribute.boolean = true
+          boolean = options.boolean = true
           break
         case 'number':
-          number = attribute.number = true
+          number = options.number = true
       }
     }
 
@@ -123,7 +131,9 @@ const AttributesMixin = (ParentElement, {
       set: setter
     }
 
-    observedAttributeNames.push(attributeName)
+    if (reflect) {
+      observedAttributeNames.push(attributeName)
+    }
   }
 
   Object.defineProperties(prototype, properties)

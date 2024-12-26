@@ -95,7 +95,8 @@ class PiWoInput extends FieldMixin(InteractiveMixin(ShadowMixin(InternalsMixin(A
         else this[internals].states.delete('empty')
         this[updateValidity]()
       }
-    }
+    },
+    defaultValue: { type: 'string', attribute: 'value', reflect: true }
   }
 })), {
   delegatesFocus: true
@@ -119,7 +120,7 @@ class PiWoInput extends FieldMixin(InteractiveMixin(ShadowMixin(InternalsMixin(A
   connectedCallback() {
     super.connectedCallback()
     const keepValid = this.getAttribute('aria-invalid') === 'false'
-    this.value = this.getAttribute('value')
+    this.value = this.defaultValue
     this[updateValidity](keepValid)
     if (this.validity.valid) {
       ensureMessageElement(this)
@@ -127,7 +128,7 @@ class PiWoInput extends FieldMixin(InteractiveMixin(ShadowMixin(InternalsMixin(A
   }
 
   formResetCallback() {
-    this.value = this.getAttribute('value')
+    this.value = this.defaultValue
   }
 
   formStateRestoreCallback(state, _mode) { // restore or autocomplete

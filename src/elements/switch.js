@@ -23,7 +23,7 @@ class PiWoSwitch extends BooleanMixin({
   connectedCallback() {
     super.connectedCallback()
     const keepValid = this.getAttribute('aria-invalid') === 'false'
-    this.checked = this.hasAttribute('checked')
+    this.checked = this.defaultChecked
     this[updateValidity](keepValid)
     if (this.validity.valid) {
       ensureMessageElement(this)

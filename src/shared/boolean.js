@@ -22,6 +22,7 @@ const BooleanMixin = attributes => {
     describeerror: { type: 'boolean', property: 'describeError', reflect: true },
     focuserror: { type: 'boolean', property: 'focusError', reflect: true },
     name: { type: 'string', reflect: true },
+    defaultChecked: { type: 'boolean', attribute: 'checked', reflect: true },
     ...attributes
   }
   }))))) {
@@ -48,7 +49,7 @@ const BooleanMixin = attributes => {
     // ----- life-cycle callbacks
 
     formResetCallback() {
-      this.checked = this.hasAttribute('checked')
+      this.checked = this.defaultChecked
     }
 
     formStateRestoreCallback(state, _mode) { // restore or autocomplete

@@ -34,7 +34,7 @@ class PiWoCheckbox extends BooleanMixin({
   connectedCallback() {
     super.connectedCallback()
     const keepValid = this.getAttribute('aria-invalid') === 'false'
-    this.checked = this.hasAttribute('checked')
+    this.checked = this.defaultChecked
     if (this.hasAttribute('indeterminate')) {
       this.indeterminate = true
     }
