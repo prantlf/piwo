@@ -1,5 +1,11 @@
 # Changes
 
+## [0.10.0](https://github.com/prantlf/piwo/compare/v0.9.0...v0.10.0) (2024-12-26)
+
+### Features
+
+* Add piwo-switch ([e2c5d29](https://github.com/prantlf/piwo/commit/e2c5d29d1c3b7a19889ee8d4f7eb1e9b4e2e8ba4))
+
 ## [0.9.0](https://github.com/prantlf/piwo/compare/v0.8.0...v0.9.0) (2024-12-24)
 
 ### Features
