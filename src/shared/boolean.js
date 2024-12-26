@@ -7,6 +7,7 @@ import { createErrorAnchor, markInvalid, markValid, onDisabledChange, setCustomE
 import stylesheet from './boolean.css'
 
 const updateValidity = Symbol('updateValidity')
+const handleClick = Symbol('handleClick')
 
 const BooleanMixin = attributes => {
   class BooleanElement extends FieldMixin(InteractiveMixin(ShadowMixin(InternalsMixin(AttributesMixin(HTMLElement, {
@@ -36,7 +37,7 @@ const BooleanMixin = attributes => {
       this.#errorAnchor = createErrorAnchor(this)
 
       // this.#errorAnchor.addEventListener('focus', () => this.focus())
-      this.addEventListener('click', event => this.#handleClick(event))
+      this.addEventListener('click', event => this[handleClick](event))
       this.addEventListener('keyup', event => this.#handleKeyUp(event))
     }
 
@@ -65,7 +66,7 @@ const BooleanMixin = attributes => {
 
     // ----- event handlers
 
-    #handleClick(event) {
+    [handleClick](event) {
       if (!(this.disabled || this.readonly) &&
           !(event.metaKey || event.altKey || event.ctrlKey || event.shiftKey)) {
         // give a chance to handlers registered outside of this element
@@ -143,4 +144,4 @@ const BooleanMixin = attributes => {
   return BooleanElement
 }
 
-export { BooleanMixin, updateValidity }
+export { BooleanMixin, updateValidity, handleClick }

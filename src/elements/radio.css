@@ -1,0 +1,24 @@
+:host {
+  --pico-background-color: var(--pico-form-element-background-color);
+  --pico-border-color: var(--pico-form-element-border-color);
+  --pico-color: var(--pico-form-element-color);
+  --pico-border-width: 0.125rem;
+  letter-spacing: inherit;
+  overflow: visible;
+  border: var(--pico-border-width) solid var(--pico-border-color);
+  border-radius: 50%;
+  outline: none;
+  width: 1.25em;
+}
+
+:host(:is(:active, :focus)) {
+  /* --pico-background-color: var(--pico-form-element-active-background-color); */
+  --pico-border-color: var(--pico-form-element-active-border-color);
+}
+
+:host(:state(checked)), :host(:state(checked):active), :host(:state(checked):focus) {
+  --pico-background-color: var(--pico-primary-inverse);
+  --pico-border-color: var(--pico-primary-border);
+  border-width: 0.35em;
+  background-image: none;
+}

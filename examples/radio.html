@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset=utf-8>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="icon" href="data:image/png;base64,iVBORw0KGgo=">
+  <title>PiWo Radio Demo</title>
+</head>
+
+<body>
+  <h1>PiWo Radio Demo</h1>
+
+  <form id="form">
+    <input name="native" id="native1" type="radio" value="radio1">
+    <label for="native1">Native radio 1</label>
+    <input name="native" id="native2" type="radio" value="radio2">
+    <label for="native2">Native radio 2</label>
+
+    <br><br>
+
+    <piwo-radio name="piwo" id="piwo1" value="radio1"></piwo-radio>
+    <piwo-label for="piwo1">Custom piwo-checkbox 1</piwo-label>
+    <piwo-radio name="piwo" id="piwo2" value="radio2"></piwo-radio>
+    <piwo-label for="piwo2">Custom piwo-checkbox 2</piwo-label>
+
+    <br><br>
+
+    <piwo-button name="validate">Validate</piwo-button>
+  </form>
+
+  <script type="module">
+    import { registerField, registerForm } from './event-logger.js'
+    registerField('input, piwo-radio')
+    registerForm('form')
+  </script>
+
+  <script src="../dist/index.mjs" type="module"></script>
+</body>
+</html>

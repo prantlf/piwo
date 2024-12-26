@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset=utf-8>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="icon" href="data:image/png;base64,iVBORw0KGgo=">
+  <title>PiWo Person</title>
+</head>
+
+<body>
+  <piwo-container>
+    <header>
+      <piwo-h level="1">PiWo Person</piwo-h>
+      <piwo-p>Demo of Pico Web Components. Enter information about a person.</piwo-p>
+    </header>
+
+    <main>
+      <form id="login">
+        <piwo-label for="name">Name:</piwo-label>
+        <piwo-input name="name" type="text" placeholder="Enter your first and last names"
+                    id="name" aria-describedby="name-msg"
+                    required describeerror focuserror></piwo-input>
+        <piwo-small id="name-msg">Enter your name as you want it displayed on the web pages.</piwo-small>
+        <piwo-label>
+          E-Mail:
+          <piwo-input name="email" type="email" placeholder="Enter your e-mail" required></piwo-input>
+        </piwo-label>
+        <piwo-label>
+          Home page:
+          <piwo-input name="home-page" type="url" placeholder="Enter your home page" required></piwo-input>
+        </piwo-label>
+        <piwo-label>
+          Phone:
+          <piwo-input name="phone" type="tel" placeholder="Enter your phone number" required></piwo-input>
+        </piwo-label>
+        <fieldset>
+          <legend>Personal information</legend>
+          <piwo-label>
+            Birthday:
+            <piwo-input name="birthday" type="date" placeholder="Enter your birthday"></piwo-input>
+          </piwo-label>
+          <piwo-label>
+            <piwo-radio name="marital-status" value="single" aria-describedby="marital-status-msg"></piwo-radio>
+            Single
+          </piwo-label>
+          <piwo-label>
+            <piwo-radio name="marital-status" value="married" aria-describedby="marital-status-msg"></piwo-radio>
+            Married
+          </piwo-label>
+          <piwo-small id="marital-status-msg">Optionally provide your official marital status.</piwo-small>
+          <piwo-label>
+            Children:
+            <piwo-input name="children" type="number" placeholder="Enter how many children you have"></piwo-input>
+          </piwo-label>
+        </fieldset>
+
+        <piwo-spacer></piwo-spacer>
+
+        <piwo-label>Comment:
+          <piwo-textarea name="comment" placeholder="Add a comment, if you want"></piwo-textarea>
+        </piwo-label>
+
+        <piwo-spacer></piwo-spacer>
+
+        <piwo-label>
+          <piwo-checkbox name="i-agree" required></piwo-checkbox>
+          I agree with this website collecting the information about me
+        </piwo-label>
+
+        <piwo-spacer factor="2"></piwo-spacer>
+
+        <piwo-button>Submit</piwo-button>
+        <piwo-button type="reset" outline>Reset</piwo-button>
+      </form>
+    </main>
+    <footer>
+      <piwo-hr></piwo-hr>
+      <piwo-small>PiWo {version} © 2024 Ferdinand Prantl, see the <piwo-link href="https://github.com/prantlf/piwo" target="_blank">project on GitHub</piwo-link></piwo-small>
+    </footer>
+  </piwo-container>
+
+  <script type="module">
+    import { registerField, registerForm } from './event-logger.js'
+    registerField('piwo-input, piwo-checkbox, piwo-textarea')
+    registerForm('login')
+  </script>
+
+  <script src="../dist/index.mjs" type="module"></script>
+</body>
+</html>

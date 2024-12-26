@@ -4,7 +4,12 @@ export function registerForm(id) {
     event.preventDefault()
     const { button } = form.submitter
     button.ariaBusy = 'true'
-    console.log(id, new FormData(form))
+    const formData = new FormData(form)
+    const data = {}
+    for (const [name, values] of formData.entries()) {
+      data[name] = values.length === 1 ? values[0] : values
+    }
+    console.log(`FormData for "${id}":`, data)
     setTimeout(() => {
       button.ariaBusy = null
     }, 1000)
