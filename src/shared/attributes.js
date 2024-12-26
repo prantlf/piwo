@@ -32,17 +32,19 @@ const AttributesMixin = (ParentElement, {
     }
   }
 
-  const { prototype } = AttributesElement
+  const renamedAttributes = {}
   const properties = {}
+
+  const { prototype } = AttributesElement
   for (let attributeName in attributes) {
     const options = attributes[attributeName]
     let { property, attribute, type, value, internals: enableInternals, aria, state, reflect, set } = options
     const propertyName = property ?? attributeName
     const symbol = Symbol(propertyName)
     if (attribute) {
+      renamedAttributes[attributeName] = attribute
       attributeName = attribute
       options.property = propertyName
-      attributes[attributeName] = options
     }
 
     let boolean
@@ -135,6 +137,11 @@ const AttributesMixin = (ParentElement, {
     if (reflect) {
       observedAttributeNames.push(attributeName)
     }
+  }
+
+  for (const attributeName in renamedAttributes) {
+    attributes[renamedAttributes[attributeName]] = attributes[attributeName]
+    delete attributes[attributeName]
   }
 
   Object.defineProperties(prototype, properties)
