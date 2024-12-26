@@ -91,6 +91,8 @@ class PiWoInput extends FieldMixin(InteractiveMixin(ShadowMixin(InternalsMixin(A
       type: 'string',
       set(value) {
         this[innerInput].value = value
+        if (value) this[internals].states.add('empty')
+        else this[internals].states.delete('empty')
         this[updateValidity]()
       }
     }

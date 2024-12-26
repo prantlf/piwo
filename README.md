@@ -230,7 +230,7 @@ Input form field.
 * Fills the value to `FormData`.
 * Remembers the current value for back and forth navigation in the browser.
 * Can reset the value on form `reset`.
-* Exposes states `disabled`, `readonly` and `required` in CSS.
+* Exposes states `disabled`, `empty`, `readonly` and `required` in CSS.
 * Validates input including custom errors.
 * Emphasises valid or invalid state if `aria-invalid` is set explicitly.
 * Allows either showing the browser popup, or a HTML message for invalid fields, if `describeerror` is set and the last ID in `aria-describedby` points to an element with content. If the element is hidden, it'll be temporarily shown.
@@ -257,7 +257,7 @@ TextArea form field.
 * Fills the value to `FormData`.
 * Remembers the current value for back and forth navigation in the browser.
 * Can reset the value on form `reset`.
-* Exposes states `disabled`, `readonly` and `required` in CSS.
+* Exposes states `disabled`, `empty`, `readonly` and `required` in CSS.
 * Validates input including custom errors.
 * Emphasises valid or invalid state if `aria-invalid` is set explicitly.
 * Allows either showing the browser popup, or a HTML message for invalid fields, if `describeerror` is set and the last ID in `aria-describedby` points to an element with content. If the element is hidden, it'll be temporarily shown.

@@ -72,28 +72,19 @@ const AttributesMixin = (ParentElement, {
 
     let setter
     if (boolean) {
-      if (state) {
-        if (state === true) state = propertyName
-        setter = function (value) {
-          value = Boolean(value)
-          if (value === this[symbol]) return
-          this[symbol] = value
+      if (state === true) state = propertyName
+      setter = function (value) {
+        value = Boolean(value)
+        if (value === this[symbol]) return
+        this[symbol] = value
+        if (state) {
           if (value) this[internals].states.add(state)
           else this[internals].states.delete(state)
-          if (aria) this[internals][aria] = String(value)
-          if (reflect) this.toggleAttribute(attributeName, value)
-          if (set) set.call(this, value)
         }
-      } else {
-        setter = function (value) {
-          value = Boolean(value)
-          if (value === this[symbol]) return
-          this[symbol] = value
-          if (enableInternals) this[internals][propertyName] = value
-          if (aria) this[internals][aria] = String(value)
-          if (reflect) this.toggleAttribute(attributeName, value)
-          if (set) set.call(this, value)
-        }
+        if (enableInternals) this[internals][propertyName] = value
+        if (aria) this[internals][aria] = String(value)
+        if (reflect) this.toggleAttribute(attributeName, value)
+        if (set) set.call(this, value)
       }
     } else if (number) {
       setter = function (value) {
