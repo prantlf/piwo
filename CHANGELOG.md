@@ -1,5 +1,16 @@
 # Changes
 
+## [0.12.0](https://github.com/prantlf/piwo/compare/v0.11.0...v0.12.0) (2024-12-26)
+
+### Features
+
+* Add custom styling for date input ([93ffaba](https://github.com/prantlf/piwo/commit/93ffaba745d8ec31ae23267cecd2e0c6db46703f))
+* Add piwo-radio ([b5d23de](https://github.com/prantlf/piwo/commit/b5d23de9aef66642975a9a932d7bd7c78f93d4b0))
+
+### Bug Fixes
+
+* Fix handling checked/value separate from defaultChecked/defaultValue ([26e553e](https://github.com/prantlf/piwo/commit/26e553e787b6385c42e06e8a89528058d3566f16))
+
 ## [0.11.0](https://github.com/prantlf/piwo/compare/v0.10.0...v0.11.0) (2024-12-26)
 
 ### Features
