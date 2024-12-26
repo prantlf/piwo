@@ -31,6 +31,34 @@ input {
   background-repeat: no-repeat;
 }
 
+:host(:is([type=date], [type=datetime-local], [type=month], [type=time], [type=week])) input {
+  --pico-icon-position: 0.75rem;
+  --pico-icon-width: 1rem;
+  padding-right: calc(var(--pico-icon-width) + var(--pico-icon-position));
+  background-image: var(--pico-icon-date);
+  background-position: center right var(--pico-icon-position);
+  background-size: var(--pico-icon-width) auto;
+  background-repeat: no-repeat;
+}
+:host([type=time]) input {
+  background-image: var(--pico-icon-time);
+}
+:host(:is([type=date], [type=datetime-local], [type=month], [type=time], [type=week])) input::-webkit-calendar-picker-indicator {
+  width: var(--pico-icon-width);
+  margin-right: calc(var(--pico-icon-width) * -1);
+  margin-left: var(--pico-icon-position);
+  opacity: 0;
+}
+@-moz-document url-prefix() {
+  :host(:is([type=date], [type=datetime-local], [type=month], [type=time], [type=week])) input {
+    padding-right: var(--pico-form-element-spacing-horizontal) !important;
+    background-image: none !important;
+  }
+}
+:host(:dir(rtl):is([type=date], [type=datetime-local], [type=month], [type=time], [type=week])) {
+  text-align: right;
+}
+
 :host(:is(:active, :focus)) > input {
   --pico-background-color: var(--pico-form-element-active-background-color);
   --pico-border-color: var(--pico-form-element-active-border-color);
