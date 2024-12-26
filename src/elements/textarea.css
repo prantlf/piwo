@@ -22,6 +22,28 @@
   resize: vertical;
 }
 
+:host::before {
+  display: none;
+  content: attr(placeholder);
+  color: var(--pico-form-element-placeholder-color);
+  opacity: 1;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+  scrollbar-width: none;
+  word-wrap: normal;
+  white-space: pre;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  text-decoration: inherit;
+  ime-mode: inherit;
+}
+
+:host(:empty)::before {
+  display: inline;
+}
+
 :host(:not([readonly]):is(:active, :focus)) {
   --pico-background-color: var(--pico-form-element-active-background-color);
   --pico-border-color: var(--pico-form-element-active-border-color);

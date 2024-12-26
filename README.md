@@ -97,7 +97,7 @@ Markup:
     <piwo-spacer></piwo-spacer>
 
     <piwo-label>Comment:
-      <piwo-textarea name="comment"></piwo-textarea>
+      <piwo-textarea name="comment" placeholder="Add a comment, if you want"></piwo-textarea>
     </piwo-label>
 
     <piwo-spacer></piwo-spacer>
@@ -357,7 +357,7 @@ Inserts empty vertical space.
 
 ## Findings
 
-Most of the problems found when implementing the custom elements were solved by adding custom code. Only Submitter and Validity Anchor have ugly workarounds and Placeholder has none.
+Most of the problems found when implementing the custom elements were solved by adding custom code. Only Submitter and Validity Anchor have ugly workarounds.
 
 ### Tab Index
 
@@ -369,7 +369,7 @@ The role of a [label cannot be delegated yet](https://github.com/WICG/webcompone
 
 ### Placeholder
 
-Although the placeholder can be specified by `ariaPlaceholder` from `ElementInternals`, it will be used only by assistive technologies. The placeholder will have to be rendered by the code in the custom element for sighted users. I haven't done it yet.
+Although the placeholder can be specified by `ariaPlaceholder` from `ElementInternals`, it will be used only by the assistive technologies. For sighted users, The placeholder has to be displayed by the implementation of the custom element. It's possible by pure CSS. So, no problem.
 
 ### Change Event
 

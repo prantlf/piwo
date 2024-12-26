@@ -26,7 +26,8 @@ const AttributesMixin = (ParentElement, {
       const { property, boolean } = attributes[name]
       const propertyName = property ?? name
       if (boolean) newValue = newValue != null
-      console.debug(`attributeChanged: "${name}" -> "${propertyName}", ${_oldValue} -> "${newValue}"`)
+      // const id = this.id || this.name || this.labels?.[0]?.textContent || this.textContent || ''
+      // console.debug(`attributeChanged: "${name}" -> "${propertyName}", ${JSON.stringify(_oldValue)} -> ${JSON.stringify(newValue)} (${this.tagName}:${id})`)
       this[propertyName] = newValue
     }
   }

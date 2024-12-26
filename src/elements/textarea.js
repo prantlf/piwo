@@ -27,9 +27,7 @@ class PiWoTextArea extends FieldMixin(InteractiveMixin(ShadowMixin(InternalsMixi
     value: {
       type: 'string',
       set(value) {
-        if (value !== this.textContent) {
-          this.textContent = value
-        }
+        this.textContent = value
         this[updateValidity]()
       }
     },
