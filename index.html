@@ -1069,7 +1069,7 @@ open http://localhost:3000/piwo/
     &lt;piwo-spacer&gt;&lt;/piwo-spacer&gt;
 
     &lt;piwo-label&gt;Comment:
-      &lt;piwo-textarea name="comment"&gt;&lt;/piwo-textarea&gt;
+      &lt;piwo-textarea name="comment" placeholder="Add a comment, if you want"&gt;&lt;/piwo-textarea&gt;
     &lt;/piwo-label&gt;
 
     &lt;piwo-spacer&gt;&lt;/piwo-spacer&gt;
@@ -1110,7 +1110,7 @@ open http://localhost:3000/piwo/
     <piwo-spacer></piwo-spacer>
 
     <piwo-label>Comment:
-      <piwo-textarea name="comment"></piwo-textarea>
+      <piwo-textarea name="comment" placeholder="Add a comment, if you want"></piwo-textarea>
     </piwo-label>
 
     <piwo-spacer></piwo-spacer>
@@ -1220,6 +1220,61 @@ open http://localhost:3000/piwo/
   Indeterminate
 </piwo-label>
 </div>
+<h3>Switch</h3>
+<p>Switch form field.</p>
+<ul>
+<li>Lightweight - no inner content. The host element itself has the role <code>switch</code>.</li>
+<li>Form-associated element. Can be used like <code>input[type=checkbox]</code>.</li>
+<li>Implements many attributes of the native element.</li>
+<li>Supports events <code>click</code>, <code>beforeinput</code>, <code>input</code> and <code>change</code> including <code>preventDefault</code>.</li>
+<li>Fills the value <code>on</code> or nothing to <code>FormData</code>.</li>
+<li>Remembers the current state for back and forth navigation in the browser.</li>
+<li>Can reset the value on form <code>reset</code>.</li>
+<li>Exposes states <code>checked</code>, <code>disabled</code>, <code>readonly</code> and <code>required</code> in CSS.</li>
+<li>Validates input including custom errors.</li>
+<li>Emphasises valid or invalid state if <code>aria-invalid</code> is set explicitly.</li>
+<li>Allows either showing the browser popup, or a HTML message for invalid fields, if <code>describeerror</code> is set and the last ID in <code>aria-describedby</code> points to an element with content. If the element is hidden, it&#39;ll be temporarily shown.</li>
+</ul>
+<pre><code class="language-html">
+&lt;div&gt;
+  &lt;piwo-checkbox id="unchecked"&gt;&lt;/piwo-checkbox&gt;
+  &lt;piwo-label for="unchecked"&gt;Unchecked&lt;/piwo-label&gt;
+
+  &lt;piwo-checkbox id="checked" checked&gt;&lt;/piwo-checkbox&gt;
+  &lt;piwo-label for="checked"&gt;Checked&lt;/piwo-label&gt;
+
+  &lt;piwo-checkbox id="invalid" required aria-invalid="true"&gt;&lt;/piwo-checkbox&gt;
+  &lt;piwo-label for="invalid"&gt;Invalid&lt;/piwo-label&gt;
+
+  &lt;piwo-checkbox id="valid" checked aria-invalid="false"&gt;&lt;/piwo-checkbox&gt;
+  &lt;piwo-label for="valid"&gt;Valid&lt;/piwo-label&gt;
+&lt;/div&gt;
+
+&lt;piwo-label&gt;
+  &lt;piwo-checkbox indeterminate&gt;&lt;/piwo-checkbox&gt;
+  Indeterminate
+&lt;/piwo-label&gt;
+</code></pre>
+<div class="live-code">
+<div>
+  <piwo-checkbox id="unchecked"></piwo-checkbox>
+  <piwo-label for="unchecked">Unchecked</piwo-label>
+
+  <piwo-checkbox id="checked" checked></piwo-checkbox>
+  <piwo-label for="checked">Checked</piwo-label>
+
+  <piwo-checkbox id="invalid" required aria-invalid="true"></piwo-checkbox>
+  <piwo-label for="invalid">Invalid</piwo-label>
+
+  <piwo-checkbox id="valid" checked aria-invalid="false"></piwo-checkbox>
+  <piwo-label for="valid">Valid</piwo-label>
+</div>
+
+<piwo-label>
+  <piwo-checkbox indeterminate></piwo-checkbox>
+  Indeterminate
+</piwo-label>
+</div>
 <h3>Input</h3>
 <p>Input form field.</p>
 <ul>
@@ -1230,7 +1285,7 @@ open http://localhost:3000/piwo/
 <li>Fills the value to <code>FormData</code>.</li>
 <li>Remembers the current value for back and forth navigation in the browser.</li>
 <li>Can reset the value on form <code>reset</code>.</li>
-<li>Exposes states <code>disabled</code>, <code>readonly</code> and <code>required</code> in CSS.</li>
+<li>Exposes states <code>disabled</code>, <code>empty</code>, <code>readonly</code> and <code>required</code> in CSS.</li>
 <li>Validates input including custom errors.</li>
 <li>Emphasises valid or invalid state if <code>aria-invalid</code> is set explicitly.</li>
 <li>Allows either showing the browser popup, or a HTML message for invalid fields, if <code>describeerror</code> is set and the last ID in <code>aria-describedby</code> points to an element with content. If the element is hidden, it&#39;ll be temporarily shown.</li>
@@ -1265,7 +1320,7 @@ open http://localhost:3000/piwo/
 <li>Fills the value to <code>FormData</code>.</li>
 <li>Remembers the current value for back and forth navigation in the browser.</li>
 <li>Can reset the value on form <code>reset</code>.</li>
-<li>Exposes states <code>disabled</code>, <code>readonly</code> and <code>required</code> in CSS.</li>
+<li>Exposes states <code>disabled</code>, <code>empty</code>, <code>readonly</code> and <code>required</code> in CSS.</li>
 <li>Validates input including custom errors.</li>
 <li>Emphasises valid or invalid state if <code>aria-invalid</code> is set explicitly.</li>
 <li>Allows either showing the browser popup, or a HTML message for invalid fields, if <code>describeerror</code> is set and the last ID in <code>aria-describedby</code> points to an element with content. If the element is hidden, it&#39;ll be temporarily shown.</li>
@@ -1390,13 +1445,13 @@ open http://localhost:3000/piwo/
 <piwo-spacer factor="1.5"></piwo-spacer>
 </div>
 <h2>Findings</h2>
-<p>Most of the problems found when implementing the custom elements were solved by adding custom code. Only Submitter and Validity Anchor have ugly workarounds and Placeholder has none.</p>
+<p>Most of the problems found when implementing the custom elements were solved by adding custom code. Only Submitter and Validity Anchor have ugly workarounds.</p>
 <h3>Tab Index</h3>
 <p>Focusability of an element <a href="https://github.com/WICG/webcomponents/issues/762">cannot be declared yet</a>. The attribute <code>tabindex</code> has to be set to zero as a workaround. It makes the attribute visible on the element in DOM. Otherwise no problem.</p>
 <h3>Label</h3>
 <p>The role of a <a href="https://github.com/WICG/webcomponents/issues/917">label cannot be delegated yet</a>, but the click-functionality and the property <code>labels</code> can be implemented by custom code. No problem.</p>
 <h3>Placeholder</h3>
-<p>Although the placeholder can be specified by <code>ariaPlaceholder</code> from <code>ElementInternals</code>, it will be used only by assistive technologies. The placeholder will have to be rendered by the code in the custom element for sighted users. I haven&#39;t done it yet.</p>
+<p>Although the placeholder can be specified by <code>ariaPlaceholder</code> from <code>ElementInternals</code>, it will be used only by the assistive technologies. For sighted users, The placeholder has to be displayed by the implementation of the custom element. It&#39;s possible by pure CSS. So, no problem.</p>
 <h3>Change Event</h3>
 <p>When using a <code>contenteditable</code> custom element as the host, the <code>change</code> event should be dispatched on <code>blur</code>. Unlike with teh native elements, the event will be dispatched after the blur event, because there&#39;s no <code>beforeblur</code> event to hook in. Not a big deal.</p>
 <h3>Preventing Default Behaviour</h3>
@@ -1415,7 +1470,7 @@ open http://localhost:3000/piwo/
 <p>Copyright (C) 2024 Ferdinand Prantl</p>
 <p>Licensed under the <a href="http://en.wikipedia.org/wiki/MIT_License">MIT License</a>.</p>
 <hr>
-<small>PiWo 0.9.0</small>
+<small>PiWo 0.12.0</small>
 <script type="module">
 import { registerField, registerForm } from './event-logger.js'
 registerField('piwo-input, piwo-checkbox, piwo-textarea')
