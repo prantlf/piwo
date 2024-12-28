@@ -101,15 +101,22 @@ class PiWoInput extends FieldMixin(InteractiveMixin(ShadowMixin(InternalsMixin(A
 })), {
   delegatesFocus: true
 }))) {
+  #dataSlot
+  #dataList
+
   constructor() {
     super()
     this[internals].role = 'textbox'
 
     this.shadowRoot.adoptedStyleSheets.push(thisStylesheet)
+    this.#dataSlot = document.createElement('slot')
+    this.#dataSlot.name = 'data'
+    this.shadowRoot.appendChild(this.#dataSlot)
     this[innerInput] = document.createElement('input')
     this[innerInput].ariaHidden = 'true'
     this.shadowRoot.appendChild(this[innerInput])
 
+    this.#dataSlot.addEventListener('slotchange', () => this.#updateData())
     this[innerInput].addEventListener('beforeinput', event => this.#handleBeforeInput(event))
     this[innerInput].addEventListener('input', event => this.#handleInputAndChange(event))
     this[innerInput].addEventListener('change', event => this.#handleInputAndChange(event))
@@ -160,6 +167,26 @@ class PiWoInput extends FieldMixin(InteractiveMixin(ShadowMixin(InternalsMixin(A
     const newEvent = new event.constructor(event.type, event)
     this.dispatchEvent(newEvent)
     return newEvent
+  }
+
+  #updateData() {
+    const dataOrigin = this.#dataSlot.assignedElements()[0]
+    if (dataOrigin?.tagName === 'DATALIST') {
+      const dataList = dataOrigin.cloneNode(true)
+      dataList.id = 'data'
+      if (this.#dataList) {
+        this.shadowRoot.replaceChild(dataList, this.#dataList)
+      } else {
+        this.shadowRoot.appendChild(dataList)
+        this[innerInput].setAttribute('list', 'data')
+      }
+      this.#dataList = dataList
+    } else if (this.#dataList) {
+      this[innerInput].removeAttribute('list')
+      this.#dataList.remove()
+      this.#dataList = null
+    }
+    this[updateValidity]()
   }
 
   // ----- form validation
