@@ -4,7 +4,6 @@
 }
 
 input {
-  --pico-outline-width: 0.0625rem;
   --pico-background-color: var(--pico-form-element-background-color);
   --pico-border-color: var(--pico-form-element-border-color);
   --pico-readonly-border-color: var(--pico-form-element-readonly-border-color);
@@ -28,6 +27,120 @@ input {
   background-repeat: no-repeat;
 }
 
+:host(:not([type=file])) input {
+  --pico-outline-width: 0.0625rem;
+}
+:host([type=file]) input {
+  --pico-color: var(--pico-muted-color);
+  padding: 0;
+  border-width: 0;
+  margin-left: calc(var(--pico-outline-width) * -1);
+  padding: calc(var(--pico-form-element-spacing-vertical) * 0.5) 0;
+  padding-left: var(--pico-outline-width);
+  border: 0;
+  border-radius: 0;
+  background: none;
+}
+:host([type=file]) input::file-selector-button {
+  --pico-background-color: var(--pico-primary-background);
+  --pico-border-color: var(--pico-primary-border);
+  --pico-color: var(--pico-primary-inverse);
+  --pico-box-shadow: var(--pico-button-box-shadow, 0 0 0 rgba(0, 0, 0, 0));
+  margin-right: calc(var(--pico-spacing) / 2);
+  padding: calc(var(--pico-form-element-spacing-vertical) * 0.5) var(--pico-form-element-spacing-horizontal);
+  /* padding: var(--pico-form-element-spacing-vertical) var(--pico-form-element-spacing-horizontal); */
+  border: var(--pico-border-width) solid var(--pico-border-color);
+  border-radius: var(--pico-border-radius);
+  outline: none;
+  background-color: var(--pico-background-color);
+  box-shadow: var(--pico-box-shadow);
+  color: var(--pico-color);
+  font-weight: var(--pico-font-weight);
+  font-size: 1rem;
+  line-height: var(--pico-line-height);
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  transition: background-color var(--pico-transition), border-color var(--pico-transition), color var(--pico-transition), box-shadow var(--pico-transition);
+}
+:host([type=file]:is(:hover, :active, :focus)) input::file-selector-button {
+  --pico-background-color: var(--pico-primary-hover-background);
+  --pico-border-color: var(--pico-primary-hover-border);
+}
+:host([type=file]:focus) input::file-selector-button {
+  --pico-box-shadow: var(--pico-button-hover-box-shadow, 0 0 0 rgba(0, 0, 0, 0)), 0 0 0 var(--pico-outline-width) var(--pico-primary-focus);
+}
+:host([type=file][aria-current]:not([aria-current=false])) input::file-selector-button,
+:host([type=file]:is(:hover, :active, :focus)) input::file-selector-button {
+  --pico-background-color: var(--pico-primary-hover-background);
+  --pico-border-color: var(--pico-primary-hover-border);
+  --pico-box-shadow: var(--pico-button-hover-box-shadow, 0 0 0 rgba(0, 0, 0, 0));
+  --pico-color: var(--pico-primary-inverse);
+}
+:host([type=file]:focus) input::file-selector-button {
+  --pico-box-shadow: var(--pico-button-hover-box-shadow, 0 0 0 rgba(0, 0, 0, 0)), 0 0 0 var(--pico-outline-width) var(--pico-primary-focus);
+}
+:host([type=file][kind=secondary]) input::file-selector-button {
+  --pico-background-color: var(--pico-secondary-background);
+  --pico-border-color: var(--pico-secondary-border);
+  --pico-color: var(--pico-secondary-inverse);
+}
+:host([type=file][kind=secondary][aria-current]:not([aria-current=false])) input::file-selector-button,
+:host([type=file][kind=secondary]:is(:hover, :active, :focus)) input::file-selector-button {
+  --pico-background-color: var(--pico-secondary-hover-background);
+  --pico-border-color: var(--pico-secondary-hover-border);
+  --pico-color: var(--pico-secondary-inverse);
+}
+:host([type=file][kind=secondary]:focus) input::file-selector-button {
+  --pico-box-shadow: var(--pico-button-hover-box-shadow, 0 0 0 rgba(0, 0, 0, 0)), 0 0 0 var(--pico-outline-width) var(--pico-secondary-focus);
+}
+:host([type=file][kind=contrast]) input::file-selector-button {
+  --pico-background-color: var(--pico-contrast-background);
+  --pico-border-color: var(--pico-contrast-border);
+  --pico-color: var(--pico-contrast-inverse);
+}
+:host([type=file][kind=contrast][aria-current]:not([aria-current=false])) input::file-selector-button,
+:host([type=file][kind=contrast]:is(:hover, :active, :focus)) input::file-selector-button {
+  --pico-background-color: var(--pico-contrast-hover-background);
+  --pico-border-color: var(--pico-contrast-hover-border);
+  --pico-color: var(--pico-contrast-inverse);
+}
+:host([type=file][kind=contrast]:focus) input::file-selector-button {
+  --pico-box-shadow: var(--pico-button-hover-box-shadow, 0 0 0 rgba(0, 0, 0, 0)), 0 0 0 var(--pico-outline-width) var(--pico-contrast-focus);
+}
+:host([type=file][outline]) input::file-selector-button {
+  --pico-background-color: transparent;
+  --pico-color: var(--pico-primary);
+  --pico-border-color: var(--pico-primary);
+}
+:host([type=file][outline][aria-current]:not([aria-current=false])) input::file-selector-button,
+:host([type=file][outline]:is(:hover, :active, :focus)) input::file-selector-button {
+  --pico-background-color: transparent;
+  --pico-color: var(--pico-primary-hover);
+  --pico-border-color: var(--pico-primary-hover);
+}
+:host([type=file][kind=secondary][outline]) input::file-selector-button {
+  --pico-color: var(--pico-secondary);
+  --pico-border-color: var(--pico-secondary);
+}
+:host([type=file][kind=secondary][outline][aria-current]:not([aria-current=false])) input::file-selector-button,
+:host([type=file][kind=secondary][outline]:is(:hover, :active, :focus)) input::file-selector-button {
+  --pico-color: var(--pico-secondary-hover);
+  --pico-border-color: var(--pico-secondary-hover);
+}
+:host([type=file][kind=contrast][outline]) input::file-selector-button {
+  --pico-color: var(--pico-contrast);
+  --pico-border-color: var(--pico-contrast);
+}
+:host([type=file][kind=contrast][outline][aria-current]:not([aria-current=false])) input::file-selector-button,
+:host([type=file][kind=contrast][outline]:is(:hover, :active, :focus)) input::file-selector-button {
+  --pico-color: var(--pico-contrast-hover);
+  --pico-border-color: var(--pico-contrast-hover);
+}
+
 :host([type=color]) input::-webkit-color-swatch-wrapper {
   padding: 0;
 }
@@ -43,7 +156,7 @@ input {
   border-radius: calc(var(--pico-border-radius) * 0.5);
 }
 
-:host(:not([type=range])) input {
+:host(:not([type=range], [type=file])) input {
   height: calc(1rem * var(--pico-line-height) + var(--pico-form-element-spacing-vertical) * 2 + var(--pico-border-width) * 2);
   appearance: none;
   padding: var(--pico-form-element-spacing-vertical) var(--pico-form-element-spacing-horizontal);
@@ -193,7 +306,7 @@ input {
   --pico-border-color: var(--pico-form-element-active-border-color);
 }
 
-:host(:not([type=range]):focus) input {
+:host(:not([type=range], [type=file]):focus) input {
   --pico-box-shadow: 0 0 0 var(--pico-outline-width) var(--pico-form-element-focus-color);
 }
 

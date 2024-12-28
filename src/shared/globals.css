@@ -353,9 +353,12 @@ fieldset[disabled] piwo-label {
 }
 
 [data-theme=light] piwo-button,
+[data-theme=light] piwo-input[type=file],
 [data-theme=dark] piwo-button,
 :root:not([data-theme]) piwo-button,
-:root:not([data-theme=dark]) piwo-button {
+:root:not([data-theme]) piwo-input[type=file],
+:root:not([data-theme=dark]) piwo-button,
+:root:not([data-theme=dark]) piwo-input[type=file] {
   --pico-form-element-focus-color: var(--pico-primary-focus);
 }
 :root:not([data-theme]) piwo-button[aria-busy=true][kind=contrast]::before {

@@ -226,8 +226,8 @@ Input form field.
 * Uses a native `input` element for the editing functionality. Hides it from accessible technologies. (This may yet change.) The host element itself has the role `textbox`.
 * Form-associated element. Can be used like `input[type=text]` and other types using a textbox for editing.
 * Implements many attributes of the native element.
-* Can be supplied with type-ahead values in `datalist` put into a `data` sklot.
-* Supports types `color`, `date`, `datetime-local`, `email`, `month`, `number`, `password`, `range`, `search`, `tel`, `text`, `time`, `url` and `week`.
+* Can be supplied with type-ahead values or range tick-marks in `datalist` put into a `data` sklot.
+* Supports types `color`, `date`, `datetime-local`, `email`, `file`, `month`, `number`, `password`, `range`, `search`, `tel`, `text`, `time`, `url` and `week`.
 * Supports events `click`, `beforeinput`, `input` and `change` including `preventDefault`.
 * Fills the value to `FormData`.
 * Remembers the current value for back and forth navigation in the browser.

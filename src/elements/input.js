@@ -90,8 +90,13 @@ class PiWoInput extends FieldMixin(InteractiveMixin(ShadowMixin(InternalsMixin(A
     },
     value: {
       type: 'string',
+      get() {
+        if (this.type === 'file') this[innerInput].value
+      },
       set(value) {
-        this[innerInput].value = value
+        if (this.type !== 'file') {
+          this[innerInput].value = value
+        }
         if (value) this[internals].states.add('empty')
         else this[internals].states.delete('empty')
         this[updateValidity]()
@@ -123,6 +128,12 @@ class PiWoInput extends FieldMixin(InteractiveMixin(ShadowMixin(InternalsMixin(A
     this[innerInput].addEventListener('change', event => this.#handleInputAndChange(event))
   }
 
+  // ----- properties
+
+  get files() {
+    return this[innerInput].files
+  }
+
   // ----- life-cycle callbacks
 
   connectedCallback() {
@@ -143,7 +154,7 @@ class PiWoInput extends FieldMixin(InteractiveMixin(ShadowMixin(InternalsMixin(A
     this.value = state
   }
 
-  // formAssociatedCallback(form) {
+  // formAssociatedCallback(_form) {
   // }
 
   formDisabledCallback(disabled) {
@@ -206,7 +217,12 @@ class PiWoInput extends FieldMixin(InteractiveMixin(ShadowMixin(InternalsMixin(A
   }
 
   [updateValidity](keepValid) {
-    this[internals].setFormValue(this.value, this.value)
+    if (this.type !== 'file') {
+      this[internals].setFormValue(this.value, this.value)
+    } else if (this.files) {
+      const value = this.files.length === 1 ? this.files[0] : this.files
+      this[internals].setFormValue(value, value)
+    }
     const { validity } = this[innerInput]
     if (validity.valid) {
       this[internals].setValidity({})

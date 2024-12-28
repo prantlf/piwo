@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset=utf-8>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="icon" href="data:image/png;base64,iVBORw0KGgo=">
+  <title>PiWo File Demo</title>
+</head>
+
+<body>
+  <h1>PiWo File Demo</h1>
+
+  <form id="form">
+    <label>
+      Disabled native file:
+      <input name="disabled" type="file" disabled>
+    </label><br>
+
+    <label>
+      Read-only native file:
+      <input name="readonly" type="file" readonly>
+    </label><br>
+
+    <label for="native">Native file:</label>
+    <input name="native" id="native" type="file" required>
+
+    <br><br>
+
+    <piwo-label>
+      Disabled piwo-input:
+      <piwo-input type="file" name="piwo-disabled" disabled></piwo-input>
+    </piwo-label>
+
+    <piwo-label>
+      Read-only piwo-input:
+      <piwo-input type="file" name="piwo-readonly" readonly></piwo-input>
+    </piwo-label>
+
+    <piwo-label for="custom">Custom piwo-input:</piwo-label>
+    <piwo-input type="file" name="custom" id="custom" required></piwo-input>
+
+    <br><br>
+
+    <piwo-button name="validate">Validate</piwo-button>
+  </form>
+
+  <script type="module">
+    import { registerField, registerForm } from './event-logger.js'
+    registerField('input, piwo-input')
+    registerForm('form')
+  </script>
+
+  <script src="../dist/index.mjs" type="module"></script>
+</body>
+</html>

@@ -38,7 +38,7 @@ const AttributesMixin = (ParentElement, {
   const { prototype } = AttributesElement
   for (let attributeName in attributes) {
     const options = attributes[attributeName]
-    let { property, attribute, type, value, internals: enableInternals, aria, state, reflect, set } = options
+    let { property, attribute, type, value, internals: enableInternals, aria, state, reflect, get, set } = options
     const propertyName = property ?? attributeName
     const symbol = Symbol(propertyName)
     if (attribute) {
@@ -80,6 +80,18 @@ const AttributesMixin = (ParentElement, {
     if (aria === true) {
       aria = `aria${propertyName.charAt(0).toUpperCase()}${propertyName.slice(1)}`
     }
+
+    const getter = get
+      ? function () {
+        if (get) {
+          const value = get.call(this)
+          if (value !== undefined) return value
+        }
+        return this[symbol]
+      }
+      : function () {
+        return this[symbol]
+      }
 
     let setter
     if (boolean) {
@@ -128,9 +140,7 @@ const AttributesMixin = (ParentElement, {
     properties[propertyName] = {
       configurable: true,
       enumerable: true,
-      get() {
-        return this[symbol]
-      },
+      get: getter,
       set: setter
     }
 
