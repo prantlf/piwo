@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset=utf-8>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="icon" href="data:image/png;base64,iVBORw0KGgo=">
+  <title>PiWo Select Demo</title>
+</head>
+
+<body>
+  <h1>PiWo Select Demo</h1>
+
+  <form id="form">
+    <label>
+      Native disabled select:
+      <select name="native-disabled " id="native" disabled >
+        <option value="apples" selected>Apples</option>
+        <option value="oranges">Oranges</option>
+      </select>
+    </label><br><br>
+
+    <label>
+      Native readonly select:
+      <select name="native-readonly" readonly>
+        <option value="apples">Apples</option>
+        <option value="oranges" selected>Oranges</option>
+      </select>
+    </label><br><br>
+
+    <label>
+      Native select:
+      <select name="native">
+        <option value="" disabled selected hidden>Select your fruit</option>
+        <option value="apples">Apples</option>
+        <option value="oranges">Oranges</option>
+      </select>
+    </label><br><br>
+
+    <br>
+
+    <piwo-label>
+      Custom disabled piwo-select:
+      <piwo-select name="piwo-disabled" disabled>
+        <option value="apples" selected>Apples</option>
+        <option value="oranges">Oranges</option>
+      </piwo-select>
+    </piwo-label>
+
+    <piwo-label>
+      Custom readonly piwo-select:
+      <piwo-select name="piwo-readonly" readonly>
+        <option value="apples">Apples</option>
+        <option value="oranges" selected>Oranges</option>
+      </piwo-select>
+    </piwo-label>
+
+    <piwo-label>
+      Custom piwo-select:
+      <piwo-select name="piwo">
+        <option value="" disabled selected hidden>Select a fruit</option>
+        <option value="apples">Apples</option>
+        <option value="oranges">Oranges</option>
+      </piwo-select>
+    </piwo-label>
+
+    <piwo-label>
+      Custom required piwo-select:
+      <piwo-select name="piwo-required" required>
+        <option value="" disabled selected hidden>Select a fruit</option>
+        <option value="apples">Apples</option>
+        <option value="oranges">Oranges</option>
+      </piwo-select>
+    </piwo-label>
+
+    <br><br>
+
+    <piwo-button name="validate">Validate</piwo-button>
+  </form>
+
+  <script type="module">
+    import { registerField, registerForm } from './event-logger.js'
+    registerField('input, piwo-select')
+    registerForm('form')
+  </script>
+
+  <script src="../dist/index.mjs" type="module"></script>
+</body>
+</html>

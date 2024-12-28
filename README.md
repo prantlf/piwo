@@ -271,9 +271,40 @@ TextArea form field.
                aria-invalid="false" required>I like it.</piwo-textarea>
 ```
 
-### Message
+### Select
 
-Information or error message for form fields.
+Select form field.
+
+* Uses a native `select` element for the selecting functionality. Hides it from accessible technologies. (This may yet change.) The host element itself has the role `listbox`.
+* Form-associated element. Can be used like `select` with `option` and `optgroup` children.
+* Implements many attributes of the native element.
+* Supports events `click`, `beforeinput`, `input` and `change` including `preventDefault`.
+* Fills the value to `FormData`.
+* Exposes states `disabled`, `readonly` and `required` in CSS.
+* Validates input including custom errors.
+* Emphasises valid or invalid state if `aria-invalid` is set explicitly.
+* Allows either showing the browser popup, or a HTML message for invalid fields, if `describeerror` is set and the last ID in `aria-describedby` points to an element with content. If the element is hidden, it'll be temporarily shown.
+
+```html
+<piwo-select name="fruit">
+  <option value="apples" selected>Apples</option>
+  <option value="oranges">Oranges</option>
+</piwo-select>
+<piwo-select name="unselected-fruit" required aria-invalid="true">
+  <option value="" disabled selected hidden>Select a fruit</option>
+  <option value="apples">Apples</option>
+  <option value="oranges">Oranges</option>
+</piwo-select>
+<piwo-select name="selected-fruit" required aria-invalid="false">
+  <option value="" disabled hidden>Select a fruit</option>
+  <option value="apples">Apples</option>
+  <option value="oranges" selected>Oranges</option>
+</piwo-select>
+```
+
+### Small
+
+Small text, which serves as an information or error message for form fields.
 
 * Lightweight - only a slot for inner content. The host element has no role.
 * Multi-purpose. Information message can be temporarily replaced by the error message.
@@ -358,7 +389,11 @@ Inserts empty vertical space.
 
 ## Findings
 
-Most of the problems found when implementing the custom elements were solved by adding custom code. Only Submitter and Validity Anchor have ugly workarounds.
+Most of the problems found when implementing the custom elements were solved by adding custom code. Only Submitter and Validity Anchor have ugly workarounds. Wrapping elements with children like `select` or `datalist` is problematic, involving element clones.
+
+### Wrapping
+
+Wrapping of native elements should be avoided, because they require a specific element structure (for example, `select` - `option` relation), or references by the `ID` attribute (for example, `input` - `datalist`). Creating shadow DOM in a host element breaks the parent - child element relation and disallows referencing elements on the page by `ID`. A workaround is cloning or moving the elements from the main page to the shadow DOM. Luckily it's doable for data-only elements like `option` and `optgroup`.
 
 ### Tab Index
 

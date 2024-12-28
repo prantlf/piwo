@@ -1,0 +1,107 @@
+:host {
+  display: inline-block;
+  width: 100%;
+}
+
+::slotted(option),
+::slotted(optgroup) {
+  display: none;
+}
+
+select {
+  --pico-outline-width: 0.0625rem;
+  --pico-background-color: var(--pico-form-element-background-color);
+  --pico-border-color: var(--pico-form-element-border-color);
+  --pico-color: var(--pico-form-element-color);
+  --pico-box-shadow: none;
+  margin: 0;
+  font-size: 1rem;
+  line-height: var(--pico-line-height);
+  font-family: var(--pico-font-family);
+  letter-spacing: inherit;
+  text-transform: none;
+  width: 100%;
+  appearance: none;
+  padding: var(--pico-form-element-spacing-vertical) var(--pico-form-element-spacing-horizontal);
+  border: var(--pico-border-width) solid var(--pico-border-color);
+  border-radius: var(--pico-border-radius);
+  outline: none;
+  background-color: var(--pico-background-color);
+  box-shadow: var(--pico-box-shadow);
+  color: var(--pico-color);
+  font-weight: var(--pico-font-weight);
+  transition: background-color var(--pico-transition), border-color var(--pico-transition), color var(--pico-transition), box-shadow var(--pico-transition);
+  box-sizing: border-box;
+  background-repeat: no-repeat;
+  margin-bottom: var(--pico-spacing);
+}
+
+:host(:not([readonly]):is(:active, :focus)) select {
+  --pico-background-color: var(--pico-form-element-active-background-color);
+  --pico-border-color: var(--pico-form-element-active-border-color);
+}
+
+:host(:not([readonly]):focus) select {
+  --pico-box-shadow: 0 0 0 var(--pico-outline-width) var(--pico-form-element-focus-color);
+}
+
+:host(:disabled) select {
+  opacity: var(--pico-form-element-disabled-opacity);
+}
+
+:host(:disabled) select,
+:host(:state(readonly)) select {
+  pointer-events: none;
+}
+
+:host(:invalid) select {
+  color: var(--pico-form-element-placeholder-color);
+  opacity: 1;
+}
+
+:host([aria-invalid]) select {
+  padding-right: calc(var(--pico-form-element-spacing-horizontal) + 1.5rem) !important;
+  padding-left: var(--pico-form-element-spacing-horizontal);
+  padding-inline-start: var(--pico-form-element-spacing-horizontal) !important;
+  padding-inline-end: calc(var(--pico-form-element-spacing-horizontal) + 1.5rem) !important;
+  background-position: center right 0.75rem;
+  background-size: 1rem auto;
+  background-repeat: no-repeat;
+}
+:host([aria-invalid=false]) select {
+  --pico-border-color: var(--pico-form-element-valid-border-color);
+}
+:host([aria-invalid=false]:is(:active, :focus)) select {
+  --pico-border-color: var(--pico-form-element-valid-active-border-color) !important;
+  --pico-box-shadow: 0 0 0 var(--pico-outline-width) var(--pico-form-element-valid-focus-color) !important;
+}
+:host([aria-invalid=true]) select {
+  --pico-border-color: var(--pico-form-element-invalid-border-color);
+}
+:host([aria-invalid=true]:is(:active, :focus)) select {
+  --pico-border-color: var(--pico-form-element-invalid-active-border-color) !important;
+  --pico-box-shadow: 0 0 0 var(--pico-outline-width) var(--pico-form-element-invalid-focus-color) !important;
+}
+
+:host(:dir(rtl)) :where(input, select, textarea):not([type=checkbox], [type=radio]):is([aria-invalid], [aria-invalid=true], [aria-invalid=false]) {
+  background-position: center left 0.75rem;
+}
+
+:host(:not([multiple], [size])) select {
+  padding-right: calc(var(--pico-form-element-spacing-horizontal) + 1.5rem);
+  padding-left: var(--pico-form-element-spacing-horizontal);
+  padding-inline-start: var(--pico-form-element-spacing-horizontal);
+  padding-inline-end: calc(var(--pico-form-element-spacing-horizontal) + 1.5rem);
+  background-image: var(--pico-icon-chevron);
+  background-position: center right 0.75rem;
+  background-size: 1rem auto;
+  background-repeat: no-repeat;
+}
+:host([multiple]) option:checked {
+  background: var(--pico-form-element-selected-background-color);
+  color: var(--pico-form-element-color);
+}
+
+:host(:dir(rtl):not([multiple], [size])) select {
+  background-position: center left 0.75rem;
+}
