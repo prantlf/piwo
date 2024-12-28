@@ -1,5 +1,17 @@
 # Changes
 
+## [0.13.0](https://github.com/prantlf/piwo/compare/v0.12.0...v0.13.0) (2024-12-28)
+
+### Features
+
+* Add datalist support to piwo-input ([db37458](https://github.com/prantlf/piwo/commit/db3745816dfebdd428520dd064b2ba5486a9e778))
+* Add piwo-select ([0a08959](https://github.com/prantlf/piwo/commit/0a08959368067b126e93e63460ebe3baa7a4845a))
+* Add input[type=range] ([a36e103](https://github.com/prantlf/piwo/commit/a36e103dc91998449400346f44656f4975e3e4a2))
+* Add input[type=color] ([ba189e0](https://github.com/prantlf/piwo/commit/ba189e020c534f851d1739092496dbfad77f96ec))
+* Add input[type=search] ([a7d00d2](https://github.com/prantlf/piwo/commit/a7d00d2244b4751b7fd130617cfc4677742455a8))
+* Show ticks for ranges with datalist ([465fbc0](https://github.com/prantlf/piwo/commit/465fbc08661c03eb2b14da3b8f10fe8ecb5613df))
+* Add input[type=file] ([1c28e04](https://github.com/prantlf/piwo/commit/1c28e042eccda3622d84156157dcd8e22d26fe2c))
+
 ## [0.12.0](https://github.com/prantlf/piwo/compare/v0.11.0...v0.12.0) (2024-12-26)
 
 ### Features
