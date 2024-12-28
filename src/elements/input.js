@@ -32,6 +32,7 @@ class PiWoInput extends FieldMixin(InteractiveMixin(ShadowMixin(InternalsMixin(A
     },
     describeerror: { type: 'boolean', property: 'describeError', reflect: true },
     focuserror: { type: 'boolean', property: 'focusError', reflect: true },
+    ticks: { type: 'boolean', state: true, reflect: true },
     name: { type: 'string', reflect: true },
     type: {
       type: 'string', reflect: true,
@@ -174,6 +175,7 @@ class PiWoInput extends FieldMixin(InteractiveMixin(ShadowMixin(InternalsMixin(A
     if (dataOrigin?.tagName === 'DATALIST') {
       const dataList = dataOrigin.cloneNode(true)
       dataList.id = 'data'
+      dataList.style.setProperty('--option-count', dataList.options.length)
       if (this.#dataList) {
         this.shadowRoot.replaceChild(dataList, this.#dataList)
       } else {
