@@ -28,6 +28,21 @@ input {
   background-repeat: no-repeat;
 }
 
+:host([type=color]) input::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+:host([type=color]) input::-moz-focus-inner {
+  padding: 0;
+}
+:host([type=color]) input::-webkit-color-swatch {
+  border: 0;
+  border-radius: calc(var(--pico-border-radius) * 0.5);
+}
+:host([type=color]) input::-moz-color-swatch {
+  border: 0;
+  border-radius: calc(var(--pico-border-radius) * 0.5);
+}
+
 :host(:not([type=range])) input {
   height: calc(1rem * var(--pico-line-height) + var(--pico-form-element-spacing-vertical) * 2 + var(--pico-border-width) * 2);
   appearance: none;
