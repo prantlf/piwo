@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset=utf-8>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="icon" href="data:image/png;base64,iVBORw0KGgo=">
+  <title>PiWo Search</title>
+</head>
+
+<body>
+  <piwo-container>
+    <header>
+      <piwo-h level="1">PiWo Search</piwo-h>
+      <piwo-p>Demo of Pico Web Components. Provide a query for searching.</piwo-p>
+    </header>
+
+    <main>
+      <form id="search">
+        <piwo-label for="query">Query:</piwo-label>
+        <piwo-input name="query" type="search" placeholder="Type the query to search"
+                    id="query" aria-describedby="query-msg"
+                    required describeerror focuserror></piwo-input>
+        <piwo-small id="query-msg"></piwo-small>
+
+        <piwo-button>Submit</piwo-button>
+        <piwo-button type="reset" outline>Reset</piwo-button>
+      </form>
+    </main>
+    <footer>
+      <piwo-hr></piwo-hr>
+      <piwo-small>PiWo {version} © 2024 Ferdinand Prantl, see the <piwo-link href="https://github.com/prantlf/piwo" target="_blank">project on GitHub</piwo-link></piwo-small>
+    </footer>
+  </piwo-container>
+
+  <script type="module">
+    import { registerField, registerForm } from './event-logger.js'
+    registerField('piwo-input')
+    registerForm('search')
+  </script>
+
+  <script src="../dist/index.mjs" type="module"></script>
+</body>
+</html>

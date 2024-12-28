@@ -48,7 +48,6 @@ input {
   appearance: none;
   padding: var(--pico-form-element-spacing-vertical) var(--pico-form-element-spacing-horizontal);
 }
-
 :host([type=range]) input {
   accent-color: var(--pico-primary);
   padding: 0;
@@ -72,7 +71,7 @@ input {
   background-color: var(--pico-range-border-color);
   transition: background-color var(--pico-transition), box-shadow var(--pico-transition);
 }
-:host([type=range])::-webkit-slider-thumb {
+:host([type=range]) input::-webkit-slider-thumb {
   width: 1.25rem;
   height: 1.25rem;
   margin-top: -0.4375rem;
@@ -82,7 +81,7 @@ input {
   cursor: pointer;
   transition: background-color var(--pico-transition), transform var(--pico-transition);
 }
-:host([type=range])::-moz-range-thumb {
+:host([type=range]) input::-moz-range-thumb {
   width: 1.25rem;
   height: 1.25rem;
   margin-top: -0.4375rem;
@@ -93,15 +92,45 @@ input {
   -moz-transition: background-color var(--pico-transition), transform var(--pico-transition);
   transition: background-color var(--pico-transition), transform var(--pico-transition);
 }
-:host([type=range]:is(:active, :focus-within)) {
+:host([type=range]:is(:active, :focus-within)) input {
   --pico-range-border-color: var(--pico-range-active-border-color);
   --pico-range-thumb-color: var(--pico-range-thumb-active-color);
 }
-:host([type=range]:active)::-webkit-slider-thumb {
+:host([type=range]:active) input::-webkit-slider-thumb {
   transform: scale(1.25);
 }
-:host([type=range]:active)::-moz-range-thumb {
+:host([type=range]:active) input::-moz-range-thumb {
   transform: scale(1.25);
+}
+
+:host([type=search]) input {
+  --pico-border-radius: 5rem;
+  appearance: textfield;
+  outline-offset: -2px;
+  padding-inline-start: calc(var(--pico-form-element-spacing-horizontal) + 1.75rem);
+  background-image: var(--pico-icon-search);
+  background-position: center left calc(var(--pico-form-element-spacing-horizontal) + 0.125rem);
+  background-size: 1rem auto;
+  background-repeat: no-repeat;
+}
+:host([type=search]) input::-webkit-search-decoration {
+  appearance: none;
+}
+:host([type=search][aria-invalid]) input {
+  padding-inline-start: calc(var(--pico-form-element-spacing-horizontal) + 1.75rem) !important;
+  background-position: center left 1.125rem, center right 0.75rem;
+}
+:host([type=search][aria-invalid=false]) input {
+  background-image: var(--pico-icon-search), var(--pico-icon-valid);
+}
+:host([type=search][aria-invalid=true]) input {
+  background-image: var(--pico-icon-search), var(--pico-icon-invalid);
+}
+:host([type=search]:dir(rtl)) input {
+  background-position: center right 1.125rem;
+}
+:host([type=search][aria-invalid]:dir(rtl)) input {
+  background-position: center right 1.125rem, center left 0.75rem;
 }
 
 :host(:is([type=date], [type=datetime-local], [type=month], [type=time], [type=week])) input {
@@ -128,42 +157,42 @@ input {
     background-image: none !important;
   }
 }
-:host(:dir(rtl):is([type=date], [type=datetime-local], [type=month], [type=time], [type=week])) {
+:host(:dir(rtl):is([type=date], [type=datetime-local], [type=month], [type=time], [type=week])) input {
   text-align: right;
 }
 
-:host(:is(:active, :focus)) > input {
+:host(:is(:active, :focus)) input {
   --pico-background-color: var(--pico-form-element-active-background-color);
   --pico-border-color: var(--pico-form-element-active-border-color);
 }
 
-:host(:not([type=range]):focus) > input {
+:host(:not([type=range]):focus) input {
   --pico-box-shadow: 0 0 0 var(--pico-outline-width) var(--pico-form-element-focus-color);
 }
 
-:host(:not([type=range])[aria-invalid=false]:focus) {
+:host(:not([type=range][aria-invalid=false]):focus) input {
   --pico-box-shadow: 0 0 0 var(--pico-outline-width) var(--pico-ins-color);
 }
 
-:host(:not([type=range])[aria-invalid=true]:focus) {
+:host(:not([type=range][aria-invalid=true]):focus) input {
   --pico-box-shadow: 0 0 0 var(--pico-outline-width) var(--pico-del-color);
 }
 
-:host(:focus) > input,
-:host(:focus-visible) > input {
+:host(:focus) input,
+:host(:focus-visible) input {
   outline: none;
 }
 
-:host(:disabled) > input {
+:host(:disabled) input {
   opacity: var(--pico-form-element-disabled-opacity);
   pointer-events: none;
 }
 
-:host(:state(readonly)) > input {
+:host(:state(readonly)) input {
   border-color: var(--pico-readonly-border-color);
 }
 
-:host([aria-invalid]) > input {
+:host([aria-invalid]) input {
   padding-right: calc(var(--pico-form-element-spacing-horizontal) + 1.5rem) !important;
   padding-left: var(--pico-form-element-spacing-horizontal);
   padding-inline-start: var(--pico-form-element-spacing-horizontal) !important;
@@ -173,27 +202,27 @@ input {
   background-repeat: no-repeat;
 }
 
-:host([aria-invalid=false]) > input {
+:host([aria-invalid=false]) input {
   --pico-border-color: var(--pico-form-element-valid-border-color);
   background-image: var(--pico-icon-valid);
 }
 
-:host([aria-invalid=true]) > input {
+:host([aria-invalid=true]) input {
   --pico-border-color: var(--pico-form-element-invalid-border-color);
   background-image: var(--pico-icon-invalid);
 }
 
-:host([aria-invalid=false]:is(:active, :focus)) > input {
+:host([aria-invalid=false]:is(:active, :focus)) input {
   --pico-border-color: var(--pico-form-element-valid-active-border-color) !important;
   --pico-box-shadow: 0 0 0 var(--pico-outline-width) var(--pico-form-element-valid-focus-color) !important;
 }
 
-:host([aria-invalid=true]:is(:active, :focus)) > input {
+:host([aria-invalid=true]:is(:active, :focus)) input {
   --pico-border-color: var(--pico-form-element-invalid-active-border-color) !important;
   --pico-box-shadow: 0 0 0 var(--pico-outline-width) var(--pico-form-element-invalid-focus-color) !important;
 }
 
-:host(:dir(rtl):is([aria-invalid], [aria-invalid=true], [aria-invalid=false])) > input {
+:host(:dir(rtl):is([aria-invalid], [aria-invalid=true], [aria-invalid=false])) input {
   background-position: center left 0.75rem;
 }
 
