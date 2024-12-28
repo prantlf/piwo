@@ -1281,6 +1281,8 @@ open http://localhost:3000/piwo/
 <li>Uses a native <code>input</code> element for the editing functionality. Hides it from accessible technologies. (This may yet change.) The host element itself has the role <code>textbox</code>.</li>
 <li>Form-associated element. Can be used like <code>input[type=text]</code> and other types using a textbox for editing.</li>
 <li>Implements many attributes of the native element.</li>
+<li>Can be supplied with type-ahead values or range tick-marks in <code>datalist</code> put into a <code>data</code> sklot.</li>
+<li>Supports types <code>color</code>, <code>date</code>, <code>datetime-local</code>, <code>email</code>, <code>file</code>, <code>month</code>, <code>number</code>, <code>password</code>, <code>range</code>, <code>search</code>, <code>tel</code>, <code>text</code>, <code>time</code>, <code>url</code> and <code>week</code>.</li>
 <li>Supports events <code>click</code>, <code>beforeinput</code>, <code>input</code> and <code>change</code> including <code>preventDefault</code>.</li>
 <li>Fills the value to <code>FormData</code>.</li>
 <li>Remembers the current value for back and forth navigation in the browser.</li>
@@ -1339,8 +1341,53 @@ open http://localhost:3000/piwo/
 <piwo-textarea name="entered-review" aria-label="Review" placeholder="Write a review"
                aria-invalid="false" required>I like it.</piwo-textarea>
 </div>
-<h3>Message</h3>
-<p>Information or error message for form fields.</p>
+<h3>Select</h3>
+<p>Select form field.</p>
+<ul>
+<li>Uses a native <code>select</code> element for the selecting functionality. Hides it from accessible technologies. (This may yet change.) The host element itself has the role <code>listbox</code>.</li>
+<li>Form-associated element. Can be used like <code>select</code> with <code>option</code> and <code>optgroup</code> children.</li>
+<li>Implements many attributes of the native element.</li>
+<li>Supports events <code>click</code>, <code>beforeinput</code>, <code>input</code> and <code>change</code> including <code>preventDefault</code>.</li>
+<li>Fills the value to <code>FormData</code>.</li>
+<li>Exposes states <code>disabled</code>, <code>readonly</code> and <code>required</code> in CSS.</li>
+<li>Validates input including custom errors.</li>
+<li>Emphasises valid or invalid state if <code>aria-invalid</code> is set explicitly.</li>
+<li>Allows either showing the browser popup, or a HTML message for invalid fields, if <code>describeerror</code> is set and the last ID in <code>aria-describedby</code> points to an element with content. If the element is hidden, it&#39;ll be temporarily shown.</li>
+</ul>
+<pre><code class="language-html">
+&lt;piwo-select name="fruit"&gt;
+  &lt;option value="apples" selected&gt;Apples&lt;/option&gt;
+  &lt;option value="oranges"&gt;Oranges&lt;/option&gt;
+&lt;/piwo-select&gt;
+&lt;piwo-select name="unselected-fruit" required aria-invalid="true"&gt;
+  &lt;option value="" disabled selected hidden&gt;Select a fruit&lt;/option&gt;
+  &lt;option value="apples"&gt;Apples&lt;/option&gt;
+  &lt;option value="oranges"&gt;Oranges&lt;/option&gt;
+&lt;/piwo-select&gt;
+&lt;piwo-select name="selected-fruit" required aria-invalid="false"&gt;
+  &lt;option value="" disabled hidden&gt;Select a fruit&lt;/option&gt;
+  &lt;option value="apples"&gt;Apples&lt;/option&gt;
+  &lt;option value="oranges" selected&gt;Oranges&lt;/option&gt;
+&lt;/piwo-select&gt;
+</code></pre>
+<div class="live-code">
+<piwo-select name="fruit">
+  <option value="apples" selected>Apples</option>
+  <option value="oranges">Oranges</option>
+</piwo-select>
+<piwo-select name="unselected-fruit" required aria-invalid="true">
+  <option value="" disabled selected hidden>Select a fruit</option>
+  <option value="apples">Apples</option>
+  <option value="oranges">Oranges</option>
+</piwo-select>
+<piwo-select name="selected-fruit" required aria-invalid="false">
+  <option value="" disabled hidden>Select a fruit</option>
+  <option value="apples">Apples</option>
+  <option value="oranges" selected>Oranges</option>
+</piwo-select>
+</div>
+<h3>Small</h3>
+<p>Small text, which serves as an information or error message for form fields.</p>
 <ul>
 <li>Lightweight - only a slot for inner content. The host element has no role.</li>
 <li>Multi-purpose. Information message can be temporarily replaced by the error message.</li>
@@ -1445,7 +1492,9 @@ open http://localhost:3000/piwo/
 <piwo-spacer factor="1.5"></piwo-spacer>
 </div>
 <h2>Findings</h2>
-<p>Most of the problems found when implementing the custom elements were solved by adding custom code. Only Submitter and Validity Anchor have ugly workarounds.</p>
+<p>Most of the problems found when implementing the custom elements were solved by adding custom code. Only Submitter and Validity Anchor have ugly workarounds. Wrapping elements with children like <code>select</code> or <code>datalist</code> is problematic, involving element clones.</p>
+<h3>Wrapping</h3>
+<p>Wrapping of native elements should be avoided, because they require a specific element structure (for example, <code>select</code> - <code>option</code> relation), or references by the <code>ID</code> attribute (for example, <code>input</code> - <code>datalist</code>). Creating shadow DOM in a host element breaks the parent - child element relation and disallows referencing elements on the page by <code>ID</code>. A workaround is cloning or moving the elements from the main page to the shadow DOM. Luckily it&#39;s doable for data-only elements like <code>option</code> and <code>optgroup</code>.</p>
 <h3>Tab Index</h3>
 <p>Focusability of an element <a href="https://github.com/WICG/webcomponents/issues/762">cannot be declared yet</a>. The attribute <code>tabindex</code> has to be set to zero as a workaround. It makes the attribute visible on the element in DOM. Otherwise no problem.</p>
 <h3>Label</h3>
@@ -1470,7 +1519,7 @@ open http://localhost:3000/piwo/
 <p>Copyright (C) 2024 Ferdinand Prantl</p>
 <p>Licensed under the <a href="http://en.wikipedia.org/wiki/MIT_License">MIT License</a>.</p>
 <hr>
-<small>PiWo 0.12.0</small>
+<small>PiWo 0.13.0</small>
 <script type="module">
 import { registerField, registerForm } from './event-logger.js'
 registerField('piwo-input, piwo-checkbox, piwo-textarea')
