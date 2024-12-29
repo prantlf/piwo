@@ -3,7 +3,7 @@ import { InternalsMixin, internals } from '../shared/internals.js'
 import { ShadowMixin } from '../shared/shadow.js'
 import { InteractiveMixin } from '../shared/interactive.js'
 import { FieldMixin } from '../shared/field.js'
-import { ensureMessageElement, markInvalid, markValid, onDisabledChange } from '../shared/helpers.js'
+import { ensureMessageElement, markInvalid, markValid, onDisabledChange, setCustomError } from '../shared/helpers.js'
 import thisStylesheet from './input.css'
 
 const innerInput = Symbol('innerInput')

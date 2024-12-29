@@ -136,13 +136,40 @@ Button for general usage and for submitting forms.
 Label for form fields.
 
 * Lightweight - only a slot for inner content. The host element has no role.
-* Can be used just like the native label - by wrapping the field in its body, by pointing to a field by the `for` attribute, or by having the field point to it by the `aria-labelledby` attribute.
+* Can be used just like the native `label` - by wrapping the field in its body, by pointing to a field by the `for` attribute, or by having the field point to it by the `aria-labelledby` attribute.
 * Attributes and element content can be modified any time later.
 * Clicks are forwarded to the target field.
 
 ```html
 <piwo-label for="first-name">First Name:</piwo-label>
 <piwo-input name="first-name" id="first-name" type="text"></piwo-input>
+```
+
+### FieldSet
+
+Set of form fields.
+
+* Lightweight - only a slot for inner content. The host element has the role `group`.
+* Can be used just like the native `fieldset` - by wrapping a `pico-legend` and fields in its body, or by pointing to a `pico-legend` by the `aria-labelledby` attribute.
+* Attributes and element content can be modified any time later.
+
+```html
+<piwo-fieldset>
+  <piwo-legend>Personal information</piwo-legend>
+</piwo-fieldset>
+```
+
+### Legend
+
+Legend for a set of form fields.
+
+* Lightweight - only a slot for inner content. The host element has no role.
+* Can be used just like the native `legend` - by placing it to  a `pico-fieldset`, or by pointing a `piwo-fieldset` to it by the `aria-labelledby` attribute.
+
+```html
+<piwo-fieldset>
+  <piwo-legend>Personal information</piwo-legend>
+</piwo-fieldset>
 ```
 
 ### Checkbox

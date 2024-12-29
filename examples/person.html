@@ -247,8 +247,8 @@
           </piwo-select>
         </piwo-label>
 
-        <fieldset>
-          <legend>Personal information</legend>
+        <piwo-fieldset>
+          <piwo-legend>Personal information</piwo-legend>
           <piwo-label>
             Birthday:
             <piwo-input name="birthday" type="date" placeholder="Enter your birthday"></piwo-input>
@@ -266,9 +266,7 @@
             Children:
             <piwo-input name="children" type="number" placeholder="Enter how many children you have"></piwo-input>
           </piwo-label>
-        </fieldset>
-
-        <piwo-spacer></piwo-spacer>
+        </piwo-fieldset>
 
         <piwo-label>Comment:
           <piwo-textarea name="comment" placeholder="Add a comment, if you want"></piwo-textarea>
@@ -277,9 +275,9 @@
         <piwo-spacer></piwo-spacer>
 
         <piwo-label>
-          <piwo-checkbox name="i-agree" required
-                         aria-describedby="agree-msg" describeerror focuserror>
-          </piwo-checkbox>
+          <piwo-switch name="i-agree" required
+                       aria-describedby="agree-msg" describeerror focuserror>
+          </piwo-switch>
           I agree with this website collecting the information about me
         </piwo-label>
         <piwo-small id="agree-msg"></piwo-small>

@@ -1,0 +1,10 @@
+:host {
+  display: block;
+  width: 100%;
+  margin: 0;
+  margin-left: 1.5rem;
+  margin-bottom: var(--pico-spacing);
+  padding: 0;
+  border: 0;
+  font-size: inherit;
+}

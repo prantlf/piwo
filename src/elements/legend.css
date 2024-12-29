@@ -1,0 +1,10 @@
+:host {
+  max-width: 100%;
+  padding: 0;
+  white-space: normal;
+  display: block;
+  color: var(--pico-color);
+  font-weight: var(--pico-form-label-font-weight, var(--pico-font-weight));
+  margin-bottom: calc(var(--pico-spacing) * 0.5);
+  margin-left: -1.5rem;
+}
