@@ -112,7 +112,9 @@ Button for general usage and for submitting forms.
 <piwo-button>Primary</piwo-button>
 <piwo-button kind="secondary">Secondary</piwo-button>
 <piwo-button kind="contrast">Contrast</piwo-button>
+
 <br>
+
 <piwo-button outline>Primary outline</piwo-button>
 <piwo-button kind="secondary" outline>Secondary outline</piwo-button>
 <piwo-button kind="contrast" outline>Contrast outline</piwo-button>
@@ -290,16 +292,19 @@ Select form field.
   <option value="apples" selected>Apples</option>
   <option value="oranges">Oranges</option>
 </piwo-select>
+
 <piwo-select name="unselected-fruit" required aria-invalid="true">
   <option value="" disabled selected hidden>Select a fruit</option>
   <option value="apples">Apples</option>
   <option value="oranges">Oranges</option>
 </piwo-select>
+
 <piwo-select name="selected-fruit" required aria-invalid="false">
   <option value="" disabled hidden>Select a fruit</option>
   <option value="apples">Apples</option>
   <option value="oranges" selected>Oranges</option>
 </piwo-select>
+
 <piwo-select name="fruit" multiple>
   <option>Africa</option>
   <option>Antarktica</option>
@@ -343,19 +348,30 @@ Input form field.
 
 <piwo-input name="email" type="email" aria-label="E-mail address"
             placeholder="Enter an e-mail address"></piwo-input>
+
 <piwo-input name="url" type="url" aria-label="Url"
             placeholder="Enter a URL"></piwo-input>
+
 <piwo-input name="phone" type="tel" aria-label="Phone number"
             placeholder="Enter a phone number"></piwo-input>
+
 <piwo-input name="date" type="date" aria-label="Date"></piwo-input>
+
 <piwo-input name="date-time" type="datetime-local" aria-label="Date and time"></piwo-input>
+
 <piwo-input name="time" type="time" aria-label="Time"></piwo-input>
+
 <piwo-input name="month" type="month" aria-label="Month"></piwo-input>
+
 <piwo-input name="week" type="week" aria-label="Week"></piwo-input>
+
 <piwo-input name="secret" type="password" aria-label="Secret"
             placeholder="Enter your secret"></piwo-input>
+
 <piwo-input name="color" type="color" aria-label="Your favourite colour"></piwo-input>
+
 <piwo-input name="range" type="range" aria-label="Range" min="0" max="3" step="1"></piwo-input>
+
 <piwo-input name="grade" type="range" aria-label="Grade" min="1" max="3" step="1" ticks>
   <datalist slot="data">
     <option value="1">Minimum</option>
