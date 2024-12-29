@@ -1008,6 +1008,8 @@ html:not([data-theme]) #theme-toggle::before,
 <li><a href="#contributing">Contributing</a></li>
 <li><a href="#license">License</a></li>
 </ul>
+<p>See also live examples: <a href="https://prantlf.github.io/piwo/">this page with examples rendered</a>, <a href="https://prantlf.github.io/piwo/search.html">Search</a>, <a href="https://prantlf.github.io/piwo/login.html">Login</a>, <a href="https://prantlf.github.io/piwo/widget.html">Widget</a> and <a href="https://prantlf.github.io/piwo/person.html">Person</a>. A picture of the Widget form:</p>
+<p><img src="./docs/widget.png" alt="Widget Form"></p>
 <h2>Motivation</h2>
 <ul>
 <li>Prototype lightweight low-level web components, which can be used interchangeably with the native HTML elements.</li>
@@ -1028,16 +1030,7 @@ bun i --frozen-lockfile
 bun run start
 open http://localhost:8080/examples/login.html
 </code></pre>
-<p>And the GitHub pages web site:</p>
-<pre><code>cd web
-bun i --frozen-lockfile
-bun run start
-open http://localhost:3000/piwo/
-</code></pre>
 <h2>Example</h2>
-<p>Picture:</p>
-<p><img src="./docs/login.png" alt="Login Form"></p>
-<p>Markup:</p>
 <pre><code class="language-html">
 &lt;header&gt;
   &lt;piwo-h level="1"&gt;Login&lt;/piwo-h&gt;
@@ -1051,6 +1044,7 @@ open http://localhost:3000/piwo/
                 id="name" aria-describedby="name-msg"
                 required describeerror focuserror&gt;&lt;/piwo-input&gt;
     &lt;piwo-small id="name-msg"&gt;Ask the admin about your user name.&lt;/piwo-small&gt;
+
     &lt;piwo-label&gt;
       Password:
       &lt;piwo-input name="password" type="password"
@@ -1061,14 +1055,11 @@ open http://localhost:3000/piwo/
       &lt;piwo-checkbox name="remember-me"&gt;&lt;/piwo-checkbox&gt;
       Rememeber me
     &lt;/piwo-label&gt;
-    &lt;piwo-label&gt;
-      &lt;piwo-checkbox name="i-agree" required&gt;&lt;/piwo-checkbox&gt;
-      I agree with collecting my name and password
-    &lt;/piwo-label&gt;
 
     &lt;piwo-spacer&gt;&lt;/piwo-spacer&gt;
 
-    &lt;piwo-label&gt;Comment:
+    &lt;piwo-label&gt;
+      Comment:
       &lt;piwo-textarea name="comment" placeholder="Add a comment, if you want"&gt;&lt;/piwo-textarea&gt;
     &lt;/piwo-label&gt;
 
@@ -1092,6 +1083,7 @@ open http://localhost:3000/piwo/
                 id="name" aria-describedby="name-msg"
                 required describeerror focuserror></piwo-input>
     <piwo-small id="name-msg">Ask the admin about your user name.</piwo-small>
+
     <piwo-label>
       Password:
       <piwo-input name="password" type="password"
@@ -1102,14 +1094,11 @@ open http://localhost:3000/piwo/
       <piwo-checkbox name="remember-me"></piwo-checkbox>
       Rememeber me
     </piwo-label>
-    <piwo-label>
-      <piwo-checkbox name="i-agree" required></piwo-checkbox>
-      I agree with collecting my name and password
-    </piwo-label>
 
     <piwo-spacer></piwo-spacer>
 
-    <piwo-label>Comment:
+    <piwo-label>
+      Comment:
       <piwo-textarea name="comment" placeholder="Add a comment, if you want"></piwo-textarea>
     </piwo-label>
 
@@ -1153,7 +1142,7 @@ open http://localhost:3000/piwo/
 <p>Label for form fields.</p>
 <ul>
 <li>Lightweight - only a slot for inner content. The host element has no role.</li>
-<li>Can be used just like the native label - by wrapping the field in its body, by pointing to a field by the <code>for</code> attribute, or by having the field point to it by the <code>aria-labelledby</code> attribute.</li>
+<li>Can be used just like the native <code>label</code> - by wrapping the field in its body, by pointing to a field by the <code>for</code> attribute, or by having the field point to it by the <code>aria-labelledby</code> attribute.</li>
 <li>Attributes and element content can be modified any time later.</li>
 <li>Clicks are forwarded to the target field.</li>
 </ul>
@@ -1165,6 +1154,30 @@ open http://localhost:3000/piwo/
 <piwo-label for="first-name">First Name:</piwo-label>
 <piwo-input name="first-name" id="first-name" type="text"></piwo-input>
 </div>
+<h3>FieldSet</h3>
+<p>Set of form fields.</p>
+<ul>
+<li>Lightweight - only a slot for inner content. The host element has the role <code>group</code>.</li>
+<li>Can be used just like the native <code>fieldset</code> - by wrapping a <code>pico-legend</code> and fields in its body, or by pointing to a <code>pico-legend</code> by the <code>aria-labelledby</code> attribute.</li>
+<li>Attributes and element content can be modified any time later.</li>
+</ul>
+<pre><code class="language-html">
+&lt;piwo-fieldset&gt;
+  &lt;piwo-legend&gt;Personal information&lt;/piwo-legend&gt;
+&lt;/piwo-fieldset&gt;
+</code></pre>
+<div class="live-code">
+<piwo-fieldset>
+  <piwo-legend>Personal information</piwo-legend>
+</piwo-fieldset>
+</div>
+<h3>Legend</h3>
+<p>Legend for a set of form fields.</p>
+<ul>
+<li>Lightweight - only a slot for inner content. The host element has no role.</li>
+<li>Can be used just like the native <code>legend</code> - by placing it to  a <code>pico-fieldset</code>, or by pointing a <code>piwo-fieldset</code> to it by the <code>aria-labelledby</code> attribute.</li>
+</ul>
+<p>See <a href="#fieldset">FieldSet</a> for an example.</p>
 <h3>Checkbox</h3>
 <p>Checkbox form field.</p>
 <ul>
@@ -1181,19 +1194,19 @@ open http://localhost:3000/piwo/
 <li>Allows either showing the browser popup, or a HTML message for invalid fields, if <code>describeerror</code> is set and the last ID in <code>aria-describedby</code> points to an element with content. If the element is hidden, it&#39;ll be temporarily shown.</li>
 </ul>
 <pre><code class="language-html">
-&lt;div&gt;
-  &lt;piwo-checkbox id="unchecked"&gt;&lt;/piwo-checkbox&gt;
-  &lt;piwo-label for="unchecked"&gt;Unchecked&lt;/piwo-label&gt;
+&lt;piwo-checkbox id="unchecked"&gt;&lt;/piwo-checkbox&gt;
+&lt;piwo-label for="unchecked"&gt;Unchecked&lt;/piwo-label&gt;
 
-  &lt;piwo-checkbox id="checked" checked&gt;&lt;/piwo-checkbox&gt;
-  &lt;piwo-label for="checked"&gt;Checked&lt;/piwo-label&gt;
+&lt;piwo-checkbox id="checked" checked&gt;&lt;/piwo-checkbox&gt;
+&lt;piwo-label for="checked"&gt;Checked&lt;/piwo-label&gt;
 
-  &lt;piwo-checkbox id="invalid" required aria-invalid="true"&gt;&lt;/piwo-checkbox&gt;
-  &lt;piwo-label for="invalid"&gt;Invalid&lt;/piwo-label&gt;
+&lt;piwo-checkbox id="unchecked-invalid" required aria-invalid="true"&gt;&lt;/piwo-checkbox&gt;
+&lt;piwo-label for="unchecked-invalid"&gt;Invalid&lt;/piwo-label&gt;
 
-  &lt;piwo-checkbox id="valid" checked aria-invalid="false"&gt;&lt;/piwo-checkbox&gt;
-  &lt;piwo-label for="valid"&gt;Valid&lt;/piwo-label&gt;
-&lt;/div&gt;
+&lt;piwo-checkbox id="checked-valid" checked aria-invalid="false"&gt;&lt;/piwo-checkbox&gt;
+&lt;piwo-label for="checked-valid"&gt;Valid&lt;/piwo-label&gt;
+
+&lt;br&gt;&lt;br&gt;
 
 &lt;piwo-label&gt;
   &lt;piwo-checkbox indeterminate&gt;&lt;/piwo-checkbox&gt;
@@ -1201,19 +1214,19 @@ open http://localhost:3000/piwo/
 &lt;/piwo-label&gt;
 </code></pre>
 <div class="live-code">
-<div>
-  <piwo-checkbox id="unchecked"></piwo-checkbox>
-  <piwo-label for="unchecked">Unchecked</piwo-label>
+<piwo-checkbox id="unchecked"></piwo-checkbox>
+<piwo-label for="unchecked">Unchecked</piwo-label>
 
-  <piwo-checkbox id="checked" checked></piwo-checkbox>
-  <piwo-label for="checked">Checked</piwo-label>
+<piwo-checkbox id="checked" checked></piwo-checkbox>
+<piwo-label for="checked">Checked</piwo-label>
 
-  <piwo-checkbox id="invalid" required aria-invalid="true"></piwo-checkbox>
-  <piwo-label for="invalid">Invalid</piwo-label>
+<piwo-checkbox id="unchecked-invalid" required aria-invalid="true"></piwo-checkbox>
+<piwo-label for="unchecked-invalid">Invalid</piwo-label>
 
-  <piwo-checkbox id="valid" checked aria-invalid="false"></piwo-checkbox>
-  <piwo-label for="valid">Valid</piwo-label>
-</div>
+<piwo-checkbox id="checked-valid" checked aria-invalid="false"></piwo-checkbox>
+<piwo-label for="checked-valid">Valid</piwo-label>
+
+<br><br>
 
 <piwo-label>
   <piwo-checkbox indeterminate></piwo-checkbox>
@@ -1236,44 +1249,172 @@ open http://localhost:3000/piwo/
 <li>Allows either showing the browser popup, or a HTML message for invalid fields, if <code>describeerror</code> is set and the last ID in <code>aria-describedby</code> points to an element with content. If the element is hidden, it&#39;ll be temporarily shown.</li>
 </ul>
 <pre><code class="language-html">
-&lt;div&gt;
-  &lt;piwo-checkbox id="unchecked"&gt;&lt;/piwo-checkbox&gt;
-  &lt;piwo-label for="unchecked"&gt;Unchecked&lt;/piwo-label&gt;
+&lt;piwo-switch id="off"&gt;&lt;/piwo-switch&gt;
+&lt;piwo-label for="off"&gt;Off&lt;/piwo-label&gt;
 
-  &lt;piwo-checkbox id="checked" checked&gt;&lt;/piwo-checkbox&gt;
-  &lt;piwo-label for="checked"&gt;Checked&lt;/piwo-label&gt;
+&lt;piwo-switch id="on" checked&gt;&lt;/piwo-switch&gt;
+&lt;piwo-label for="on"&gt;On&lt;/piwo-label&gt;
 
-  &lt;piwo-checkbox id="invalid" required aria-invalid="true"&gt;&lt;/piwo-checkbox&gt;
-  &lt;piwo-label for="invalid"&gt;Invalid&lt;/piwo-label&gt;
+&lt;piwo-switch id="invalid-off" required aria-invalid="true"&gt;&lt;/piwo-switch&gt;
+&lt;piwo-label for="invalid-off"&gt;Invalid&lt;/piwo-label&gt;
 
-  &lt;piwo-checkbox id="valid" checked aria-invalid="false"&gt;&lt;/piwo-checkbox&gt;
-  &lt;piwo-label for="valid"&gt;Valid&lt;/piwo-label&gt;
-&lt;/div&gt;
+&lt;piwo-switch id="valid-on" checked aria-invalid="false"&gt;&lt;/piwo-switch&gt;
+&lt;piwo-label for="valid-on"&gt;Valid&lt;/piwo-label&gt;
+</code></pre>
+<div class="live-code">
+<piwo-switch id="off"></piwo-switch>
+<piwo-label for="off">Off</piwo-label>
+
+<piwo-switch id="on" checked></piwo-switch>
+<piwo-label for="on">On</piwo-label>
+
+<piwo-switch id="invalid-off" required aria-invalid="true"></piwo-switch>
+<piwo-label for="invalid-off">Invalid</piwo-label>
+
+<piwo-switch id="valid-on" checked aria-invalid="false"></piwo-switch>
+<piwo-label for="valid-on">Valid</piwo-label>
+</div>
+<h3>Radio</h3>
+<p>Radio form field.</p>
+<ul>
+<li>Lightweight - an empty element with a stylesheet. The host element itself has the role <code>radio</code>.</li>
+<li>Form-associated element. Can be used like <code>input[type=radio]</code>.</li>
+<li>Implements many attributes of the native element.</li>
+<li>Supports events <code>click</code>, <code>beforeinput</code>, <code>input</code> and <code>change</code> including <code>preventDefault</code>.</li>
+<li>Fills the value of the checked element to <code>FormData</code>.</li>
+<li>Remembers the current state for back and forth navigation in the browser.</li>
+<li>Can reset the value on form <code>reset</code>.</li>
+<li>Exposes states <code>checked</code>, <code>disabled</code>, <code>readonly</code> and <code>required</code> in CSS.</li>
+<li>Validates input including custom errors.</li>
+<li>Emphasises valid or invalid state if <code>aria-invalid</code> is set explicitly.</li>
+<li>Allows either showing the browser popup, or a HTML message for invalid fields, if <code>describeerror</code> is set and the last ID in <code>aria-describedby</code> points to an element with content. If the element is hidden, it&#39;ll be temporarily shown.</li>
+</ul>
+<pre><code class="language-html">
+&lt;piwo-label&gt;
+  &lt;piwo-radio name="marital-status" value="single" checked&gt;&lt;/piwo-radio&gt;
+  Single
+&lt;/piwo-label&gt;
+&lt;piwo-label&gt;
+  &lt;piwo-radio name="marital-status" value="married"&gt;&lt;/piwo-radio&gt;
+  Married
+&lt;/piwo-label&gt;
+
+&lt;br&gt;
 
 &lt;piwo-label&gt;
-  &lt;piwo-checkbox indeterminate&gt;&lt;/piwo-checkbox&gt;
-  Indeterminate
+  &lt;piwo-radio name="marital-status-invalid" value="single" required aria-invalid="true"&gt;&lt;/piwo-radio&gt;
+  Single
+&lt;/piwo-label&gt;
+&lt;piwo-label&gt;
+  &lt;piwo-radio name="marital-status-invalid" value="married" required&gt;&lt;/piwo-radio&gt;
+  Married
+&lt;/piwo-label&gt;
+
+&lt;br&gt;
+
+&lt;piwo-label&gt;
+  &lt;piwo-radio name="marital-status-valid" value="single" required&gt;&lt;/piwo-radio&gt;
+  Single
+&lt;/piwo-label&gt;
+&lt;piwo-label&gt;
+  &lt;piwo-radio name="marital-status-valid" value="married" checked required aria-invalid="false"&gt;&lt;/piwo-radio&gt;
+  Married
 &lt;/piwo-label&gt;
 </code></pre>
 <div class="live-code">
-<div>
-  <piwo-checkbox id="unchecked"></piwo-checkbox>
-  <piwo-label for="unchecked">Unchecked</piwo-label>
+<piwo-label>
+  <piwo-radio name="marital-status" value="single" checked></piwo-radio>
+  Single
+</piwo-label>
+<piwo-label>
+  <piwo-radio name="marital-status" value="married"></piwo-radio>
+  Married
+</piwo-label>
 
-  <piwo-checkbox id="checked" checked></piwo-checkbox>
-  <piwo-label for="checked">Checked</piwo-label>
-
-  <piwo-checkbox id="invalid" required aria-invalid="true"></piwo-checkbox>
-  <piwo-label for="invalid">Invalid</piwo-label>
-
-  <piwo-checkbox id="valid" checked aria-invalid="false"></piwo-checkbox>
-  <piwo-label for="valid">Valid</piwo-label>
-</div>
+<br>
 
 <piwo-label>
-  <piwo-checkbox indeterminate></piwo-checkbox>
-  Indeterminate
+  <piwo-radio name="marital-status-invalid" value="single" required aria-invalid="true"></piwo-radio>
+  Single
 </piwo-label>
+<piwo-label>
+  <piwo-radio name="marital-status-invalid" value="married" required></piwo-radio>
+  Married
+</piwo-label>
+
+<br>
+
+<piwo-label>
+  <piwo-radio name="marital-status-valid" value="single" required></piwo-radio>
+  Single
+</piwo-label>
+<piwo-label>
+  <piwo-radio name="marital-status-valid" value="married" checked required aria-invalid="false"></piwo-radio>
+  Married
+</piwo-label>
+</div>
+<h3>Select</h3>
+<p>Select form field.</p>
+<ul>
+<li>Uses a native <code>select</code> element for the selecting functionality. Hides it from accessible technologies. (This may yet change.) The host element itself has the role <code>listbox</code>.</li>
+<li>Form-associated element. Can be used like <code>select</code> with <code>option</code> and <code>optgroup</code> children.</li>
+<li>Implements many attributes of the native element.</li>
+<li>Supports events <code>click</code>, <code>beforeinput</code>, <code>input</code> and <code>change</code> including <code>preventDefault</code>.</li>
+<li>Fills the value to <code>FormData</code>.</li>
+<li>Exposes states <code>disabled</code>, <code>readonly</code> and <code>required</code> in CSS.</li>
+<li>Validates input including custom errors.</li>
+<li>Emphasises valid or invalid state if <code>aria-invalid</code> is set explicitly.</li>
+<li>Allows either showing the browser popup, or a HTML message for invalid fields, if <code>describeerror</code> is set and the last ID in <code>aria-describedby</code> points to an element with content. If the element is hidden, it&#39;ll be temporarily shown.</li>
+</ul>
+<pre><code class="language-html">
+&lt;piwo-select name="fruit"&gt;
+  &lt;option value="apples" selected&gt;Apples&lt;/option&gt;
+  &lt;option value="oranges"&gt;Oranges&lt;/option&gt;
+&lt;/piwo-select&gt;
+&lt;piwo-select name="unselected-fruit" required aria-invalid="true"&gt;
+  &lt;option value="" disabled selected hidden&gt;Select a fruit&lt;/option&gt;
+  &lt;option value="apples"&gt;Apples&lt;/option&gt;
+  &lt;option value="oranges"&gt;Oranges&lt;/option&gt;
+&lt;/piwo-select&gt;
+&lt;piwo-select name="selected-fruit" required aria-invalid="false"&gt;
+  &lt;option value="" disabled hidden&gt;Select a fruit&lt;/option&gt;
+  &lt;option value="apples"&gt;Apples&lt;/option&gt;
+  &lt;option value="oranges" selected&gt;Oranges&lt;/option&gt;
+&lt;/piwo-select&gt;
+&lt;piwo-select name="fruit" multiple&gt;
+  &lt;option&gt;Africa&lt;/option&gt;
+  &lt;option&gt;Antarktica&lt;/option&gt;
+  &lt;option selected&gt;Asia&lt;/option&gt;
+  &lt;option&gt;Australia and Oceania&lt;/option&gt;
+  &lt;option selected&gt;Europe&lt;/option&gt;
+  &lt;option&gt;North America&lt;/option&gt;
+  &lt;option&gt;South America&lt;/option&gt;
+&lt;/piwo-select&gt;
+</code></pre>
+<div class="live-code">
+<piwo-select name="fruit">
+  <option value="apples" selected>Apples</option>
+  <option value="oranges">Oranges</option>
+</piwo-select>
+<piwo-select name="unselected-fruit" required aria-invalid="true">
+  <option value="" disabled selected hidden>Select a fruit</option>
+  <option value="apples">Apples</option>
+  <option value="oranges">Oranges</option>
+</piwo-select>
+<piwo-select name="selected-fruit" required aria-invalid="false">
+  <option value="" disabled hidden>Select a fruit</option>
+  <option value="apples">Apples</option>
+  <option value="oranges" selected>Oranges</option>
+</piwo-select>
+<piwo-select name="fruit" multiple>
+  <option>Africa</option>
+  <option>Antarktica</option>
+  <option selected>Asia</option>
+  <option>Australia and Oceania</option>
+  <option selected>Europe</option>
+  <option>North America</option>
+  <option>South America</option>
+</piwo-select>
 </div>
 <h3>Input</h3>
 <p>Input form field.</p>
@@ -1301,6 +1442,31 @@ open http://localhost:3000/piwo/
 &lt;piwo-input name="entered-last-name" type="text" aria-label="Last name"
             placeholder="Enter your last name" aria-invalid="false"
             required value="Doe"&gt;&lt;/piwo-input&gt;
+
+&lt;br&gt;&lt;br&gt;
+
+&lt;piwo-input name="email" type="email" aria-label="E-mail address"
+            placeholder="Enter an e-mail address"&gt;&lt;/piwo-input&gt;
+&lt;piwo-input name="url" type="url" aria-label="Url"
+            placeholder="Enter a URL"&gt;&lt;/piwo-input&gt;
+&lt;piwo-input name="phone" type="tel" aria-label="Phone number"
+            placeholder="Enter a phone number"&gt;&lt;/piwo-input&gt;
+&lt;piwo-input name="date" type="date" aria-label="Date"&gt;&lt;/piwo-input&gt;
+&lt;piwo-input name="date-time" type="datetime-local" aria-label="Date and time"&gt;&lt;/piwo-input&gt;
+&lt;piwo-input name="time" type="time" aria-label="Time"&gt;&lt;/piwo-input&gt;
+&lt;piwo-input name="month" type="month" aria-label="Month"&gt;&lt;/piwo-input&gt;
+&lt;piwo-input name="week" type="week" aria-label="Week"&gt;&lt;/piwo-input&gt;
+&lt;piwo-input name="secret" type="password" aria-label="Secret"
+            placeholder="Enter your secret"&gt;&lt;/piwo-input&gt;
+&lt;piwo-input name="color" type="color" aria-label="Your favourite colour"&gt;&lt;/piwo-input&gt;
+&lt;piwo-input name="range" type="range" aria-label="Range" min="0" max="3" step="1"&gt;&lt;/piwo-input&gt;
+&lt;piwo-input name="grade" type="range" aria-label="Grade" min="1" max="3" step="1" ticks&gt;
+  &lt;datalist slot="data"&gt;
+    &lt;option value="1"&gt;Minimum&lt;/option&gt;
+    &lt;option value="2"&gt;Normal&lt;/option&gt;
+    &lt;option value="3"&gt;Maximum&lt;/option&gt;
+  &lt;/datalist&gt;
+&lt;/piwo-input&gt;
 </code></pre>
 <div class="live-code">
 <piwo-input name="last-name" type="text" aria-label="Last name"
@@ -1311,6 +1477,31 @@ open http://localhost:3000/piwo/
 <piwo-input name="entered-last-name" type="text" aria-label="Last name"
             placeholder="Enter your last name" aria-invalid="false"
             required value="Doe"></piwo-input>
+
+<br><br>
+
+<piwo-input name="email" type="email" aria-label="E-mail address"
+            placeholder="Enter an e-mail address"></piwo-input>
+<piwo-input name="url" type="url" aria-label="Url"
+            placeholder="Enter a URL"></piwo-input>
+<piwo-input name="phone" type="tel" aria-label="Phone number"
+            placeholder="Enter a phone number"></piwo-input>
+<piwo-input name="date" type="date" aria-label="Date"></piwo-input>
+<piwo-input name="date-time" type="datetime-local" aria-label="Date and time"></piwo-input>
+<piwo-input name="time" type="time" aria-label="Time"></piwo-input>
+<piwo-input name="month" type="month" aria-label="Month"></piwo-input>
+<piwo-input name="week" type="week" aria-label="Week"></piwo-input>
+<piwo-input name="secret" type="password" aria-label="Secret"
+            placeholder="Enter your secret"></piwo-input>
+<piwo-input name="color" type="color" aria-label="Your favourite colour"></piwo-input>
+<piwo-input name="range" type="range" aria-label="Range" min="0" max="3" step="1"></piwo-input>
+<piwo-input name="grade" type="range" aria-label="Grade" min="1" max="3" step="1" ticks>
+  <datalist slot="data">
+    <option value="1">Minimum</option>
+    <option value="2">Normal</option>
+    <option value="3">Maximum</option>
+  </datalist>
+</piwo-input>
 </div>
 <h3>TextArea</h3>
 <p>TextArea form field.</p>
@@ -1341,51 +1532,6 @@ open http://localhost:3000/piwo/
 <piwo-textarea name="entered-review" aria-label="Review" placeholder="Write a review"
                aria-invalid="false" required>I like it.</piwo-textarea>
 </div>
-<h3>Select</h3>
-<p>Select form field.</p>
-<ul>
-<li>Uses a native <code>select</code> element for the selecting functionality. Hides it from accessible technologies. (This may yet change.) The host element itself has the role <code>listbox</code>.</li>
-<li>Form-associated element. Can be used like <code>select</code> with <code>option</code> and <code>optgroup</code> children.</li>
-<li>Implements many attributes of the native element.</li>
-<li>Supports events <code>click</code>, <code>beforeinput</code>, <code>input</code> and <code>change</code> including <code>preventDefault</code>.</li>
-<li>Fills the value to <code>FormData</code>.</li>
-<li>Exposes states <code>disabled</code>, <code>readonly</code> and <code>required</code> in CSS.</li>
-<li>Validates input including custom errors.</li>
-<li>Emphasises valid or invalid state if <code>aria-invalid</code> is set explicitly.</li>
-<li>Allows either showing the browser popup, or a HTML message for invalid fields, if <code>describeerror</code> is set and the last ID in <code>aria-describedby</code> points to an element with content. If the element is hidden, it&#39;ll be temporarily shown.</li>
-</ul>
-<pre><code class="language-html">
-&lt;piwo-select name="fruit"&gt;
-  &lt;option value="apples" selected&gt;Apples&lt;/option&gt;
-  &lt;option value="oranges"&gt;Oranges&lt;/option&gt;
-&lt;/piwo-select&gt;
-&lt;piwo-select name="unselected-fruit" required aria-invalid="true"&gt;
-  &lt;option value="" disabled selected hidden&gt;Select a fruit&lt;/option&gt;
-  &lt;option value="apples"&gt;Apples&lt;/option&gt;
-  &lt;option value="oranges"&gt;Oranges&lt;/option&gt;
-&lt;/piwo-select&gt;
-&lt;piwo-select name="selected-fruit" required aria-invalid="false"&gt;
-  &lt;option value="" disabled hidden&gt;Select a fruit&lt;/option&gt;
-  &lt;option value="apples"&gt;Apples&lt;/option&gt;
-  &lt;option value="oranges" selected&gt;Oranges&lt;/option&gt;
-&lt;/piwo-select&gt;
-</code></pre>
-<div class="live-code">
-<piwo-select name="fruit">
-  <option value="apples" selected>Apples</option>
-  <option value="oranges">Oranges</option>
-</piwo-select>
-<piwo-select name="unselected-fruit" required aria-invalid="true">
-  <option value="" disabled selected hidden>Select a fruit</option>
-  <option value="apples">Apples</option>
-  <option value="oranges">Oranges</option>
-</piwo-select>
-<piwo-select name="selected-fruit" required aria-invalid="false">
-  <option value="" disabled hidden>Select a fruit</option>
-  <option value="apples">Apples</option>
-  <option value="oranges" selected>Oranges</option>
-</piwo-select>
-</div>
 <h3>Small</h3>
 <p>Small text, which serves as an information or error message for form fields.</p>
 <ul>
@@ -1394,6 +1540,10 @@ open http://localhost:3000/piwo/
 <li>Can be used just like the native elements - by having the field point to it by the <code>aria-describedby</code> attribute.</li>
 </ul>
 <pre><code class="language-html">
+&lt;piwo-small&gt;© 2024 Ferdinand Prantl&lt;/piwo-small&gt;
+
+&lt;br&gt;&lt;br&gt;
+
 &lt;piwo-input name="user-name" type="text" placeholder="Enter your user name"
             aria-label="User name" aria-describedby="user-name-msg"&gt;&lt;/piwo-input&gt;
 &lt;piwo-small id="user-name-msg"&gt;Ask the admin about your user name.&lt;/piwo-small&gt;
@@ -1404,6 +1554,10 @@ open http://localhost:3000/piwo/
 &lt;piwo-small id="login-name-msg"&gt;Ask the admin about your login name.&lt;/piwo-small&gt;
 </code></pre>
 <div class="live-code">
+<piwo-small>© 2024 Ferdinand Prantl</piwo-small>
+
+<br><br>
+
 <piwo-input name="user-name" type="text" placeholder="Enter your user name"
             aria-label="User name" aria-describedby="user-name-msg"></piwo-input>
 <piwo-small id="user-name-msg">Ask the admin about your user name.</piwo-small>
@@ -1419,10 +1573,10 @@ open http://localhost:3000/piwo/
 <li>Lightweight - only a slot for inner content. The host element has the <code>heading</code> role with the corresponding level.</li>
 </ul>
 <pre><code class="language-html">
-&lt;piwo-h level="1"&gt;Login&lt;/piwo-h&gt;
+&lt;piwo-h level="1"&gt;Title&lt;/piwo-h&gt;
 </code></pre>
 <div class="live-code">
-<piwo-h level="1">Login</piwo-h>
+<piwo-h level="1">Title</piwo-h>
 </div>
 <h3>Paragraph</h3>
 <p>Paragraph element.</p>
@@ -1519,7 +1673,7 @@ open http://localhost:3000/piwo/
 <p>Copyright (C) 2024 Ferdinand Prantl</p>
 <p>Licensed under the <a href="http://en.wikipedia.org/wiki/MIT_License">MIT License</a>.</p>
 <hr>
-<small>PiWo 0.13.0</small>
+<small>PiWo 0.14.0</small>
 <script type="module">
 import { registerField, registerForm } from './event-logger.js'
 registerField('piwo-input, piwo-checkbox, piwo-textarea')
