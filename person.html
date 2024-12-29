@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset=utf-8>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="icon" href="data:image/png;base64,iVBORw0KGgo=">
+  <title>PiWo Person</title>
+</head>
+
+<body>
+  <piwo-container>
+    <header>
+      <piwo-h level="1">PiWo Person</piwo-h>
+      <piwo-p>Demo of Pico Web Components. Enter information about a person.</piwo-p>
+    </header>
+
+    <main>
+      <form id="person">
+        <piwo-label for="name">Name:</piwo-label>
+        <piwo-input name="name" type="text" placeholder="Enter your first and last names"
+                    id="name" aria-describedby="name-msg"
+                    required describeerror focuserror></piwo-input>
+        <piwo-small id="name-msg">Enter your name as you want it displayed on the web pages.</piwo-small>
+
+        <piwo-label for="email">E-Mail:</piwo-label>
+        <piwo-input name="email" type="email" id="email" placeholder="Enter your e-mail"
+                    aria-describedby="email-msg" describeerror focuserror required>
+          <datalist slot="data">
+            <option>@mail.com</option>
+            <option>@gmail.com</option>
+            <option>@hotmail.com</option>
+          </datalist>
+        </piwo-input>
+        <piwo-small id="email-msg"></piwo-small>
+
+        <piwo-label>Home page:</piwo-label>
+        <piwo-input name="home-page" type="url" placeholder="Enter your home page"
+                    aria-describedby="home-msg" describeerror focuserror></piwo-input>
+        <piwo-small id="home-msg"></piwo-small>
+
+        <piwo-label>Phone:</piwo-label>
+        <piwo-input name="phone" type="tel" placeholder="Enter your phone number"
+                    aria-describedby="phone-msg" describeerror focuserror></piwo-input>
+        <piwo-small id="phone-msg"></piwo-small>
+
+        <piwo-label>
+          Country:
+          <piwo-select name="country">
+            <option value="" disabled selected hidden>Select your country</option>
+            <option>Afghanistan</option>
+            <option>Albania</option>
+            <option>Algeria</option>
+            <option>Andorra</option>
+            <option>Angola</option>
+            <option>Antigua and Barbuda</option>
+            <option>Argentina</option>
+            <option>Armenia</option>
+            <option>Australia</option>
+            <option>Austria</option>
+            <option>Azerbaijan</option>
+            <option>The Bahamas</option>
+            <option>Bahrain</option>
+            <option>Bangladesh</option>
+            <option>Barbados</option>
+            <option>Belarus</option>
+            <option>Belgium</option>
+            <option>Belize</option>
+            <option>Benin</option>
+            <option>Bhutan</option>
+            <option>Bolivia</option>
+            <option>Bosnia and Herzegovina</option>
+            <option>Botswana</option>
+            <option>Brazil</option>
+            <option>Brunei</option>
+            <option>Bulgaria</option>
+            <option>Burkina Faso</option>
+            <option>Burundi</option>
+            <option>Cabo Verde</option>
+            <option>Cambodia</option>
+            <option>Cameroon</option>
+            <option>Canada</option>
+            <option>Central African Republic</option>
+            <option>Chad</option>
+            <option>Chile</option>
+            <option>China</option>
+            <option>Colombia</option>
+            <option>Comoros</option>
+            <option>Congo, Democratic Republic of the</option>
+            <option>Congo, Republic of the</option>
+            <option>Costa Rica</option>
+            <option>Côte d’Ivoire</option>
+            <option>Croatia</option>
+            <option>Cuba</option>
+            <option>Cyprus</option>
+            <option>Czech Republic</option>
+            <option>Denmark</option>
+            <option>Djibouti</option>
+            <option>Dominica</option>
+            <option>Dominican Republic</option>
+            <option>East Timor (Timor-Leste)</option>
+            <option>Ecuador</option>
+            <option>Egypt</option>
+            <option>El Salvador</option>
+            <option>Equatorial Guinea</option>
+            <option>Eritrea</option>
+            <option>Estonia</option>
+            <option>Eswatini</option>
+            <option>Ethiopia</option>
+            <option>Fiji</option>
+            <option>Finland</option>
+            <option>France</option>
+            <option>Gabon</option>
+            <option>The Gambia</option>
+            <option>Georgia</option>
+            <option>Germany</option>
+            <option>Ghana</option>
+            <option>Greece</option>
+            <option>Grenada</option>
+            <option>Guatemala</option>
+            <option>Guinea</option>
+            <option>Guinea-Bissau</option>
+            <option>Guyana</option>
+            <option>Haiti</option>
+            <option>Honduras</option>
+            <option>Hungary</option>
+            <option>Iceland</option>
+            <option>India</option>
+            <option>Indonesia</option>
+            <option>Iran</option>
+            <option>Iraq</option>
+            <option>Ireland</option>
+            <option>Israel</option>
+            <option>Italy</option>
+            <option>Jamaica</option>
+            <option>Japan</option>
+            <option>Jordan</option>
+            <option>Kazakhstan</option>
+            <option>Kenya</option>
+            <option>Kiribati</option>
+            <option>Korea, North</option>
+            <option>Korea, South</option>
+            <option>Kosovo</option>
+            <option>Kuwait</option>
+            <option>Kyrgyzstan</option>
+            <option>Laos</option>
+            <option>Latvia</option>
+            <option>Lebanon</option>
+            <option>Lesotho</option>
+            <option>Liberia</option>
+            <option>Libya</option>
+            <option>Liechtenstein</option>
+            <option>Lithuania</option>
+            <option>Luxembourg</option>
+            <option>Madagascar</option>
+            <option>Malawi</option>
+            <option>Malaysia</option>
+            <option>Maldives</option>
+            <option>Mali</option>
+            <option>Malta</option>
+            <option>Marshall Islands</option>
+            <option>Mauritania</option>
+            <option>Mauritius</option>
+            <option>Mexico</option>
+            <option>Micronesia, Federated States of</option>
+            <option>Moldova</option>
+            <option>Monaco</option>
+            <option>Mongolia</option>
+            <option>Montenegro</option>
+            <option>Morocco</option>
+            <option>Mozambique</option>
+            <option>Myanmar (Burma)</option>
+            <option>Namibia</option>
+            <option>Nauru</option>
+            <option>Nepal</option>
+            <option>Netherlands</option>
+            <option>New Zealand</option>
+            <option>Nicaragua</option>
+            <option>Niger</option>
+            <option>Nigeria</option>
+            <option>North Macedonia</option>
+            <option>Norway</option>
+            <option>Oman</option>
+            <option>Pakistan</option>
+            <option>Palau</option>
+            <option>Panama</option>
+            <option>Papua New Guinea</option>
+            <option>Paraguay</option>
+            <option>Peru</option>
+            <option>Philippines</option>
+            <option>Poland</option>
+            <option>Portugal</option>
+            <option>Qatar</option>
+            <option>Romania</option>
+            <option>Russia</option>
+            <option>Rwanda</option>
+            <option>Saint Kitts and Nevis</option>
+            <option>Saint Lucia</option>
+            <option>Saint Vincent and the Grenadines</option>
+            <option>Samoa</option>
+            <option>San Marino</option>
+            <option>Sao Tome and Principe</option>
+            <option>Saudi Arabia</option>
+            <option>Senegal</option>
+            <option>Serbia</option>
+            <option>Seychelles</option>
+            <option>Sierra Leone</option>
+            <option>Singapore</option>
+            <option>Slovakia</option>
+            <option>Slovenia</option>
+            <option>Solomon Islands</option>
+            <option>Somalia</option>
+            <option>South Africa</option>
+            <option>Spain</option>
+            <option>Sri Lanka</option>
+            <option>Sudan</option>
+            <option>Sudan, South</option>
+            <option>Suriname</option>
+            <option>Sweden</option>
+            <option>Switzerland</option>
+            <option>Syria</option>
+            <option>Taiwan</option>
+            <option>Tajikistan</option>
+            <option>Tanzania</option>
+            <option>Thailand</option>
+            <option>Togo</option>
+            <option>Tonga</option>
+            <option>Trinidad and Tobago</option>
+            <option>Tunisia</option>
+            <option>Turkey</option>
+            <option>Turkmenistan</option>
+            <option>Tuvalu</option>
+            <option>Uganda</option>
+            <option>Ukraine</option>
+            <option>United Arab Emirates</option>
+            <option>United Kingdom</option>
+            <option>United States</option>
+            <option>Uruguay</option>
+            <option>Uzbekistan</option>
+            <option>Vanuatu</option>
+            <option>Vatican City</option>
+            <option>Venezuela</option>
+            <option>Vietnam</option>
+            <option>Yemen</option>
+            <option>Zambia</option>
+            <option>Zimbabwe</option>
+          </piwo-select>
+        </piwo-label>
+
+        <piwo-fieldset>
+          <piwo-legend>Personal information</piwo-legend>
+          <piwo-label>
+            Birthday:
+            <piwo-input name="birthday" type="date" placeholder="Enter your birthday"></piwo-input>
+          </piwo-label>
+          <piwo-label>
+            <piwo-radio name="marital-status" value="single" aria-describedby="marital-status-msg"></piwo-radio>
+            Single
+          </piwo-label>
+          <piwo-label>
+            <piwo-radio name="marital-status" value="married" aria-describedby="marital-status-msg"></piwo-radio>
+            Married
+          </piwo-label>
+          <piwo-small id="marital-status-msg">Optionally provide your official marital status.</piwo-small>
+          <piwo-label>
+            Children:
+            <piwo-input name="children" type="number" placeholder="Enter how many children you have"></piwo-input>
+          </piwo-label>
+        </piwo-fieldset>
+
+        <piwo-label>Comment:
+          <piwo-textarea name="comment" placeholder="Add a comment, if you want"></piwo-textarea>
+        </piwo-label>
+
+        <piwo-spacer></piwo-spacer>
+
+        <piwo-label>
+          <piwo-switch name="i-agree" required
+                       aria-describedby="agree-msg" describeerror focuserror>
+          </piwo-switch>
+          I agree with this website collecting the information about me
+        </piwo-label>
+        <piwo-small id="agree-msg"></piwo-small>
+
+        <piwo-spacer factor="2"></piwo-spacer>
+
+        <piwo-button>Submit</piwo-button>
+        <piwo-button type="reset" outline>Reset</piwo-button>
+      </form>
+    </main>
+    <footer>
+      <piwo-hr></piwo-hr>
+      <piwo-small>PiWo 0.14.0 © 2024 Ferdinand Prantl, go to the <piwo-link href="/piwo">website root</piwo-link> or visit the <piwo-link href="https://github.com/prantlf/piwo" target="_blank">project on GitHub</piwo-link></piwo-small>
+    </footer>
+  </piwo-container>
+
+  <script type="module">
+    import { registerField, registerForm } from './event-logger.js'
+    registerField('piwo-input, piwo-checkbox, piwo-switch, piwo-radio, piwo-select, piwo-textarea')
+    registerForm('person')
+  </script>
+
+  <script src="index.min.mjs" type="module"></script>
+</body>
+</html>
