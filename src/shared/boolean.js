@@ -8,6 +8,7 @@ import stylesheet from './boolean.css'
 
 const updateValidity = Symbol('updateValidity')
 const handleClick = Symbol('handleClick')
+const errorAnchor = Symbol('errorAnchor')
 
 const BooleanMixin = attributes => {
   class BooleanElement extends FieldMixin(InteractiveMixin(ShadowMixin(InternalsMixin(AttributesMixin(HTMLElement, {
@@ -27,16 +28,14 @@ const BooleanMixin = attributes => {
     ...attributes
   }
   }))))) {
-    #errorAnchor
-
     constructor() {
       super()
       this[internals].ariaChecked = 'false'
 
       this.shadowRoot.adoptedStyleSheets.push(stylesheet)
-      this.#errorAnchor = createErrorAnchor(this)
+      this[errorAnchor] = createErrorAnchor(this)
 
-      // this.#errorAnchor.addEventListener('focus', () => this.focus())
+      // this[errorAnchor].addEventListener('focus', () => this.focus())
       this.addEventListener('click', event => this[handleClick](event))
       this.addEventListener('keyup', event => this.#handleKeyUp(event))
     }
@@ -118,7 +117,7 @@ const BooleanMixin = attributes => {
     setCustomValidity(message) {
       // this.setAttribute('aria-errormessage', message)
       // this.ariaInvalid = 'true' / 'false'
-      setCustomError(this, this.#errorAnchor, message)
+      setCustomError(this, this[errorAnchor], message)
     }
 
     [updateValidity](keepValid) {
@@ -129,7 +128,7 @@ const BooleanMixin = attributes => {
       }
       if (this.required && !this.checked) {
         this[internals].setValidity({ valueMissing: true },
-          'Please check this box if you want to proceed.', this.#errorAnchor)
+          'Please check this box if you want to proceed.', this[errorAnchor])
         if (this.getAttribute('aria-invalid') === 'true') {
           markInvalid(this)
         }
@@ -144,4 +143,4 @@ const BooleanMixin = attributes => {
   return BooleanElement
 }
 
-export { BooleanMixin, updateValidity, handleClick }
+export { BooleanMixin, updateValidity, handleClick, errorAnchor }

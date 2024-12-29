@@ -49,3 +49,17 @@
   --pico-border-color: var(--pico-switch-checked-background-color);
   background-image: none;
 }
+
+:host([aria-invalid=false]:state(checked)),
+:host([aria-invalid=false]:state(checked):active),
+:host([aria-invalid=false]:state(checked):focus) {
+  --pico-background-color: var(--pico-form-element-valid-border-color);
+  --pico-border-color: var(--pico-form-element-valid-border-color);
+}
+
+:host([aria-invalid=true]:state(checked)),
+:host([aria-invalid=true]:state(checked):active),
+:host([aria-invalid=true]:state(checked):focus) {
+  --pico-background-color: var(--pico-form-element-invalid-border-color);
+  --pico-border-color: var(--pico-form-element-invalid-border-color);
+}

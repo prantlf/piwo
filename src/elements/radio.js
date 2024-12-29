@@ -1,4 +1,4 @@
-import { BooleanMixin, updateValidity, handleClick } from '../shared/boolean.js'
+import { BooleanMixin, updateValidity, handleClick, errorAnchor } from '../shared/boolean.js'
 import { internals } from '../shared/internals.js'
 import { ensureMessageElement, markValid } from '../shared/helpers.js'
 import thisStylesheet from './radio.css'
@@ -51,15 +51,42 @@ class PiWoRadio extends BooleanMixin({
     } else {
       this[internals].setFormValue(null)
     }
+
+    const required = getRequiredRadios(this)
+    if (required.length) {
+      const checked = getCheckedRadios(this)
+      if (!checked.length) {
+        this[internals].setValidity({ valueMissing: true },
+          'Please check one of these boxes if you want to proceed.', this[errorAnchor])
+        if (this.getAttribute('aria-invalid') === 'true') {
+          markInvalid(this)
+        }
+        return
+      }
+    }
+
     this[internals].setValidity({})
     this.ariaInvalid = keepValid ? 'false': null
     markValid(this)
   }
 }
 
-function uncheckOtherRadio(radio) {
+function getRequiredRadios(radio) {
+  return getRadios(radio, '[required]')
+}
+
+function getCheckedRadios(radio) {
+  return getRadios(radio, ':state(checked)')
+}
+
+function getRadios(radio, state) {
   const source = radio.form ?? document
-  const radios = source.querySelectorAll(`piwo-radio[name="${radio.name}"]:state(checked)`)
+  const radios = source.querySelectorAll(`piwo-radio[name="${radio.name}"]${state}`)
+  return radios
+}
+
+function uncheckOtherRadio(radio) {
+  const radios = getCheckedRadios(this)
   for (const otherRadio of radios) {
     if (otherRadio === radio) continue
     otherRadio.checked = false
