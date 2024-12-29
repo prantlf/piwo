@@ -19,6 +19,10 @@ Styles aren't cleaned up yet. It's just a copy of a part of [Pico CSS]. Refactor
 * [Contributing](#contributing)
 * [License](#license)
 
+See also live examples: [this page with examples rendered](https://prantlf.github.io/piwo/), [Search](https://prantlf.github.io/piwo/search.html), [Login](https://prantlf.github.io/piwo/login.html), [Widget](https://prantlf.github.io/piwo/widget.html) and [Person](https://prantlf.github.io/piwo/person.html). A picture of the Widget form:
+
+![Widget Form](./docs/widget.png)
+
 ## Motivation
 
 * Prototype lightweight low-level web components, which can be used interchangeably with the native HTML elements.
@@ -49,22 +53,7 @@ bun run start
 open http://localhost:8080/examples/login.html
 ```
 
-And the GitHub pages web site:
-
-```
-cd web
-bun i --frozen-lockfile
-bun run start
-open http://localhost:3000/piwo/
-```
-
 ## Example
-
-Picture:
-
-![Login Form](./docs/login.png)
-
-Markup:
 
 ```html
 <header>
@@ -79,6 +68,7 @@ Markup:
                 id="name" aria-describedby="name-msg"
                 required describeerror focuserror></piwo-input>
     <piwo-small id="name-msg">Ask the admin about your user name.</piwo-small>
+
     <piwo-label>
       Password:
       <piwo-input name="password" type="password"
@@ -89,14 +79,11 @@ Markup:
       <piwo-checkbox name="remember-me"></piwo-checkbox>
       Rememeber me
     </piwo-label>
-    <piwo-label>
-      <piwo-checkbox name="i-agree" required></piwo-checkbox>
-      I agree with collecting my name and password
-    </piwo-label>
 
     <piwo-spacer></piwo-spacer>
 
-    <piwo-label>Comment:
+    <piwo-label>
+      Comment:
       <piwo-textarea name="comment" placeholder="Add a comment, if you want"></piwo-textarea>
     </piwo-label>
 
@@ -166,11 +153,7 @@ Legend for a set of form fields.
 * Lightweight - only a slot for inner content. The host element has no role.
 * Can be used just like the native `legend` - by placing it to  a `pico-fieldset`, or by pointing a `piwo-fieldset` to it by the `aria-labelledby` attribute.
 
-```html
-<piwo-fieldset>
-  <piwo-legend>Personal information</piwo-legend>
-</piwo-fieldset>
-```
+See [FieldSet](#fieldset) for an example.
 
 ### Checkbox
 
@@ -189,19 +172,19 @@ Checkbox form field.
 * Allows either showing the browser popup, or a HTML message for invalid fields, if `describeerror` is set and the last ID in `aria-describedby` points to an element with content. If the element is hidden, it'll be temporarily shown.
 
 ```html
-<div>
-  <piwo-checkbox id="unchecked"></piwo-checkbox>
-  <piwo-label for="unchecked">Unchecked</piwo-label>
+<piwo-checkbox id="unchecked"></piwo-checkbox>
+<piwo-label for="unchecked">Unchecked</piwo-label>
 
-  <piwo-checkbox id="checked" checked></piwo-checkbox>
-  <piwo-label for="checked">Checked</piwo-label>
+<piwo-checkbox id="checked" checked></piwo-checkbox>
+<piwo-label for="checked">Checked</piwo-label>
 
-  <piwo-checkbox id="invalid" required aria-invalid="true"></piwo-checkbox>
-  <piwo-label for="invalid">Invalid</piwo-label>
+<piwo-checkbox id="unchecked-invalid" required aria-invalid="true"></piwo-checkbox>
+<piwo-label for="unchecked-invalid">Invalid</piwo-label>
 
-  <piwo-checkbox id="valid" checked aria-invalid="false"></piwo-checkbox>
-  <piwo-label for="valid">Valid</piwo-label>
-</div>
+<piwo-checkbox id="checked-valid" checked aria-invalid="false"></piwo-checkbox>
+<piwo-label for="checked-valid">Valid</piwo-label>
+
+<br><br>
 
 <piwo-label>
   <piwo-checkbox indeterminate></piwo-checkbox>
@@ -226,77 +209,66 @@ Switch form field.
 * Allows either showing the browser popup, or a HTML message for invalid fields, if `describeerror` is set and the last ID in `aria-describedby` points to an element with content. If the element is hidden, it'll be temporarily shown.
 
 ```html
-<div>
-  <piwo-checkbox id="unchecked"></piwo-checkbox>
-  <piwo-label for="unchecked">Unchecked</piwo-label>
+<piwo-switch id="off"></piwo-switch>
+<piwo-label for="off">Off</piwo-label>
 
-  <piwo-checkbox id="checked" checked></piwo-checkbox>
-  <piwo-label for="checked">Checked</piwo-label>
+<piwo-switch id="on" checked></piwo-switch>
+<piwo-label for="on">On</piwo-label>
 
-  <piwo-checkbox id="invalid" required aria-invalid="true"></piwo-checkbox>
-  <piwo-label for="invalid">Invalid</piwo-label>
+<piwo-switch id="invalid-off" required aria-invalid="true"></piwo-switch>
+<piwo-label for="invalid-off">Invalid</piwo-label>
 
-  <piwo-checkbox id="valid" checked aria-invalid="false"></piwo-checkbox>
-  <piwo-label for="valid">Valid</piwo-label>
-</div>
+<piwo-switch id="valid-on" checked aria-invalid="false"></piwo-switch>
+<piwo-label for="valid-on">Valid</piwo-label>
+```
+
+### Radio
+
+Radio form field.
+
+* Lightweight - an empty element with a stylesheet. The host element itself has the role `radio`.
+* Form-associated element. Can be used like `input[type=radio]`.
+* Implements many attributes of the native element.
+* Supports events `click`, `beforeinput`, `input` and `change` including `preventDefault`.
+* Fills the value of the checked element to `FormData`.
+* Remembers the current state for back and forth navigation in the browser.
+* Can reset the value on form `reset`.
+* Exposes states `checked`, `disabled`, `readonly` and `required` in CSS.
+* Validates input including custom errors.
+* Emphasises valid or invalid state if `aria-invalid` is set explicitly.
+* Allows either showing the browser popup, or a HTML message for invalid fields, if `describeerror` is set and the last ID in `aria-describedby` points to an element with content. If the element is hidden, it'll be temporarily shown.
+
+```html
+<piwo-label>
+  <piwo-radio name="marital-status" value="single" checked></piwo-radio>
+  Single
+</piwo-label>
+<piwo-label>
+  <piwo-radio name="marital-status" value="married"></piwo-radio>
+  Married
+</piwo-label>
+
+<br>
 
 <piwo-label>
-  <piwo-checkbox indeterminate></piwo-checkbox>
-  Indeterminate
+  <piwo-radio name="marital-status-invalid" value="single" required aria-invalid="true"></piwo-radio>
+  Single
 </piwo-label>
-```
+<piwo-label>
+  <piwo-radio name="marital-status-invalid" value="married" required></piwo-radio>
+  Married
+</piwo-label>
 
-### Input
+<br>
 
-Input form field.
-
-* Uses a native `input` element for the editing functionality. Hides it from accessible technologies. (This may yet change.) The host element itself has the role `textbox`.
-* Form-associated element. Can be used like `input[type=text]` and other types using a textbox for editing.
-* Implements many attributes of the native element.
-* Can be supplied with type-ahead values or range tick-marks in `datalist` put into a `data` sklot.
-* Supports types `color`, `date`, `datetime-local`, `email`, `file`, `month`, `number`, `password`, `range`, `search`, `tel`, `text`, `time`, `url` and `week`.
-* Supports events `click`, `beforeinput`, `input` and `change` including `preventDefault`.
-* Fills the value to `FormData`.
-* Remembers the current value for back and forth navigation in the browser.
-* Can reset the value on form `reset`.
-* Exposes states `disabled`, `empty`, `readonly` and `required` in CSS.
-* Validates input including custom errors.
-* Emphasises valid or invalid state if `aria-invalid` is set explicitly.
-* Allows either showing the browser popup, or a HTML message for invalid fields, if `describeerror` is set and the last ID in `aria-describedby` points to an element with content. If the element is hidden, it'll be temporarily shown.
-
-```html
-<piwo-input name="last-name" type="text" aria-label="Last name"
-            placeholder="Enter your last name"></piwo-input>
-<piwo-input name="missing-last-name" type="text" aria-label="Last name"
-            placeholder="Enter your last name" aria-invalid="true"
-            required></piwo-input>
-<piwo-input name="entered-last-name" type="text" aria-label="Last name"
-            placeholder="Enter your last name" aria-invalid="false"
-            required value="Doe"></piwo-input>
-```
-
-### TextArea
-
-TextArea form field.
-
-* Lightweight - only a slot for the edited text. The host element itself has the role `textbox`.
-* Form-associated element. Can be used like `textarea`.
-* Implements many attributes of the native element.
-* Supports events `beforeinput`, `input` and `change` including `preventDefault`.
-* Fills the value to `FormData`.
-* Remembers the current value for back and forth navigation in the browser.
-* Can reset the value on form `reset`.
-* Exposes states `disabled`, `empty`, `readonly` and `required` in CSS.
-* Validates input including custom errors.
-* Emphasises valid or invalid state if `aria-invalid` is set explicitly.
-* Allows either showing the browser popup, or a HTML message for invalid fields, if `describeerror` is set and the last ID in `aria-describedby` points to an element with content. If the element is hidden, it'll be temporarily shown.
-
-```html
-<piwo-textarea name="review" aria-label="Review" placeholder="Write a review"></piwo-textarea>
-<piwo-textarea name="missing-review" aria-label="Review" placeholder="Write a review"
-               aria-invalid="true" required></piwo-textarea>
-<piwo-textarea name="entered-review" aria-label="Review" placeholder="Write a review"
-               aria-invalid="false" required>I like it.</piwo-textarea>
+<piwo-label>
+  <piwo-radio name="marital-status-valid" value="single" required></piwo-radio>
+  Single
+</piwo-label>
+<piwo-label>
+  <piwo-radio name="marital-status-valid" value="married" checked required aria-invalid="false"></piwo-radio>
+  Married
+</piwo-label>
 ```
 
 ### Select
@@ -328,6 +300,93 @@ Select form field.
   <option value="apples">Apples</option>
   <option value="oranges" selected>Oranges</option>
 </piwo-select>
+<piwo-select name="fruit" multiple>
+  <option>Africa</option>
+  <option>Antarktica</option>
+  <option selected>Asia</option>
+  <option>Australia and Oceania</option>
+  <option selected>Europe</option>
+  <option>North America</option>
+  <option>South America</option>
+</piwo-select>
+```
+
+### Input
+
+Input form field.
+
+* Uses a native `input` element for the editing functionality. Hides it from accessible technologies. (This may yet change.) The host element itself has the role `textbox`.
+* Form-associated element. Can be used like `input[type=text]` and other types using a textbox for editing.
+* Implements many attributes of the native element.
+* Can be supplied with type-ahead values or range tick-marks in `datalist` put into a `data` sklot.
+* Supports types `color`, `date`, `datetime-local`, `email`, `file`, `month`, `number`, `password`, `range`, `search`, `tel`, `text`, `time`, `url` and `week`.
+* Supports events `click`, `beforeinput`, `input` and `change` including `preventDefault`.
+* Fills the value to `FormData`.
+* Remembers the current value for back and forth navigation in the browser.
+* Can reset the value on form `reset`.
+* Exposes states `disabled`, `empty`, `readonly` and `required` in CSS.
+* Validates input including custom errors.
+* Emphasises valid or invalid state if `aria-invalid` is set explicitly.
+* Allows either showing the browser popup, or a HTML message for invalid fields, if `describeerror` is set and the last ID in `aria-describedby` points to an element with content. If the element is hidden, it'll be temporarily shown.
+
+```html
+<piwo-input name="last-name" type="text" aria-label="Last name"
+            placeholder="Enter your last name"></piwo-input>
+<piwo-input name="missing-last-name" type="text" aria-label="Last name"
+            placeholder="Enter your last name" aria-invalid="true"
+            required></piwo-input>
+<piwo-input name="entered-last-name" type="text" aria-label="Last name"
+            placeholder="Enter your last name" aria-invalid="false"
+            required value="Doe"></piwo-input>
+
+<br><br>
+
+<piwo-input name="email" type="email" aria-label="E-mail address"
+            placeholder="Enter an e-mail address"></piwo-input>
+<piwo-input name="url" type="url" aria-label="Url"
+            placeholder="Enter a URL"></piwo-input>
+<piwo-input name="phone" type="tel" aria-label="Phone number"
+            placeholder="Enter a phone number"></piwo-input>
+<piwo-input name="date" type="date" aria-label="Date"></piwo-input>
+<piwo-input name="date-time" type="datetime-local" aria-label="Date and time"></piwo-input>
+<piwo-input name="time" type="time" aria-label="Time"></piwo-input>
+<piwo-input name="month" type="month" aria-label="Month"></piwo-input>
+<piwo-input name="week" type="week" aria-label="Week"></piwo-input>
+<piwo-input name="secret" type="password" aria-label="Secret"
+            placeholder="Enter your secret"></piwo-input>
+<piwo-input name="color" type="color" aria-label="Your favourite colour"></piwo-input>
+<piwo-input name="range" type="range" aria-label="Range" min="0" max="3" step="1"></piwo-input>
+<piwo-input name="grade" type="range" aria-label="Grade" min="1" max="3" step="1" ticks>
+  <datalist slot="data">
+    <option value="1">Minimum</option>
+    <option value="2">Normal</option>
+    <option value="3">Maximum</option>
+  </datalist>
+</piwo-input>
+```
+
+### TextArea
+
+TextArea form field.
+
+* Lightweight - only a slot for the edited text. The host element itself has the role `textbox`.
+* Form-associated element. Can be used like `textarea`.
+* Implements many attributes of the native element.
+* Supports events `beforeinput`, `input` and `change` including `preventDefault`.
+* Fills the value to `FormData`.
+* Remembers the current value for back and forth navigation in the browser.
+* Can reset the value on form `reset`.
+* Exposes states `disabled`, `empty`, `readonly` and `required` in CSS.
+* Validates input including custom errors.
+* Emphasises valid or invalid state if `aria-invalid` is set explicitly.
+* Allows either showing the browser popup, or a HTML message for invalid fields, if `describeerror` is set and the last ID in `aria-describedby` points to an element with content. If the element is hidden, it'll be temporarily shown.
+
+```html
+<piwo-textarea name="review" aria-label="Review" placeholder="Write a review"></piwo-textarea>
+<piwo-textarea name="missing-review" aria-label="Review" placeholder="Write a review"
+               aria-invalid="true" required></piwo-textarea>
+<piwo-textarea name="entered-review" aria-label="Review" placeholder="Write a review"
+               aria-invalid="false" required>I like it.</piwo-textarea>
 ```
 
 ### Small
@@ -339,6 +398,10 @@ Small text, which serves as an information or error message for form fields.
 * Can be used just like the native elements - by having the field point to it by the `aria-describedby` attribute.
 
 ```html
+<piwo-small>© 2024 Ferdinand Prantl</piwo-small>
+
+<br><br>
+
 <piwo-input name="user-name" type="text" placeholder="Enter your user name"
             aria-label="User name" aria-describedby="user-name-msg"></piwo-input>
 <piwo-small id="user-name-msg">Ask the admin about your user name.</piwo-small>
@@ -356,7 +419,7 @@ Heading element of the level 1 - 6 aligned with `h1` - `h6`.
 * Lightweight - only a slot for inner content. The host element has the `heading` role with the corresponding level.
 
 ```html
-<piwo-h level="1">Login</piwo-h>
+<piwo-h level="1">Title</piwo-h>
 ```
 
 ### Paragraph
