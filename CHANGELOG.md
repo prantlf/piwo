@@ -1,5 +1,16 @@
 # Changes
 
+## [0.14.0](https://github.com/prantlf/piwo/compare/v0.13.0...v0.14.0) (2024-12-29)
+
+### Features
+
+* Add piwo-fieldset and piwo-legend ([c92f729](https://github.com/prantlf/piwo/commit/c92f7294c5931ee7f446596e0fd2ea18fb4f2399))
+* Allow piwo-radio to be required and invalid ([842285e](https://github.com/prantlf/piwo/commit/842285ec8ad9764a1e596ac8fab5c1f0394f0d09))
+
+### Bug Fixes
+
+* Remove extra padding of input placeholder in Chrome ([8d8ec8e](https://github.com/prantlf/piwo/commit/8d8ec8e75e97411b58a97bbaf6ac85092bf30680))
+
 ## [0.13.0](https://github.com/prantlf/piwo/compare/v0.12.0...v0.13.0) (2024-12-28)
 
 ### Features
