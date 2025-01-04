@@ -91,7 +91,7 @@ class PiWoInput extends FieldMixin(InteractiveMixin(ShadowMixin(InternalsMixin(A
     value: {
       type: 'string',
       get() {
-        if (this.type === 'file') this[innerInput].value
+        if (this.type === 'file') return this[innerInput].value
       },
       set(value) {
         if (this.type !== 'file') {
