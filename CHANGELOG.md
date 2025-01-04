@@ -1,5 +1,16 @@
 # Changes
 
+## [0.15.0](https://github.com/prantlf/piwo/compare/v0.14.0...v0.15.0) (2025-01-04)
+
+### Features
+
+* Upgrade dependencies ([68d38b4](https://github.com/prantlf/piwo/commit/68d38b476ce3bb42917397eb0d5ff7e439428b4d))
+
+### Bug Fixes
+
+* Fix crash in click on radio ([20f528c](https://github.com/prantlf/piwo/commit/20f528cba519090c75d18e2a1486c54df9ed84da))
+* Fix getting input[type=file].value ([f83b305](https://github.com/prantlf/piwo/commit/f83b305e68c84ddc6dca7c21955b89e53a5fdd38))
+
 ## [0.14.0](https://github.com/prantlf/piwo/compare/v0.13.0...v0.14.0) (2024-12-29)
 
 ### Features
