@@ -86,7 +86,7 @@ function getRadios(radio, state) {
 }
 
 function uncheckOtherRadio(radio) {
-  const radios = getCheckedRadios(this)
+  const radios = getCheckedRadios(radio)
   for (const otherRadio of radios) {
     if (otherRadio === radio) continue
     otherRadio.checked = false
