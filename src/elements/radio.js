@@ -1,6 +1,6 @@
 import { BooleanMixin, updateValidity, handleClick, errorAnchor } from '../shared/boolean.js'
 import { internals } from '../shared/internals.js'
-import { ensureMessageElement, markValid } from '../shared/helpers.js'
+import { ensureMessageElement, markInvalid, markValid } from '../shared/helpers.js'
 import thisStylesheet from './radio.css'
 
 class PiWoRadio extends BooleanMixin({
