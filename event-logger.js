@@ -1,4 +1,4 @@
-import { getFormValues  } from '../dist/index.mjs'
+import { getFormValues  } from './index.min.mjs'
 
 export function registerForm(id, schema) {
   const form = document.getElementById(id)
