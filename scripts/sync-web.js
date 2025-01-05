@@ -9,6 +9,12 @@ async function copyExample(name) {
   await writeFile(`../piwo-pages/${name}.html`, content)
 }
 
+async function copyScript(name) {
+  let content = await readFile(`examples/${name}.js`, 'utf8')
+  content = content.replace('../dist/index.mjs', './index.min.mjs')
+  await writeFile(`../piwo-pages/${name}.js`, content)
+}
+
 async function writeIndex() {
   const content = await readFile('index.html', 'utf8')
   await Promise.all([
@@ -20,8 +26,8 @@ async function writeIndex() {
 await Promise.all([
   copyFile('dist/index.min.mjs', '../piwo-pages/index.min.mjs'),
   copyFile('dist/index.min.mjs.map', '../piwo-pages/index.min.mjs.map'),
-  copyFile('examples/event-logger.js', '../piwo-pages/event-logger.js'),
   writeIndex(),
+  copyScript('event-logger'),
   copyExample('login'),
   copyExample('login-schema'),
   copyExample('person'),
