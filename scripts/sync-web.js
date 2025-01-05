@@ -5,7 +5,7 @@ async function copyExample(name) {
   let content = await readFile(`examples/${name}.html`, 'utf8')
   content = content
     .replace('{version}', pkg.version)
-    .replace('../dist/index.mjs', 'index.min.mjs')
+    .replace('../dist/index.mjs', './index.min.mjs')
   await writeFile(`../piwo-pages/${name}.html`, content)
 }
 
