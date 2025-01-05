@@ -10,7 +10,7 @@ class PiWoLabel extends ShadowMixin(AttributesMixin(HTMLElement, {
     for: {
       type: 'string', property: 'htmlFor', reflect: true,
       set() {
-        this[updateLabel]() 
+        if (this.isConnected) this[updateLabel]()
       }
     }
   }
@@ -25,6 +25,12 @@ class PiWoLabel extends ShadowMixin(AttributesMixin(HTMLElement, {
 
     this.#slot.addEventListener('slotchange', () => this[updateLabel]())
     this.addEventListener('click', event => this.#handleClick(event))
+  }
+
+  // ----- life-cycle callbacks
+
+  connectedCallback() {
+    this[updateLabel]()
   }
 
   // ----- event handlers
