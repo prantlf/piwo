@@ -1,3 +1,5 @@
+import { internals } from './internals.js'
+
 export function upgradeProperty(element, name) {
   if (Object.hasOwn(element, name)) {
     const value = element[name]
