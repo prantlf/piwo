@@ -1701,95 +1701,55 @@ open http://localhost:8080/examples/login.html
 <p>Better than the native element, the custom element can support the <code>readonly</code> attribute and the <code>indeterminate</code> attribute in the markup. Great!</p>
 <h2>Form from Schema</h2>
 <p>There&#39;re methods provided to generate HTML markup for a form from <a href="https://json-schema.org/">JSON Schema</a> and <a href="http://www.alpacajs.org/">Alpaca</a> extension and for extracting an object with field values from <code>FormData</code> compliant with the schema.</p>
-<pre><code class="language-js">
-export { appendFormContent, getFormValues, registerCustomValidation } from 'piwecko'
+<pre><code class="language-js">import { appendFormContent, getFormValues, registerCustomValidation } from &#39;piwecko&#39;
 
 const data = {}
 const schema = {
   properties: {
-    name: { type: 'string', title: 'Name', required: true },
-    password: { type: 'string', title: 'Password', required: true }
+    name: { type: &#39;string&#39;, title: &#39;Name&#39;, required: true },
+    password: { type: &#39;string&#39;, title: &#39;Password&#39;, required: true }
   }
 }
 const options = {
   fields: {
-    name: { placeholder: 'Enter your login name' },
+    name: { placeholder: &#39;Enter your login name&#39; },
     password: {
-      type: 'password',
-      placeholder: 'Enter your password',
-      helper: 'The password has to be at least 8 characters long, include at least 1 lower-case letter, 1 upper-case letter and 1 number.'
+      type: &#39;password&#39;,
+      placeholder: &#39;Enter your password&#39;,
+      helper: &#39;The password has to be at least 8 characters long, &#39; +
+              &#39;include at least 1 lower-case letter, &#39; +
+              &#39;1 upper-case letter and 1 number.&#39;
     }
   }
 }
 const form = {
   buttons: {
-    submit: { title: 'Submit' },
-    reset: { title: 'Reset', type: 'reset' }
+    submit: { title: &#39;Submit&#39; },
+    reset: { title: &#39;Reset&#39;, type: &#39;reset&#39; }
   }
 }
 appendFormContent(formElement, { data, schema, options, form })
 
-registerCustomValidation(formElement, 'password', ({ value }) =&gt; {
-  if (value.length &lt; 8) return 'The password has to be at least 8 characters long.'
-  if (!/[a-z]/.test(value)) return 'The password has to include at least 1 lower-case letter.'
-  if (!/[A-Z]/.test(value)) return 'The password has to include at least 1 upper-case letter.'
-  if (!/[0-9]/.test(value)) return 'The password has to include at least 1 number.'
+registerCustomValidation(formElement, &#39;password&#39;, ({ value }) =&gt; {
+  if (value.length &lt; 8) return &#39;The password has to be at least 8 characters long.&#39;
+  if (!/[a-z]/.test(value)) return &#39;The password has to include at least 1 lower-case letter.&#39;
+  if (!/[A-Z]/.test(value)) return &#39;The password has to include at least 1 upper-case letter.&#39;
+  if (!/[0-9]/.test(value)) return &#39;The password has to include at least 1 number.&#39;
 })
 
-formElement.addEventListener('submit', event =&gt; {
+formElement.addEventListener(&#39;submit&#39;, event =&gt; {
   event.preventDefault()
   const values = getFormValues(event.target, schema)
   console.log(`Form values:`, values)
 })
 </code></pre>
-<div class="live-code">
-export { appendFormContent, getFormValues, registerCustomValidation } from 'piwecko'
-
-const data = {}
-const schema = {
-  properties: {
-    name: { type: 'string', title: 'Name', required: true },
-    password: { type: 'string', title: 'Password', required: true }
-  }
-}
-const options = {
-  fields: {
-    name: { placeholder: 'Enter your login name' },
-    password: {
-      type: 'password',
-      placeholder: 'Enter your password',
-      helper: 'The password has to be at least 8 characters long, include at least 1 lower-case letter, 1 upper-case letter and 1 number.'
-    }
-  }
-}
-const form = {
-  buttons: {
-    submit: { title: 'Submit' },
-    reset: { title: 'Reset', type: 'reset' }
-  }
-}
-appendFormContent(formElement, { data, schema, options, form })
-
-registerCustomValidation(formElement, 'password', ({ value }) => {
-  if (value.length < 8) return 'The password has to be at least 8 characters long.'
-  if (!/[a-z]/.test(value)) return 'The password has to include at least 1 lower-case letter.'
-  if (!/[A-Z]/.test(value)) return 'The password has to include at least 1 upper-case letter.'
-  if (!/[0-9]/.test(value)) return 'The password has to include at least 1 number.'
-})
-
-formElement.addEventListener('submit', event => {
-  event.preventDefault()
-  const values = getFormValues(event.target, schema)
-  console.log(`Form values:`, values)
-})
-</div>
 <h2>Contributing</h2>
 <p>In lieu of a formal styleguide, take care to maintain the existing coding style. Lint and test your code.</p>
 <h2>License</h2>
 <p>Copyright (C) 2024-2025 Ferdinand Prantl</p>
 <p>Licensed under the <a href="http://en.wikipedia.org/wiki/MIT_License">MIT License</a>.</p>
 <hr>
-<small>PiWo 0.16.0</small>
+<small>PiWo 0.16.1</small>
 <script type="module">
 import { registerField, registerForm } from './event-logger.js'
 registerField('piwo-input, piwo-checkbox, piwo-textarea')
