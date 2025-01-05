@@ -3,7 +3,6 @@
 <head>
   <meta charset=utf-8>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="icon" href="data:image/png;base64,iVBORw0KGgo=">
   <title>PiWo Person</title>
 </head>
@@ -251,28 +250,30 @@
           <piwo-legend>Personal information</piwo-legend>
           <piwo-label>
             Birthday:
-            <piwo-input name="birthday" type="date" placeholder="Enter your birthday"></piwo-input>
+            <piwo-input name="birthday" type="date"></piwo-input>
           </piwo-label>
-          <piwo-label>
-            <piwo-radio name="marital-status" value="single" aria-describedby="marital-status-msg"></piwo-radio>
-            Single
-          </piwo-label>
-          <piwo-label>
-            <piwo-radio name="marital-status" value="married" aria-describedby="marital-status-msg"></piwo-radio>
-            Married
-          </piwo-label>
-          <piwo-small id="marital-status-msg">Optionally provide your official marital status.</piwo-small>
+          <piwo-fieldset role="radiogroup" aria-describedby="marital-status-msg">
+            <piwo-legend>Marital status</piwo-legend>
+            <piwo-label>
+              <piwo-radio name="marital-status" value="single"></piwo-radio>
+              Single
+            </piwo-label>
+            <piwo-label>
+              <piwo-radio name="marital-status" value="married"></piwo-radio>
+              Married
+            </piwo-label>
+            <piwo-small id="marital-status-msg">Optionally provide your official marital status.</piwo-small>
+          </piwo-fieldset>
           <piwo-label>
             Children:
             <piwo-input name="children" type="number" placeholder="Enter how many children you have"></piwo-input>
           </piwo-label>
         </piwo-fieldset>
 
-        <piwo-label>Comment:
+        <piwo-label>
+          Comment:
           <piwo-textarea name="comment" placeholder="Add a comment, if you want"></piwo-textarea>
         </piwo-label>
-
-        <piwo-spacer></piwo-spacer>
 
         <piwo-label>
           <piwo-switch name="i-agree" required
@@ -282,7 +283,7 @@
         </piwo-label>
         <piwo-small id="agree-msg"></piwo-small>
 
-        <piwo-spacer factor="2"></piwo-spacer>
+        <piwo-spacer></piwo-spacer>
 
         <piwo-button>Submit</piwo-button>
         <piwo-button type="reset" outline>Reset</piwo-button>
