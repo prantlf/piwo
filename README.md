@@ -19,7 +19,7 @@ Styles aren't cleaned up yet. It's just a copy of a part of [Pico CSS]. Refactor
 * [Contributing](#contributing)
 * [License](#license)
 
-See also live examples: [this page with examples rendered](https://prantlf.github.io/piwo/), [Search](https://prantlf.github.io/piwo/search.html), [Login](https://prantlf.github.io/piwo/login.html), [Widget](https://prantlf.github.io/piwo/widget.html) and [Person](https://prantlf.github.io/piwo/person.html). A picture of the Widget form:
+See also live examples: [this page with examples rendered](https://prantlf.github.io/piwo/), [Search](https://prantlf.github.io/piwo/search.html), [Login](https://prantlf.github.io/piwo/login.html), [Widget](https://prantlf.github.io/piwo/widget.html) and [Person](https://prantlf.github.io/piwo/person.html). Pages initialising forms from a schema: [Search](https://prantlf.github.io/piwo/search-schema.html), [Login](https://prantlf.github.io/piwo/login-schema.html), [Widget](https://prantlf.github.io/piwo/widget-schema.html) and [Person](https://prantlf.github.io/piwo/person-schema.html). A picture of the Widget form:
 
 ![Widget Form](./docs/widget.png)
 
@@ -491,7 +491,7 @@ Inserts empty vertical space.
 * Lightweight - no content. The host element has no role.
 
 ```html
-<piwo-spacer factor="1.5"></piwo-spacer>
+<piwo-spacer></piwo-spacer>
 ```
 
 ## Findings
@@ -538,6 +538,52 @@ On the other hand, real-world forms use error placeholders referred to by `aria-
 
 Better than the native element, the custom element can support the `readonly` attribute and the `indeterminate` attribute in the markup. Great!
 
+## Form from Schema
+
+There're methods provided to generate HTML markup for a form from [JSON Schema] and [Alpaca] extension and for extracting an object with field values from `FormData` compliant with the schema.
+
+```js
+export { appendFormContent, getFormValues, registerCustomValidation } from 'piwecko'
+
+const data = {}
+const schema = {
+  properties: {
+    name: { type: 'string', title: 'Name', required: true },
+    password: { type: 'string', title: 'Password', required: true }
+  }
+}
+const options = {
+  fields: {
+    name: { placeholder: 'Enter your login name' },
+    password: {
+      type: 'password',
+      placeholder: 'Enter your password',
+      helper: 'The password has to be at least 8 characters long, include at least 1 lower-case letter, 1 upper-case letter and 1 number.'
+    }
+  }
+}
+const form = {
+  buttons: {
+    submit: { title: 'Submit' },
+    reset: { title: 'Reset', type: 'reset' }
+  }
+}
+appendFormContent(formElement, { data, schema, options, form })
+
+registerCustomValidation(formElement, 'password', ({ value }) => {
+  if (value.length < 8) return 'The password has to be at least 8 characters long.'
+  if (!/[a-z]/.test(value)) return 'The password has to include at least 1 lower-case letter.'
+  if (!/[A-Z]/.test(value)) return 'The password has to include at least 1 upper-case letter.'
+  if (!/[0-9]/.test(value)) return 'The password has to include at least 1 number.'
+})
+
+formElement.addEventListener('submit', event => {
+  event.preventDefault()
+  const values = getFormValues(event.target, schema)
+  console.log(`Form values:`, values)
+})
+```
+
 ## Contributing
 
 In lieu of a formal styleguide, take care to maintain the existing coding style. Lint and test your code.
@@ -550,3 +596,5 @@ Licensed under the [MIT License].
 
 [MIT License]: http://en.wikipedia.org/wiki/MIT_License
 [Pico CSS]: https://picocss.com/
+[JSON Schema]: https://json-schema.org/
+[Alpaca]: http://www.alpacajs.org/

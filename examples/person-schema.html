@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="data:image/png;base64,iVBORw0KGgo=">
+  <title>PiWo Person</title>
+</head>
+
+<body>
+  <piwo-container>
+    <header>
+      <piwo-h level="1">PiWo Person</piwo-h>
+      <piwo-p>Demo of Pico Web Components. Enter information about a person.</piwo-p>
+    </header>
+
+    <main>
+      <form id="person"></form>
+    </main>
+    <footer>
+      <piwo-hr></piwo-hr>
+      <piwo-small>PiWo {version} © 2024-2025 Ferdinand Prantl, go to the <piwo-link href="/piwo">website root</piwo-link> or visit the <piwo-link href="https://github.com/prantlf/piwo" target="_blank">project on GitHub</piwo-link></piwo-small>
+    </footer>
+  </piwo-container>
+
+  <script type="module">
+    import { appendFormContent, registerCustomValidation  } from '../dist/index.mjs'
+    import { registerField, registerForm } from './event-logger.js'
+
+    const schema = {
+      properties: {
+        name: {
+          type: 'string',
+          title: 'Name'
+        },
+        email: {
+          type: 'string',
+          title: 'E-mail',
+          format: 'email'
+        },
+        'home-page': {
+          type: 'string',
+          title: 'Home page',
+          format: 'uri'
+        },
+        phone: {
+          type: 'string',
+          title: 'Phone',
+          format: 'phone'
+        },
+        country: {
+          type: 'string',
+          title: 'Country',
+          enum: [
+            'Afghanistan',
+            'Albania',
+            'Algeria',
+            'Andorra',
+            'Angola',
+            'Antigua and Barbuda',
+            'Argentina',
+            'Armenia',
+            'Australia',
+            'Austria',
+            'Azerbaijan',
+            'The Bahamas',
+            'Bahrain',
+            'Bangladesh',
+            'Barbados',
+            'Belarus',
+            'Belgium',
+            'Belize',
+            'Benin',
+            'Bhutan',
+            'Bolivia',
+            'Bosnia and Herzegovina',
+            'Botswana',
+            'Brazil',
+            'Brunei',
+            'Bulgaria',
+            'Burkina Faso',
+            'Burundi',
+            'Cabo Verde',
+            'Cambodia',
+            'Cameroon',
+            'Canada',
+            'Central African Republic',
+            'Chad',
+            'Chile',
+            'China',
+            'Colombia',
+            'Comoros',
+            'Congo, Democratic Republic of the',
+            'Congo, Republic of the',
+            'Costa Rica',
+            'Côte d’Ivoire',
+            'Croatia',
+            'Cuba',
+            'Cyprus',
+            'Czech Republic',
+            'Denmark',
+            'Djibouti',
+            'Dominica',
+            'Dominican Republic',
+            'East Timor (Timor-Leste)',
+            'Ecuador',
+            'Egypt',
+            'El Salvador',
+            'Equatorial Guinea',
+            'Eritrea',
+            'Estonia',
+            'Eswatini',
+            'Ethiopia',
+            'Fiji',
+            'Finland',
+            'France',
+            'Gabon',
+            'The Gambia',
+            'Georgia',
+            'Germany',
+            'Ghana',
+            'Greece',
+            'Grenada',
+            'Guatemala',
+            'Guinea',
+            'Guinea-Bissau',
+            'Guyana',
+            'Haiti',
+            'Honduras',
+            'Hungary',
+            'Iceland',
+            'India',
+            'Indonesia',
+            'Iran',
+            'Iraq',
+            'Ireland',
+            'Israel',
+            'Italy',
+            'Jamaica',
+            'Japan',
+            'Jordan',
+            'Kazakhstan',
+            'Kenya',
+            'Kiribati',
+            'Korea, North',
+            'Korea, South',
+            'Kosovo',
+            'Kuwait',
+            'Kyrgyzstan',
+            'Laos',
+            'Latvia',
+            'Lebanon',
+            'Lesotho',
+            'Liberia',
+            'Libya',
+            'Liechtenstein',
+            'Lithuania',
+            'Luxembourg',
+            'Madagascar',
+            'Malawi',
+            'Malaysia',
+            'Maldives',
+            'Mali',
+            'Malta',
+            'Marshall Islands',
+            'Mauritania',
+            'Mauritius',
+            'Mexico',
+            'Micronesia, Federated States of',
+            'Moldova',
+            'Monaco',
+            'Mongolia',
+            'Montenegro',
+            'Morocco',
+            'Mozambique',
+            'Myanmar (Burma)',
+            'Namibia',
+            'Nauru',
+            'Nepal',
+            'Netherlands',
+            'New Zealand',
+            'Nicaragua',
+            'Niger',
+            'Nigeria',
+            'North Macedonia',
+            'Norway',
+            'Oman',
+            'Pakistan',
+            'Palau',
+            'Panama',
+            'Papua New Guinea',
+            'Paraguay',
+            'Peru',
+            'Philippines',
+            'Poland',
+            'Portugal',
+            'Qatar',
+            'Romania',
+            'Russia',
+            'Rwanda',
+            'Saint Kitts and Nevis',
+            'Saint Lucia',
+            'Saint Vincent and the Grenadines',
+            'Samoa',
+            'San Marino',
+            'Sao Tome and Principe',
+            'Saudi Arabia',
+            'Senegal',
+            'Serbia',
+            'Seychelles',
+            'Sierra Leone',
+            'Singapore',
+            'Slovakia',
+            'Slovenia',
+            'Solomon Islands',
+            'Somalia',
+            'South Africa',
+            'Spain',
+            'Sri Lanka',
+            'Sudan',
+            'Sudan, South',
+            'Suriname',
+            'Sweden',
+            'Switzerland',
+            'Syria',
+            'Taiwan',
+            'Tajikistan',
+            'Tanzania',
+            'Thailand',
+            'Togo',
+            'Tonga',
+            'Trinidad and Tobago',
+            'Tunisia',
+            'Turkey',
+            'Turkmenistan',
+            'Tuvalu',
+            'Uganda',
+            'Ukraine',
+            'United Arab Emirates',
+            'United Kingdom',
+            'United States',
+            'Uruguay',
+            'Uzbekistan',
+            'Vanuatu',
+            'Vatican City',
+            'Venezuela',
+            'Vietnam',
+            'Yemen',
+            'Zambia',
+            'Zimbabwe'
+          ]
+        },
+        personal: {
+          title: 'Personal information',
+          properties: {
+            birthday: {
+              type: 'string',
+              title: 'Birthday',
+              format: 'date'
+            },
+            'marital-status': {
+              type: 'string',
+              title: 'Marital status',
+              enum: [
+                'single',
+                'married'
+              ]
+            },
+            children: {
+              type: 'integer',
+              title: 'Children'
+            }
+          }
+        },
+        comment: {
+          type: 'string',
+          title: 'Comment'
+        },
+        'i-agree': {
+          type: 'boolean',
+          title: 'I agree with this website collecting the information about me'
+        }
+      },
+      required: ['name', 'email', 'i-agree']
+    }
+
+    const options = {
+      fields: {
+        name: {
+          placeholder: 'Enter your first and last names',
+          helper: 'Enter your name as you want it displayed on the web pages.'
+        },
+        email: {
+          placeholder: 'Enter your e-mail',
+          optionLabels: ['@mail.com', '@gmail.com', '@hotmail.com']
+        },
+        'home-page': {
+          placeholder: 'Enter your home page'
+        },
+        phone: {
+          placeholder: 'Enter your phone number',
+        },
+        country: {
+          type: 'select',
+          placeholder: 'Select your country'
+        },
+        personal: {
+          fields: {
+            'marital-status': {
+              optionLabels: [
+                'Single',
+                'Married'
+              ],
+              type: 'radio',
+              helper: 'Optionally provide your official marital status.'
+            },
+            children: {
+              placeholder: 'Enter how many children you have'
+            }
+          }
+        },
+        comment: {
+          type: 'textarea',
+          placeholder: 'Add a comment, if you want'
+        },
+        'i-agree': {
+          type: 'switch'
+        }
+      }
+    }
+
+    const form = {
+      buttons: {
+        submit: {
+          title: 'Submit'
+        },
+        reset: {
+          title: 'Reset',
+          type: 'reset'
+        }
+      }
+    }
+
+    const formEl = document.getElementById('person')
+    appendFormContent(formEl, { schema, options, form })
+
+    registerField('piwo-input, piwo-checkbox, piwo-switch, piwo-radio, piwo-select, piwo-textarea')
+    registerForm('person', schema)
+  </script>
+</body>
+</html>

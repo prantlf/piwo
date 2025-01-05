@@ -38,12 +38,6 @@ class PiWoTextArea extends FieldMixin(InteractiveMixin(ShadowMixin(InternalsMixi
 
   constructor() {
     super()
-    // try {
-    //   this.contentEditable = 'plaintext-only'
-    // } catch {
-    this.contentEditable = true
-    // }
-
     this[internals].role = 'textbox'
     this[internals].ariaMultiLine = true
 
@@ -62,6 +56,11 @@ class PiWoTextArea extends FieldMixin(InteractiveMixin(ShadowMixin(InternalsMixi
 
   connectedCallback() {
     super.connectedCallback()
+    // try {
+    //   this.contentEditable = 'plaintext-only'
+    // } catch {
+    this.contentEditable = true
+    // }
     const keepValid = this.getAttribute('aria-invalid') === 'false'
     this.value = this.defaultValue = this.textContent
     this[updateValidity](keepValid)

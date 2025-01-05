@@ -39,7 +39,7 @@ if (process.env.ROLLUP_SERVE) {
       output: [
         { file: 'dist/index.mjs', format: 'es', sourcemap: true, sourcemapPathTransform },
         { file: 'dist/index.cjs', format: 'cjs', sourcemap: true, sourcemapPathTransform },
-        { file: 'dist/index.js', format: 'iife', sourcemap: true, sourcemapPathTransform },
+        { file: 'dist/index.js', format: 'iife', name: 'piwo', sourcemap: true, sourcemapPathTransform },
       ],
       plugins: [
         sourcemaps(),
@@ -50,11 +50,49 @@ if (process.env.ROLLUP_SERVE) {
       input: 'src/index.js',
       output: [
         { file: 'dist/index.min.mjs', format: 'es', sourcemap: true, sourcemapPathTransform, plugins },
-        { file: 'dist/index.min.js', format: 'iife', sourcemap: true, sourcemapPathTransform, plugins }
+        { file: 'dist/index.min.js', format: 'iife', name: 'piwo', sourcemap: true, sourcemapPathTransform, plugins }
       ],
       plugins: [
         sourcemaps(),
         importStylesheet({ minify: true })
+      ]
+    },
+    {
+      input: 'src/elements.js',
+      output: [
+        { file: 'dist/elements.mjs', format: 'es', sourcemap: true, sourcemapPathTransform },
+        { file: 'dist/elements.cjs', format: 'cjs', sourcemap: true, sourcemapPathTransform },
+        { file: 'dist/elements.js', format: 'iife', sourcemap: true, sourcemapPathTransform },
+      ],
+      plugins: [
+        sourcemaps(),
+        importStylesheet()
+      ]
+    },
+    {
+      input: 'src/elements.js',
+      output: [
+        { file: 'dist/elements.min.mjs', format: 'es', sourcemap: true, sourcemapPathTransform, plugins },
+        { file: 'dist/elements.min.js', format: 'iife', sourcemap: true, sourcemapPathTransform, plugins }
+      ],
+      plugins: [
+        sourcemaps(),
+        importStylesheet({ minify: true })
+      ]
+    },
+    {
+      input: 'src/form.js',
+      output: [
+        { file: 'dist/form.mjs', format: 'es', sourcemap: true, sourcemapPathTransform },
+        { file: 'dist/form.cjs', format: 'cjs', sourcemap: true, sourcemapPathTransform },
+        { file: 'dist/form.js', format: 'iife', name: 'piwo', sourcemap: true, sourcemapPathTransform },
+      ]
+    },
+    {
+      input: 'src/form.js',
+      output: [
+        { file: 'dist/form.min.mjs', format: 'es', sourcemap: true, sourcemapPathTransform, plugins },
+        { file: 'dist/form.min.js', format: 'iife', name: 'piwo', sourcemap: true, sourcemapPathTransform, plugins }
       ]
     }
   ]

@@ -18,20 +18,50 @@
   "bugs": {
     "url": "http://github.com/prantlf/piwo/issues"
   },
+  "sideEffects": [
+    "dist/elements.js",
+    "dist/elements.mjs",
+    "dist/elements.cjs",
+    "dist/elements.min.js",
+    "dist/elements.min.mjs",
+    "dist/index.js",
+    "dist/index.mjs",
+    "dist/index.cjs",
+    "dist/index.min.js",
+    "dist/index.min.mjs"
+  ],
   "module": "dist/index.mjs",
   "main": "dist/index.cjs",
   "exports": {
-    "import": "./dist/index.mjs",
-    "require": "./dist/index.cjs"
+    ".": {
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs"
+    },
+    "./elements": {
+      "require": "./dist/elements.cjs",
+      "import": "./dist/src/elements.mjs"
+    },
+    "./form": {
+      "require": "./dist/form.cjs",
+      "import": "./dist/src/form.mjs"
+    },
+    "./manifest": {
+      "require": "./dist/custom-elements.json",
+      "import": "./dist/custom-elements.json"
+    }
   },
+  "customElements": "dist/custom-elements.json",
   "files": [
     "dist"
   ],
   "engines": {
-    "node": ">= 18"
+    "node": ">=18"
   },
   "scripts": {
-    "prepare": "rollup -c",
+    "prepare": "bun run build && bun run build:manifest && bun run build:vscode-intellisense",
+    "build": "rollup -c",
+    "build:manifest": "cem analyze --outdir dist",
+    "build:vscode-intellisense": "wca analyze \"src/elements/*.js\" --outFile dist/html-custom-data.json --format vscode",
     "test": "biome lint *.js src scripts examples",
     "start": "rollup -cw --environment ROLLUP_SERVE:true",
     "web": "bun run web:sync && bun run web:deploy",
@@ -43,7 +73,7 @@
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
     "marked": "^15.0.5",
-    "rollup": "^4.29.1",
+    "rollup": "^4.29.2",
     "rollup-plugin-import-stylesheet": "^1.0.0",
     "rollup-plugin-livereload": "^2.0.5",
     "rollup-plugin-serve": "2.0.0-beta.0",
@@ -60,5 +90,9 @@
   "patchedDependencies": {
     "rollup-plugin-serve@2.0.0-beta.0": "patches/rollup-plugin-serve@2.0.0-beta.0.patch"
   },
-  "keywords": []
+  "keywords": [],
+  "dependencies": {
+    "@custom-elements-manifest/analyzer": "^0.10.4",
+    "web-component-analyzer": "^2.0.0"
+  }
 }

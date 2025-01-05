@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="data:image/png;base64,iVBORw0KGgo=">
+  <title>PiWo Widget</title>
+</head>
+
+<body>
+  <piwo-container>
+    <header>
+      <piwo-h level="1">PiWo Widget</piwo-h>
+      <piwo-p>Demo of Pico Web Components. Enter information about a widget.</piwo-p>
+    </header>
+
+    <main>
+      <form id="widget"></form>
+    </main>
+    <footer>
+      <piwo-hr></piwo-hr>
+      <piwo-small>PiWo {version} © 2024-2025 Ferdinand Prantl, go to the <piwo-link href="/piwo">website root</piwo-link> or visit the <piwo-link href="https://github.com/prantlf/piwo" target="_blank">project on GitHub</piwo-link></piwo-small>
+    </footer>
+  </piwo-container>
+  <script type="module">
+    import { appendFormContent, registerCustomValidation  } from '../dist/index.mjs'
+    import { registerField, registerForm } from './event-logger.js'
+
+    const schema = {
+      properties: {
+        id: {
+          type: 'string',
+          title: 'Identifier',
+          pattern: '\\w+-\\w+'
+        },
+        color: {
+          type: 'string',
+          title: 'Background'
+        },
+        size: {
+          type: 'integer',
+          title: 'Size [px]',
+          minimum: 1,
+          maximum: 6,
+          default: 2
+        },
+        icon: {
+          type: 'file',
+          title: 'Icon'
+        }
+      },
+      required: ['id', 'icon']
+    }
+
+    const options = {
+      fields: {
+        id: {
+          placeholder: 'Enter a unique identifier: <project>-<component>',
+          helper: 'The format has to be "<project>-<component>", for example: "my-hello". Only letters and numbers are allowed.'
+        },
+        color: {
+          type: 'color'
+        },
+        size: {
+          type: 'range',
+          step: 1,
+          optionLabels: [16, 32, 64, 128, 256, 512]
+        }
+      }
+    }
+
+    const form = {
+      buttons: {
+        submit: {
+          title: 'Submit'
+        },
+        reset: {
+          title: 'Reset',
+          type: 'reset'
+        }
+      }
+    }
+
+    const formEl = document.getElementById('widget')
+    appendFormContent(formEl, { schema, options, form })
+
+    registerField('piwo-input')
+    registerForm('widget', schema)
+  </script>
+</body>
+</html>
