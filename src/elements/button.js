@@ -14,7 +14,8 @@ class PiWoButton extends InteractiveMixin(ShadowMixin(InternalsMixin(AttributesM
       }
     },
     name: { type: 'string', reflect: true },
-    type: { type: 'string', reflect: true }
+    type: { type: 'string', reflect: true },
+    outline: { type: 'string', reflect: true }
   }
 })))) {
   static get formAssociated() {
