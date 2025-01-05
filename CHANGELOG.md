@@ -1,5 +1,11 @@
 # Changes
 
+## [0.16.1](https://github.com/prantlf/piwo/compare/v0.16.0...v0.16.1) (2025-01-05)
+
+### Bug Fixes
+
+* Add missing import of markInvalid ([2cedcd9](https://github.com/prantlf/piwo/commit/2cedcd929de6937eaf53ad7fb1d6f70df2d40938))
+
 ## [0.16.0](https://github.com/prantlf/piwo/compare/v0.15.0...v0.16.0) (2025-01-05)
 
 ### Features
