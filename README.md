@@ -543,7 +543,7 @@ Better than the native element, the custom element can support the `readonly` at
 There're methods provided to generate HTML markup for a form from [JSON Schema] and [Alpaca] extension and for extracting an object with field values from `FormData` compliant with the schema.
 
 ```js
-export { appendFormContent, getFormValues, registerCustomValidation } from 'piwecko'
+import { appendFormContent, getFormValues, registerCustomValidation } from 'piwecko'
 
 const data = {}
 const schema = {
@@ -558,7 +558,9 @@ const options = {
     password: {
       type: 'password',
       placeholder: 'Enter your password',
-      helper: 'The password has to be at least 8 characters long, include at least 1 lower-case letter, 1 upper-case letter and 1 number.'
+      helper: 'The password has to be at least 8 characters long, ' +
+              'include at least 1 lower-case letter, ' +
+              '1 upper-case letter and 1 number.'
     }
   }
 }

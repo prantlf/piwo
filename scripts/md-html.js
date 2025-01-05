@@ -1035,7 +1035,7 @@ marked.use({
   extensions: [{
     name: 'code',
     renderer({ lang, text }) {
-      if (!lang || text.startsWith('<script')) return false
+      if (!lang || text.startsWith('<script') || text.startsWith('import')) return false
       return `<pre><code class="language-${lang}">
 ${escapeHtml(text)}
 </code></pre>
