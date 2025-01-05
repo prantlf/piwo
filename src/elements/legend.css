@@ -6,5 +6,5 @@
   color: var(--pico-color);
   font-weight: var(--pico-form-label-font-weight, var(--pico-font-weight));
   margin-bottom: calc(var(--pico-spacing) * 0.5);
-  margin-left: -1.5rem;
+  margin-inline-start: -1rem;
 }

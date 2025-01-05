@@ -4,7 +4,6 @@
   --pico-border-color: var(--pico-form-element-border-color);
   --pico-color: var(--pico-form-element-color);
   --pico-box-shadow: none;
-  margin: 0;
   font-size: 1rem;
   letter-spacing: inherit;
   overflow: auto;
@@ -17,7 +16,7 @@
   background-color: var(--pico-background-color);
   box-shadow: var(--pico-box-shadow);
   transition: background-color var(--pico-transition), border-color var(--pico-transition), color var(--pico-transition), box-shadow var(--pico-transition);
-  margin-bottom: var(--pico-spacing);
+  margin: 0 0 var(--pico-spacing) 0;
   display: block;
   resize: vertical;
 }

@@ -14,7 +14,6 @@ select {
   --pico-border-color: var(--pico-form-element-border-color);
   --pico-color: var(--pico-form-element-color);
   --pico-box-shadow: none;
-  margin: 0;
   font-size: 1rem;
   line-height: var(--pico-line-height);
   font-family: var(--pico-font-family);
@@ -33,7 +32,7 @@ select {
   transition: background-color var(--pico-transition), border-color var(--pico-transition), color var(--pico-transition), box-shadow var(--pico-transition);
   box-sizing: border-box;
   background-repeat: no-repeat;
-  margin-bottom: var(--pico-spacing);
+  margin: 0 0 var(--pico-spacing) 0;
 }
 
 :host(:not([readonly]):is(:active, :focus)) select {

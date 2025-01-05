@@ -4,7 +4,6 @@
   --pico-form-element-focus-color: var(--pico-primary-focus);
   --pico-outline-width: 0.0625rem;
   display: inline-block;
-  margin: 0;
   font-size: 1rem;
   letter-spacing: inherit;
   background-color: var(--pico-background-color);
@@ -14,8 +13,7 @@
   padding: 0;
   appearance: none;
   height: 1.25em;
-  margin-top: -0.25em;
-  margin-inline-end: 0.5em;
+  margin: -0.25em 0.5em 0 0;
   border-width: var(--pico-border-width);
   vertical-align: middle;
   cursor: pointer;

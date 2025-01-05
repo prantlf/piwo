@@ -9,7 +9,6 @@ input {
   --pico-readonly-border-color: var(--pico-form-element-readonly-border-color);
   --pico-color: var(--pico-form-element-color);
   --pico-box-shadow: none;
-  margin: 0;
   font-size: 1rem;
   font-family: var(--pico-font-family);
   letter-spacing: inherit;
@@ -22,7 +21,7 @@ input {
   background-color: var(--pico-background-color);
   box-shadow: var(--pico-box-shadow);
   transition: background-color var(--pico-transition), border-color var(--pico-transition), color var(--pico-transition), box-shadow var(--pico-transition);
-  margin-bottom: var(--pico-spacing);
+  margin: 0 0 var(--pico-spacing) 0;
   box-sizing: border-box;
   background-repeat: no-repeat;
 }
@@ -32,12 +31,11 @@ input {
 }
 :host([type=file]) input {
   --pico-color: var(--pico-muted-color);
-  padding: 0;
-  border-width: 0;
   margin-left: calc(var(--pico-outline-width) * -1);
-  padding: calc(var(--pico-form-element-spacing-vertical) * 0.5) 0;
-  padding-left: var(--pico-outline-width);
+  padding-block: calc(var(--pico-form-element-spacing-vertical) * 0.5);
+  padding-inline: var(--pico-outline-width) 0;
   border: 0;
+  border-width: 0;
   border-radius: 0;
   background: none;
 }
