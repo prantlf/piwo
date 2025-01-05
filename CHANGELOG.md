@@ -1,5 +1,16 @@
 # Changes
 
+## [0.16.0](https://github.com/prantlf/piwo/compare/v0.15.0...v0.16.0) (2025-01-05)
+
+### Features
+
+* Reflect the button outline attribute to property ([09f9214](https://github.com/prantlf/piwo/commit/09f9214a145b212cee9e50b7ee52b1da4b0cee2a))
+
+### Bug Fixes
+
+* Fix crash in custom error setting function ([94d60d9](https://github.com/prantlf/piwo/commit/94d60d93d16c1ea0729f2cb4ef83cd543c6745c6))
+* Prevent crash in updating an unconnected label ([6a84635](https://github.com/prantlf/piwo/commit/6a84635fba79368901159d67b1d73adebc5b7aab))
+
 ## [0.15.0](https://github.com/prantlf/piwo/compare/v0.14.0...v0.15.0) (2025-01-04)
 
 ### Features
