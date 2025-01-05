@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="data:image/png;base64,iVBORw0KGgo=">
+  <title>PiWo Search</title>
+</head>
+
+<body>
+  <piwo-container>
+    <header>
+      <piwo-h level="1">PiWo Search</piwo-h>
+      <piwo-p>Demo of Pico Web Components. Provide a query for searching.</piwo-p>
+    </header>
+
+    <main>
+      <form id="search"></form>
+    </main>
+    <footer>
+      <piwo-hr></piwo-hr>
+      <piwo-small>PiWo 0.16.0 © 2024-2025 Ferdinand Prantl, go to the <piwo-link href="/piwo">website root</piwo-link> or visit the <piwo-link href="https://github.com/prantlf/piwo" target="_blank">project on GitHub</piwo-link></piwo-small>
+    </footer>
+  </piwo-container>
+
+  <script type="module">
+    import { appendFormContent  } from 'index.min.mjs'
+    import { registerField, registerForm } from './event-logger.js'
+
+    const schema = {
+      properties: {
+        query: {
+          type: 'string',
+          title: 'Query',
+          required: true
+        }
+      }
+    }
+
+    const options = {
+      fields: {
+        query: {
+          type: 'search',
+          placeholder: 'Type the query to search'
+        }
+      }
+    }
+
+    const form = {
+      buttons: {
+        submit: {
+          title: 'Submit'
+        },
+        reset: {
+          title: 'Reset',
+          type: 'reset'
+        }
+      }
+    }
+
+    const formEl = document.getElementById('search')
+    appendFormContent(formEl, { schema, options, form })
+
+    registerField('piwo-input')
+    registerForm('search', schema)
+  </script>
+</body>
+</html>
