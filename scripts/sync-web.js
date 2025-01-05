@@ -23,7 +23,11 @@ await Promise.all([
   copyFile('examples/event-logger.js', '../piwo-pages/event-logger.js'),
   writeIndex(),
   copyExample('login'),
+  copyExample('login-schema'),
   copyExample('person'),
+  copyExample('person-schema'),
   copyExample('search'),
-  copyExample('widget')
+  copyExample('search-schema'),
+  copyExample('widget'),
+  copyExample('widget-schema')
 ])
