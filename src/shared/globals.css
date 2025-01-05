@@ -390,7 +390,7 @@ piwo-label > :where(piwo-textarea) {
   color: var(--pico-muted-color);
 }
 :where(piwo-checkbox, piwo-switch, piwo-radio, piwo-label) + piwo-small {
-  margin-top: calc(var(--pico-spacing) * -0.375);
+  margin-top: calc(var(--pico-spacing) * -0.25);
 }
 :where(piwo-input, piwo-select, piwo-checkbox, piwo-switch, piwo-radio, piwo-textarea, fieldset)[aria-invalid=false] + piwo-small,
 piwo-label:has([aria-invalid=false]) + piwo-small {
@@ -399,6 +399,9 @@ piwo-label:has([aria-invalid=false]) + piwo-small {
 :where(piwo-input, piwo-select, piwo-checkbox, piwo-switch, piwo-radio, piwo-textarea, fieldset)[aria-invalid=true] + piwo-small,
 piwo-label:has([aria-invalid=true]) + piwo-small {
   color: var(--pico-del-color);
+}
+:where(piwo-input, piwo-select, piwo-checkbox, piwo-switch, piwo-radio, piwo-textarea, piwo-label, fieldset) + piwo-small:empty {
+  display: none;
 }
 
 piwo-nav piwo-li piwo-link {
