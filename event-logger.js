@@ -1,4 +1,6 @@
-export function registerForm(id) {
+import { getFormValues  } from '../dist/index.mjs'
+
+export function registerForm(id, schema) {
   const form = document.getElementById(id)
   form.addEventListener('submit', event => {
     event.preventDefault()
@@ -7,9 +9,13 @@ export function registerForm(id) {
     const formData = new FormData(form)
     const data = {}
     for (const [name, values] of formData.entries()) {
-      data[name] = values.length === 1 ? values[0] : values
+      data[name] = Array.isArray(values) && values.length === 1 ? values[0] : values
     }
-    console.log(`FormData for "${id}":`, data)
+    console.log(`Form data of "${id}":`, data)
+    if (schema) {
+      const values = getFormValues(form, schema)
+      console.log(`Form field values of "${id}":`, values)
+    }
     setTimeout(() => {
       button.ariaBusy = null
     }, 1000)

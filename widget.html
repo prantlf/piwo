@@ -3,7 +3,6 @@
 <head>
   <meta charset=utf-8>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="icon" href="data:image/png;base64,iVBORw0KGgo=">
   <title>PiWo Widget</title>
 </head>
@@ -17,14 +16,14 @@
 
     <main>
       <form id="widget">
-        <piwo-label for="name">Identifier:</piwo-label>
+        <piwo-label for="id">Identifier:</piwo-label>
         <piwo-input name="id" type="text" placeholder="Enter a unique identifier: &lt;project&gt;-&lt;component&gt;"
                     id="id" aria-describedby="id-msg" pattern="\w+-\w+"
                     required describeerror focuserror></piwo-input>
-        <piwo-small id="id-msg">The format has to be "&lt;project&gt;-&lt;component&gt;", for example: "my-hello". Only letters and numbers are allowed</piwo-small>
+        <piwo-small id="id-msg">The format has to be "&lt;project&gt;-&lt;component&gt;", for example: "my-hello". Only letters and numbers are allowed.</piwo-small>
 
         <piwo-label for="color">Background:</piwo-label>
-        <piwo-input name="color" type="color" ></piwo-input>
+        <piwo-input name="color" id="color" type="color"></piwo-input>
 
         <piwo-label for="size">Size [px]:</piwo-label>
         <piwo-input type="range" name="size" id="size" min="1" max="6" step="1" value="2" ticks>
@@ -38,12 +37,12 @@
           </datalist>
         </piwo-input>
 
-        <piwo-label>Icon:</piwo-label>
-        <piwo-input name="icon" type="file" placeholder="Upload the icon"
+        <piwo-label for="icon">Icon:</piwo-label>
+        <piwo-input name="icon" id="icon" type="file"
                     aria-describedby="icon-msg" describeerror focuserror required></piwo-input>
         <piwo-small id="icon-msg"></piwo-small>
 
-        <piwo-spacer factor="2"></piwo-spacer>
+        <piwo-spacer></piwo-spacer>
 
         <piwo-button>Submit</piwo-button>
         <piwo-button type="reset" outline>Reset</piwo-button>
@@ -51,7 +50,7 @@
     </main>
     <footer>
       <piwo-hr></piwo-hr>
-      <piwo-small>PiWo 0.15.0 © 2024-2025 Ferdinand Prantl, go to the <piwo-link href="/piwo">website root</piwo-link> or visit the <piwo-link href="https://github.com/prantlf/piwo" target="_blank">project on GitHub</piwo-link></piwo-small>
+      <piwo-small>PiWo 0.16.0 © 2024-2025 Ferdinand Prantl, go to the <piwo-link href="/piwo">website root</piwo-link> or visit the <piwo-link href="https://github.com/prantlf/piwo" target="_blank">project on GitHub</piwo-link></piwo-small>
     </footer>
   </piwo-container>
 

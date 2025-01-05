@@ -3,7 +3,6 @@
 <head>
   <meta charset=utf-8>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="icon" href="data:image/png;base64,iVBORw0KGgo=">
   <title>PiWo Login</title>
 </head>
@@ -21,19 +20,21 @@
         <piwo-input name="name" type="text" placeholder="Enter your login name"
                     id="name" aria-describedby="name-msg"
                     required describeerror focuserror></piwo-input>
-        <piwo-small id="name-msg">Ask the admin about your user name.</piwo-small>
+        <piwo-small id="name-msg"></piwo-small>
 
-        <piwo-label>
-          Password:
-          <piwo-input name="password" type="password" placeholder="Enter your password"></piwo-input>
+        <piwo-label for="pasword">Password:</piwo-label>
+        <piwo-input name="password" type="password" placeholder="Enter your password"
+                    id="password" aria-describedby="password-msg"
+                    required describeerror focuserror></piwo-input>
         </piwo-label>
+        <piwo-small id="password-msg">The password has to be at least 8 characters long, include at least 1 lower-case letter, 1 upper-case letter and 1 number..</piwo-small>
 
         <piwo-label>
           <piwo-checkbox name="remember-me"></piwo-checkbox>
           Rememeber me
         </piwo-label>
 
-        <piwo-spacer factor="2"></piwo-spacer>
+        <piwo-spacer></piwo-spacer>
 
         <piwo-button>Submit</piwo-button>
         <piwo-button type="reset" outline>Reset</piwo-button>
@@ -41,12 +42,25 @@
     </main>
     <footer>
       <piwo-hr></piwo-hr>
-      <piwo-small>PiWo 0.15.0 © 2024-2025 Ferdinand Prantl, go to the <piwo-link href="/piwo">website root</piwo-link> or visit the <piwo-link href="https://github.com/prantlf/piwo" target="_blank">project on GitHub</piwo-link></piwo-small>
+      <piwo-small>PiWo 0.16.0 © 2024-2025 Ferdinand Prantl, go to the <piwo-link href="/piwo">website root</piwo-link> or visit the <piwo-link href="https://github.com/prantlf/piwo" target="_blank">project on GitHub</piwo-link></piwo-small>
     </footer>
   </piwo-container>
 
   <script type="module">
     import { registerField, registerForm } from './event-logger.js'
+
+    const password = document.getElementById('password')
+    password.addEventListener('input', ({ target }) => {
+      const { value } = target
+      let message
+      if (value.length < 8) message = 'The password has to be at least 8 characters long.'
+      else if (!/[a-z]/.test(value)) message = 'The password has to include at least 1 lower-case letter.'
+      else if (!/[A-Z]/.test(value)) message = 'The password has to include at least 1 upper-case letter.'
+      else if (!/[0-9]/.test(value)) message = 'The password has to include at least 1 number.'
+      else message = ''
+      password.setCustomValidity(message)
+    })
+
     registerField('piwo-input, piwo-checkbox')
     registerForm('login')
   </script>
